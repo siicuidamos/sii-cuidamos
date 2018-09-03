@@ -1,0 +1,25 @@
+{
+  "name": "veeduria-proyectos-publicos",
+  "version": "1.0.0",
+  "description": "Esta aplicación expone proyectos públicos de inversión con el fin de que los ciudadanos le puedan hacer un seguimiento correcto al desarrollo e implementación de estos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Colombia",
+    "Proyectos",
+    "públicos",
+    "Proyectos",
+    "Veeduría",
+    "Ciudadanos",
+    "Participación",
+    "ciudadana"
+  ],
+  "author": "Gabriel Pinto & Vivian Gómez",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.88.0"
+  }
+}
