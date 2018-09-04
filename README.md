@@ -11,7 +11,7 @@ Esta aplicación expone proyectos públicos de inversión con el fin de que los 
 
 - **Node JS** 
 
-Verificar que este instalado "node -v" en el CMD o descargarlo de https://nodejs.org/es/ (versión LTS)
+Verificar que este instalado ejecutando "node -v" en el CMD o descargarlo de https://nodejs.org/es/ (versión LTS)
 
 - **Nodemon (opcional)**
 
