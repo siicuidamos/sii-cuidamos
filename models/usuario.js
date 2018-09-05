@@ -97,7 +97,7 @@ const claveValidadores = [{
 }];
 
 // Se define el schema del usuario
-const usuarioSchema = new Schema({
+const UsuarioSchema = new Schema({
     email: {
         type: String,
         required: true,
@@ -146,7 +146,7 @@ const usuarioSchema = new Schema({
 });
 
 // Se hace para encriptar la clave antes de que sea guardada
-usuarioSchema.pre('save', function (next) {
+UsuarioSchema.pre('save', function (next) {
     //Si la clave no ha sido modificada, no se hace nada
     if (!this.isModified('clave')) {
         return next();
@@ -163,9 +163,9 @@ usuarioSchema.pre('save', function (next) {
 });
 
 // Compara la clave al iniciar sesión
-usuarioSchema.methods.compararClave = function (clave) {
+UsuarioSchema.methods.compararClave = function (clave) {
     return bcrypt.compareSync(clave, this.clave);
 };
 
 // Se exporta el modelo
-module.exports = mongoose.model('Usuario', usuarioSchema, 'usuarios');
+module.exports = mongoose.model('Usuario', UsuarioSchema, 'usuarios');
