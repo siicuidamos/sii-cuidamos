@@ -8,9 +8,9 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 // Se usa el Schema de un Comentario
-const comentarioSchema = require('./comentario').schema;
+const ComentarioSchema = require('./comentario').schema;
 
-const proyectoSchema = new Schema({
+const ProyectoSchema = new Schema({
   region: {
     type: String,
     required: true
@@ -67,9 +67,9 @@ const proyectoSchema = new Schema({
     default: ''
   },
   comentarios: {
-    type: [comentarioSchema],
+    type: [ComentarioSchema],
     default: []
   }
 });
 
-module.exports = mongoose.model('Proyecto', proyectoSchema, 'proyectos');
+module.exports = mongoose.model('Proyecto', ProyectoSchema, 'proyectos');
