@@ -33,7 +33,7 @@ const ProyectoSchema = new Schema({
     required: true
   },
   bpin: {
-    type: Number,
+    type: String,
     required: true,
     unique: true
   },
