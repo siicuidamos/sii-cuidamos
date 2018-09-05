@@ -22,7 +22,7 @@ const ComentarioSchema = new Schema({
 });
 
 
-const ProyectoSchema = new Schema({
+const proyectoSchema = new Schema({
   departamento:{
     type: String,
     required: true
