@@ -40,6 +40,9 @@ const autenticacion = require('./routes/autenticacion')(router);
 // Ruta de API de proyectos
 const proyectos = require('./routes/proyectos')(router);
 
+// Configuracion a usar para evitar errores por deprecated
+mongoose.set('useCreateIndex', true);
+
 //Conexión a base de datos
 mongoose.connect(
     config.uri, {

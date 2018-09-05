@@ -10,6 +10,7 @@ const Schema = mongoose.Schema;
 // Se usa el Schema de un Comentario
 const ComentarioSchema = require('./comentario').schema;
 
+// Se define el schema de un proyecto
 const ProyectoSchema = new Schema({
   region: {
     type: String,
