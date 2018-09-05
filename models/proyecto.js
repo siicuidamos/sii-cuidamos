@@ -1,84 +1,75 @@
-const mongoose = require('mongoose')
-mongoose.Promise = global.Promise
-const Schema = mongoose.Shcema 
+// Se usa Mongoose, una herramienta de modelado de objetos de MongoDB diseñada para trabajar en un ambiente asíncrono
+const mongoose = require("mongoose");
 
-const ComentarioSchema = new Schema({
-  texto: {
-    type: String,
-    required: true
-  },
-  usuario: {
-    type: String,
-    required: true
-  },
-  fecha: {
-    type: Date,
-    required: true
-  },
-  categoria: {
-    type: Number
-    required: true
-  }
-});
+// Se define la promesa global de Moongose
+mongoose.Promise = global.Promise;
 
+// Se llama a la clase Schema de Moongose
+const Schema = mongoose.Schema;
+
+// Se usa el Schema de un Comentario
+const comentarioSchema = require('./comentario').schema;
 
 const proyectoSchema = new Schema({
-  departamento:{
+  region: {
     type: String,
     required: true
   },
-  municipio:{
+  departamento: {
     type: String,
     required: true
   },
-  proyecto:{
+  municipio: {
     type: String,
     required: true
   },
-  ocad:{
+  nombre: {
     type: String,
     required: true
   },
-  bpin:{
+  ocad: {
+    type: String,
+    required: true
+  },
+  bpin: {
     type: Number,
     required: true,
     unique: true
   },
-  sector:{
+  sector: {
     type: String,
     required: true
   },
-  estado:{
-    type: Boolean,
+  estado: {
+    type: String,
     required: true
   },
-  sgr:{
+  sgr: {
+    type: String,
+    required: true
+  },
+  ejecutor: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  anioInicioEjecucion: {
     type: Number,
     required: true
   },
-  ejecutor:{
-    type: String,
-    required: false
-  },
-  region:{
-    type: String,
-    required: true
-  },
-  anioInicioEjecucion:{
+  anioFinEjecucion: {
     type: Number,
     required: true
   },
-  anioFinEjecucion:{
-    type: Number,
-    required: true
-  },
-  link:{
+  link: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   },
   comentarios: {
-    type: [ComentarioSchema],
-    required: true
+    type: [comentarioSchema],
+    default: []
   }
 });
+
 module.exports = mongoose.model('Proyecto', proyectoSchema, 'proyectos');

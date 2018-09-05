@@ -28,12 +28,17 @@ const config = require("./configurations/database");
 // Inicializacion de Express
 const app = express();
 
+// Ruta api
 const rutaApi = '/vpp/api/';
 
 // Se define la promesa global de Moongose
 mongoose.Promise = global.Promise;
 
+// Ruta de API de autenticacion 
 const autenticacion = require('./routes/autenticacion')(router);
+
+// Ruta de API de proyectos
+const proyectos = require('./routes/proyectos')(router);
 
 //Conexión a base de datos
 mongoose.connect(
@@ -84,7 +89,9 @@ app.get('/', (req, res) => {
     return res.send("¡Hola Nata!");
 });
 
-app.use(rutaApi, autenticacion); // Use Authentication routes in application
+app.use(rutaApi, autenticacion); // Ruta de autenticacion de usuarios
+app.use(rutaApi, proyectos); // Ruta de proyectos
+
 
 //Se conecta al front
 app.get("*", (req, res) => {
