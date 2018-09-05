@@ -2,53 +2,43 @@
 const Proyecto = require('../models/proyecto');
 
 module.exports = (router) => {
-    router.post('/subirProyectos', (req, res) => {
 
-        let body = req.body;
-
-        let proyecto = new Proyecto({
-            region: body.region,
-            departamento: body.departamento,
-            municipio: body.municipio,
-            nombre: body.nombre,
-            ocad: body.ocad,
-            bpin: body.bpin,
-            sector: body.sector,
-            sgr: body.sgr,
-            ejecutor: body.ejecutor,
-            estado: body.estado,
-            anioInicioEjecucion: Number(body.anioInicioEjecucion),
-            anioFinEjecucion: Number(body.anioFinEjecucion),
-            link: body.link
-        });
-
-        proyecto.save((err) => {
-            if (err) {
-                if (err.code === 11000) { // Mira si el error es por un duplicado
+    // API para obtener todos los proyectos a partir de la pagina
+    router.get('/proyectos/:pagina', (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        Proyecto.find({},
+            null, {
+                skip: limite,
+                limit: 10,
+            },
+            (err, proyectos) => {
+                if (err) {
                     res.json({
                         exito: false,
-                        mensaje: 'El proyecto asociado a dicho BPIN ya ha sido guardado'
+                        mensaje: err
                     });
                 } else {
-                    res.json({
-                        exito: false,
-                        mensaje: 'Se presentó un error al guardar el proyecto. Error: ' + err
-                    });
+                    if (!proyectos) {
+                        res.json({
+                            exito: false,
+                            mensaje: "No hay proyectos en la base de datos."
+                        });
+                    } else if (proyectos.length === 0) {
+                        res.json({
+                            exito: false,
+                            proyectos: 'Se supera el valor máximo de los datos.'
+                        });
+                    } else {
+                        res.json({
+                            exito: true,
+                            proyectos: proyectos
+                        });
+                    }
                 }
-            } else {
-                res.json({
-                    exito: true,
-                    mensaje: 'Proyecto guardado correctamente.'
-                });
             }
-        });
-    });
+        );
 
-    router.get('/proyectos', (req, res) => {
-        res.json({
-            exito: true,
-            mensaje: 'Proyectos'
-        });
     });
     return router;
 };
