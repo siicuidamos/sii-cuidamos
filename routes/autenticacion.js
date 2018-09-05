@@ -13,7 +13,7 @@ module.exports = (router) => {
     router.post('/registrarUsuario', (req, res) => {
 
         // Cuerpo de la peticion
-        let body = req.body;
+        const body = req.body;
 
         if (!body.email) { // Revisa que se haya ingresado un correo
             res.json({
@@ -103,6 +103,65 @@ module.exports = (router) => {
                         exito: true,
                         mensaje: 'Usuario correctamente creado.'
                     });
+                }
+            });
+        }
+    });
+
+    // API para el inicio de sesion
+    router.post('/iniciarSesion', (req, res) => {
+
+        // Cuerpo de la peticion
+        const body = req.body;
+
+        if (!body.nombreDeUsuario) { // Revisa que se haya ingresado un nombre de usuario
+            res.json({
+                exito: false,
+                mensaje: 'Debe ingresar un nombre de usuario.'
+            });
+        } else if (!body.clave) { // Revisa que se haya ingresado una clave
+            res.json({
+                exito: false,
+                mensaje: 'Debe ingresar una clave.'
+            });
+        } else {
+            Usuario.findOne({
+                nombreDeUsuario: body.nombreDeUsuario.toLowerCase() // Busca por el nombre de usuario
+            }, (err, usuario) => {
+                if (err) {
+                    res.json({
+                        exito: false,
+                        mensaje: err
+                    });
+                } else if (!usuario) {
+                    res.json({
+                        exito: false,
+                        mensaje: 'El nombre de usuario ingresado no existe'
+                    });
+                } else {
+                    const claveValida = usuario.compararClave(body.clave); // Compara la clave ingresada con la real
+                    if (!claveValida) {
+                        res.json({
+                            exito: false,
+                            mensaje: 'La contraseña ingresada es incorrecta.'
+                        });
+                    } else {
+                        // Creacion del token seguro
+                        const token = jwt.sign({
+                                userId: usuario._id,
+                            },
+                            config.secret, {
+                                expiresIn: '4h'
+                            });
+                        usuario.clave = 'MeAtrapaste';
+                        // Mensaje de exito al iniciar sesion
+                        res.json({
+                            exito: true,
+                            mensaje: '¡Bienvenido ' + body.nombreDeUsuario + '!',
+                            token: token,
+                            usuario: usuario
+                        });
+                    }
                 }
             });
         }
