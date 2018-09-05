@@ -20,9 +20,11 @@
   "author": "Gabriel Pinto & Vivian Gómez",
   "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.12"
   }
 }

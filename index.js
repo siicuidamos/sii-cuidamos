@@ -4,6 +4,9 @@ const env = require('./env');
 // Se usa Express, una infraestructura web rápida, minimalista y flexible para Node.js
 const express = require("express");
 
+// Objeto para las rutas - API
+const router = express.Router();
+
 // Se usa Mongoose, una herramienta de modelado de objetos de MongoDB diseñada para trabajar en un ambiente asíncrono
 const mongoose = require("mongoose");
 
@@ -13,17 +16,24 @@ const bodyParser = require("body-parser");
 // Se usa CORS, que permite proveer un middleware Connect/Express que puede ser usado para habilitar CORS con varias opciones
 const cors = require("cors");
 
+// Se usa para poder implementar paths
+const path = require('path');
+
 // Puerto a usar. Se tiene en cuenta el caso de Heroku
 const port = process.env.PORT || 8080;
 
 // Se obtiene la configuración de la base de datos
-const config = require("./config/database");
+const config = require("./configurations/database");
 
 // Inicializacion de Express
 const app = express();
 
+const rutaApi = '/vpp/api/';
+
 // Se define la promesa global de Moongose
 mongoose.Promise = global.Promise;
+
+const autenticacion = require('./routes/autenticacion')(router);
 
 //Conexión a base de datos
 mongoose.connect(
@@ -66,10 +76,17 @@ app.use(
     })
 );
 
-// Se define la ruta de archivos estáticos para Express
+// Se define la ruta de archivos estáticos para el front
 app.use(express.static(__dirname + "/public"));
 
-//Se redirige desde cualquier página al 'index.html'. Esto se hace al inicio de la aplicación
+// Mensaje para probar el servidor por ahora
+app.get('/', (req, res) => {
+    return res.send("¡Hola Nata!");
+});
+
+app.use(rutaApi, autenticacion); // Use Authentication routes in application
+
+//Se conecta al front
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/index.html"));
 });

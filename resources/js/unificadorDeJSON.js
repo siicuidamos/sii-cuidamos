@@ -1,4 +1,4 @@
-var fs = require('fs');
+const fs = require('fs');
 
 let jsonLinks = require('../json/BaseDeDatosVideos.json');
 let json = require('../json/EnlacesProyectosPorEntidad.json')['rows'];
@@ -16,6 +16,6 @@ for (let x = 0; x < jsonLinks.length; x++) {
 
 }
 
-var data = JSON.stringify(json);
-var fs = require('fs');
+let data = JSON.stringify(json);
+let fs = require('fs');
 fs.writeFileSync("../json/Proyectos.json", data);
