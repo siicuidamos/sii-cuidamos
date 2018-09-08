@@ -36,6 +36,10 @@ const comentarioSchema = new Schema({
   categoria: {
     type: String,
     required: true
+  },
+  calificacion: {
+    type: Number,
+    required: true
   }
 });
 

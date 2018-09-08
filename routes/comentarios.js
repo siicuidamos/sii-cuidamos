@@ -22,6 +22,16 @@ module.exports = router => {
           exito: false,
           mensaje: "El comentario debe tener entre 80 y 500 caracteres."
         });
+      } else if(body.calificacion < 1 || body.calificacion>5){
+        res.json({
+          exito: false,
+          mensaje: "La calificacion debe ser entre 1 y 5."
+        });
+      } else if (!body.calificacion)  {
+        res.json({
+          exito: false,
+          mensaje: "Debe existir una calificación para el comentario."
+        });
       } else if (!body.categoria) {
         res.json({
           exito: false,
@@ -59,7 +69,8 @@ module.exports = router => {
           nombreDeUsuario: body.nombreDeUsuario,
           sectorUsuario: body.sectorUsuario,
           nivelEducativoUsuario: body.nivelEducativoUsuario,
-          categoria: body.categoria
+          categoria: body.categoria,
+          calificacion: body.calificacion
         });
 
         comentario.save(err => {
