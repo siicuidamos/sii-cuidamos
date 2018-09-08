@@ -17,6 +17,11 @@ module.exports = router => {
           exito: false,
           mensaje: "Debe existir un texto en el comentario."
         });
+      } else if (body.texto.length < 80 || body.texto.length > 500) {
+        res.json({
+          exito: false,
+          mensaje: "El comentario debe tener entre 80 y 500 caracteres."
+        });
       } else if (!body.categoria) {
         res.json({
           exito: false,
@@ -26,11 +31,6 @@ module.exports = router => {
         res.json({
           exito: false,
           mensaje: "Debe existir un BPIN del proyecto asociado al comentario."
-        });
-      } else if (body.texto.length < 80 || body.texto.length > 500) {
-        res.json({
-          exito: false,
-          mensaje: "El comentario debe tener entre 80 y 500 caracteres."
         });
       } else if (!body.nombreDeUsuario) {
         res.json({
@@ -45,8 +45,7 @@ module.exports = router => {
       } else if (!body.nivelEducativoUsuario) {
         res.json({
           exito: false,
-          mensaje:
-            "Debe existir un nivel educativo asociado al usuario del comentario."
+          mensaje: "Debe existir un nivel educativo asociado al usuario del comentario."
         });
       } else if (!body.sectorUsuario) {
         res.json({
