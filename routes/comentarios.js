@@ -47,11 +47,6 @@ module.exports = router => {
           exito: false,
           mensaje: "Debe existir un nivel educativo asociado al usuario del comentario."
         });
-      } else if (!body.sectorUsuario) {
-        res.json({
-          exito: false,
-          mensaje: "Debe existir un sector asociado al usuario del comentario."
-        });
       } else {
         let comentario = new Comentario({
           bpin: body.bpin,
