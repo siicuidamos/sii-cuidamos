@@ -7,9 +7,6 @@ mongoose.Promise = global.Promise;
 // Se llama a la clase Schema de Moongose
 const Schema = mongoose.Schema;
 
-// Se usa el Schema de un Comentario
-const ComentarioSchema = require('./comentario').schema;
-
 // Se define el schema de un proyecto
 const ProyectoSchema = new Schema({
   region: {
@@ -66,10 +63,6 @@ const ProyectoSchema = new Schema({
     type: String,
     required: false,
     default: ''
-  },
-  comentarios: {
-    type: [ComentarioSchema],
-    default: []
   }
 });
 
