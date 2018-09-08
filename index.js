@@ -43,6 +43,9 @@ const autenticacion = require('./routes/autenticacion')(router);
 // Ruta de API de proyectos
 const proyectos = require('./routes/proyectos')(router);
 
+// Ruta de API de comentarios
+const comentarios = require('./routes/comentarios')(router);
+
 // Configuracion a usar para evitar errores por deprecated
 mongoose.set('useCreateIndex', true);
 
@@ -97,7 +100,7 @@ app.get('/', (req, res) => {
 
 app.use(rutaApi, autenticacion); // Ruta de autenticacion de usuarios
 app.use(rutaApi, proyectos); // Ruta de proyectos
-
+app.use(rutaApi, comentarios); // Ruta de los comentarios
 
 //Se conecta al front
 app.get("*", (req, res) => {
