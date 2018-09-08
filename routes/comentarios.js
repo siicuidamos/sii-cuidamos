@@ -1,6 +1,5 @@
 // Modelo de un proyecto
 const Comentario = require("../models/comentario");
-const Proyecto = require("../models/proyecto");
 
 module.exports = router => {
   // API para crear un comentario nuevo
@@ -90,8 +89,6 @@ module.exports = router => {
   router.get("/comentarios/calificacionPromedioXCategoria/bpin/:bpin/categoria/:categoria", (req, res) => {
     let categoria = req.params.categoria;
     let bpin = req.params.bpin;
-        let pagina = req.params.pagina || 0;
-        let limite = pagina * 10;
         Comentario.aggregate([{ $match : { bpin:bpin, categoria : categoria} }, { $group: { _id: "$bpin", calificacionPromedio: {$avg: "$calificacion"} }}],
             (err, calificacionPromedio) => {
                 if (err) {
