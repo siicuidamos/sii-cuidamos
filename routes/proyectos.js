@@ -76,9 +76,9 @@ module.exports = router => {
         }
     });
 
-    //API para filtrar por departamentos
+    //API para obtener por departamentos
     router.get("/proyectos/departamento/:departamento/:pagina", (req, res) => {
-         let pagina = req.params.pagina || 0;
+        let pagina = req.params.pagina || 0;
         let limite = pagina * 10;
         let departamento = req.params.departamento.toUpperCase();
         departamento = departamento.replace("_"," ");
@@ -112,7 +112,74 @@ module.exports = router => {
             }
         );
     });
+
+    //API para obtener proyecto por sector
+    router.get("/proyectos/sector/:sector/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let sector = req.params.sector.toUpperCase();
+        sector = sector.replace("_"," ");
+        Proyecto.find({sector:sector},
+            null, {
+                skip: limite,
+                limit: 10
+            },
+            (err, proyectos) => {
+                if (err) {
+                    res.json({
+                        exito: false,
+                        mensaje: "Se presentó un error en la consulta. Error: " + err
+                    });
+                } else if (!proyectos) {
+                    res.json({
+                        exito: false,
+                        mensaje: "No hay proyectos en la base de datos."
+                    });
+                } else if (proyectos.length === 0) {
+                    res.json({
+                        exito: false,
+                        proyectos: "Se supera el valor máximo de los datos."
+                    });
+                } else {
+                    res.json({
+                        exito: true,
+                        proyectos: proyectos
+                    });
+                }
+            }
+        );
+    });
        
+    //API obtener proyectos por fecha de inicio
+    router.get("/proyectos/anioInicioEjecucion/:anioInicioEjecucion/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let anioInicioEjecucion = req.params.anioInicioEjecucion;
+        Proyecto.find({anioInicioEjecucion:anioInicioEjecucion},
+            null, {
+                skip: limite,
+                limit: 10
+            },
+            (err, proyectos) => {
+                if (err) {
+                    res.json({
+                        exito: false,
+                        mensaje: "Se presentó un error en la consulta. Error: " + err
+                    });
+                } else if (proyectos.length === 0) {
+                    res.json({
+                        exito: false,
+                        proyectos: "No hay proyectos correspondientes a la fecha de inicio ingresada."
+                    });
+                } else {
+                    res.json({
+                        exito: true,
+                        proyectos: proyectos
+                    });
+                }
+            }
+        );
+    });
 
 
 
