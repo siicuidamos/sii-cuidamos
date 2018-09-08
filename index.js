@@ -1,3 +1,6 @@
+// Se usa javascript en modo estricto
+"use strict";
+
 // Archivo que permite configurar ciertos elementos a partir del ambiente en el que se corre el proyecto
 const env = require('./env');
 
