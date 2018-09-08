@@ -8,46 +8,49 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 const comentarioSchema = new Schema({
-    texto: {
-        type: String,
-        required: true
-    },
-    nombreDeUsuario: {
-        type: String,
-        required: true
-    },
-    sectorUsuario: {
-        type: String,
-        required: true
-    },
-    nivelEducativoUsuario: {
-        type: String,
-        required: true
-    },
-    fecha: {
-        type: String,
-        required: true,
-        default: obtenerFecha()
-    },
-    categoria: {
-        type: String,
-        required: true
-    }
+  bpin: {
+    type: String,
+    required: true
+  },
+  texto: {
+    type: String,
+    required: true
+  },
+  nombreDeUsuario: {
+    type: String,
+    required: true
+  },
+  sectorUsuario: {
+    type: String,
+    required: true
+  },
+  nivelEducativoUsuario: {
+    type: String,
+    required: true
+  },
+  fecha: {
+    type: String,
+    required: true,
+    default: obtenerFecha()
+  },
+  categoria: {
+    type: String,
+    required: true
+  }
 });
 
 function obtenerFecha() {
+  let fecha = new Date();
 
-    let fecha = new Date();
+  let anio = fecha.getFullYear();
 
-    let anio = fecha.getFullYear();
+  let mes = fecha.getMonth() + 1;
+  mes = (mes < 10 ? "0" : "") + mes;
 
-    let mes = fecha.getMonth() + 1;
-    mes = (mes < 10 ? "0" : "") + mes;
+  let dia = fecha.getDate();
+  dia = (dia < 10 ? "0" : "") + dia;
 
-    let dia = fecha.getDate();
-    dia = (dia < 10 ? "0" : "") + dia;
+  return dia + "/" + mes + "/" + anio;
+}
 
-    return dia + '/' + mes + '/' + anio;
-};
-
-module.exports = mongoose.model('Comentario', comentarioSchema);
+module.exports = mongoose.model("Comentario", comentarioSchema, "comentarios");
