@@ -136,6 +136,49 @@ module.exports = router => {
     }
   });
 
+  // Api para obtener todos los comentarios de un proyecto
+  router.get("/comentarios/bpin/:bpin/:pagina", (req, res) => {
+    let bpin = req.params.bpin;
+    let pagina = req.params.pagina || 0;
+    let limite = pagina * 10;
+
+    if (!bpin) {
+      res.json({
+        exito: false,
+        mensaje: "Debe ingresar un código BPIN para realizar las busquedas."
+      });
+    } else if (!bpin.match(/^[0-9]+$/)) {
+      res.json({
+        exito: false,
+        mensaje: "El BPIN solo puede ser un número."
+      });
+    } else {
+      Comentario.find({
+        bpin: bpin
+      }, null, {
+        skip: limite,
+        limit: 10
+      }, (err, comentarios) => {
+        if (err) {
+          res.json({
+            exito: false,
+            mensaje: "Se presentó un error en la consulta. Error: " + err
+          });
+        } else if (!comentarios || comentarios.length === 0) {
+          res.json({
+            exito: false,
+            mensaje: "No hay comentarios para el proyecto con bpin " + bpin
+          });
+        } else {
+          res.json({
+            exito: true,
+            comentarios: comentarios
+          });
+        }
+      });
+    }
+  });
+
   // API para obtener los comentarios de un proyecto por BPIN y categoría
   router.get("/comentarios/bpin/:bpin/categoria/:categoria/:pagina", (req, res) => {
     let pagina = req.params.pagina || 0;
@@ -240,7 +283,6 @@ module.exports = router => {
       );
     }
   });
-
 
   //API para obtener la calificación promedio de un proyecto, por bpin y categoria de comentario
   router.get("/comentarios/calificacionPromedioXCategoria/bpin/:bpin/categoria/:categoria", (req, res) => {
