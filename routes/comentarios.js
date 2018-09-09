@@ -1,7 +1,11 @@
+// Se usa javascript en modo estricto
+"use strict";
+
 // Modelo de un proyecto
 const Comentario = require("../models/comentario");
 
 module.exports = router => {
+
   // API para crear un comentario nuevo
   router.post("/comentarios/crear", (req, res) => {
     let body = req.body;
@@ -22,12 +26,12 @@ module.exports = router => {
           exito: false,
           mensaje: "El comentario debe tener entre 80 y 500 caracteres."
         });
-      } else if(body.calificacion < 1 || body.calificacion>5){
+      } else if (body.calificacion < 1 || body.calificacion > 5) {
         res.json({
           exito: false,
           mensaje: "La calificacion debe ser entre 1 y 5."
         });
-      } else if (!body.calificacion)  {
+      } else if (!body.calificacion) {
         res.json({
           exito: false,
           mensaje: "Debe existir una calificación para el comentario."
@@ -58,6 +62,7 @@ module.exports = router => {
           mensaje: "Debe existir un nivel educativo asociado al usuario del comentario."
         });
       } else {
+
         let comentario = new Comentario({
           bpin: body.bpin,
           texto: body.texto,
