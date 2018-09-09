@@ -127,7 +127,7 @@ module.exports = router => {
                 mensaje: "Debe seleccionar un departamento válido"
             });
         } else {
-            departamento = departamento.replace(/_/g, " ").toUpperCase();
+            departamento = departamento.replace(/_/g, " ");
             Proyecto.find({
                     departamento: departamento
                 },

@@ -64,6 +64,11 @@ const ProyectoSchema = new Schema({
     required: false,
     default: ''
   }
+}, {
+  collation: {
+    locale: 'es',
+    strength: 1
+  }
 });
 
 module.exports = mongoose.model('Proyecto', ProyectoSchema, 'proyectos');
