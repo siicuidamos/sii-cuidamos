@@ -187,6 +187,59 @@ module.exports = router => {
   });
 
   // API para obtener la calificación promedio de un proyecto por BPIN
+  router.get("/comentarios/calificacionPromedio/bpin/:bpin", (req, res) => {
+    let bpin = req.params.bpin;
+    if (!bpin) {
+      res.json({
+        exito: false,
+        mensaje: "Debe ingresar un código BPIN para realizar las busquedas."
+      });
+    } else if (!bpin.match(/^[0-9]+$/)) {
+      res.json({
+        exito: false,
+        mensaje: "El BPIN solo puede ser un número."
+      });
+    } else {
+      Comentario.aggregate([{
+          $match: {
+            bpin: bpin
+          }
+        }, {
+          $group: {
+            _id: "$bpin",
+            calificacion: {
+              $avg: "$calificacion"
+            }
+          }
+        }],
+        (err, calificacionPromedio) => {
+          if (err) {
+            res.json({
+              exito: false,
+              mensaje: "Se presentó un error en la consulta. Error: " + err
+            });
+          } else if (calificacionPromedio.length === 0) {
+            res.json({
+              exito: false,
+              calificacionPromedio: {
+                proyectoBPIN: bpin,
+                calificacionPromedio: 0
+              }
+            });
+          } else {
+
+            res.json({
+              exito: true,
+              calificacionPromedio: {
+                proyectoBPIN: bpin,
+                calificacionPromedio: calificacionPromedio[0].calificacion
+              }
+            });
+          }
+        }
+      );
+    }
+  });
 
 
   //API para obtener la calificación promedio de un proyecto, por bpin y categoria de comentario
