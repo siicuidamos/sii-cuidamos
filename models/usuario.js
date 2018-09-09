@@ -1,6 +1,3 @@
-// Se usa el mapa de Colombia
-const mapaDeColombia = require('../resources/json/MapaDeColombia.json');
-
 // Se usa Mongoose, una herramienta de modelado de objetos de MongoDB diseñada para trabajar en un ambiente asíncrono
 const mongoose = require("mongoose");
 
