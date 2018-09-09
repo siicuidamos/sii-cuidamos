@@ -1,3 +1,6 @@
+// Se usa javascript en modo estricto
+"use strict";
+
 // Modelo del usuario
 const Usuario = require('../models/usuario');
 
