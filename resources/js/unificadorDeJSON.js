@@ -1,3 +1,6 @@
+// Se usa javascript en modo estricto
+"use strict;
+
 const fs = require('fs');
 
 let jsonLinks = require('../json/BaseDeDatosVideos.json');
@@ -17,5 +20,4 @@ for (let x = 0; x < jsonLinks.length; x++) {
 }
 
 let data = JSON.stringify(json);
-let fs = require('fs');
 fs.writeFileSync("../json/Proyectos.json", data);
