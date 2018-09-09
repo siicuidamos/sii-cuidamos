@@ -17,8 +17,7 @@ for (let index = 0; index < proyectos.length; index++) {
         'ejecutor': proyecto.ejecutor,
         'anioInicioEjecucion': Number(proyecto.anioInicioEjecucion),
         'anioFinEjecucion': Number(proyecto.anioFinEjecucion),
-        'link': proyecto.link,
-        'comentarios': []
+        'link': proyecto.link
     };
     proyectosNuevoss.push(proyectoBody);
 

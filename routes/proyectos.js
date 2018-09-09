@@ -5,7 +5,7 @@
 const Proyecto = require("../models/proyecto");
 
 module.exports = router => {
-  // API para obtener todos los proyectos con paginacion
+  // API para obtener todos los proyectos
   router.get("/proyectos/:pagina", (req, res) => {
     let pagina = req.params.pagina || 0;
     let limite = pagina * 10;
@@ -37,7 +37,7 @@ module.exports = router => {
     );
   });
 
-  // API para obtener los proyectos de un municipio con paginacion
+  // API para obtener los proyectos de un municipio
   router.get("/proyectos/municipio/:municipio/:pagina", (req, res) => {
     let municipio = req.params.municipio;
     let pagina = req.params.pagina || 0;
@@ -121,7 +121,7 @@ module.exports = router => {
     }
   });
 
-  //API para obtener proyectos por departamento
+  //API para obtener los proyectos de un departamento
   router.get("/proyectos/departamento/:departamento/:pagina", (req, res) => {
     let pagina = req.params.pagina || 0;
     let limite = pagina * 10;
@@ -164,7 +164,7 @@ module.exports = router => {
     }
   });
 
-  //API para obtener proyecto por sector
+  //API para obtener los proyectos por sector
   router.get("/proyectos/sector/:sector/:pagina", (req, res) => {
     let pagina = req.params.pagina || 0;
     let limite = pagina * 10;
@@ -209,7 +209,7 @@ module.exports = router => {
     }
   });
 
-  //API obtener proyectos por fecha de inicio
+  //API para obtener los proyectos por fecha de inicio
   router.get(
     "/proyectos/anioInicioEjecucion/:anioInicioEjecucion/:pagina",
     (req, res) => {
@@ -257,6 +257,8 @@ module.exports = router => {
       }
     }
   );
+
+  //API para obtener los proyectos por departamento y sector
 
   return router;
 };
