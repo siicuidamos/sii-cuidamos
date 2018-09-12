@@ -18,32 +18,38 @@ class Inicio extends Component {
       }
 
       proyectosSiguiente(valor) {
-        axios.get("http://localhost:8080/vpp/api/proyectos/" + this.state.pagina).then(res => {
-            const exito = res.data.exito;
-            if (exito){
-              this.setState({ exito: exito, proyectos: res.data.proyectos });
-              this.setState({
-                pagina : this.state.pagina + valor
+        if((valor === -1 && this.state.pagina > 1) || valor === 1)  {
+            axios.get("http://localhost:8080/vpp/api/proyectos/" + this.state.pagina).then(res => {
+                const exito = res.data.exito;
+                if (exito){
+                  this.setState({ exito: exito, proyectos: res.data.proyectos });
+                  this.setState({
+                    pagina : this.state.pagina + valor
+                });
+                } else {
+                  this.setState({ exito: exito, mensaje: res.data.mensaje });
+                }     
             });
-            } else {
-              this.setState({ exito: exito, mensaje: res.data.mensaje });
-            }     
-        });
+        }
       }
 
+       
+
       render() {
+        const botones = <div className="text-center">
+        <button className="btn btn-info mt-3 mr-2" type="submit" onClick={() => this.proyectosSiguiente(-1)}><i className="fas fa-chevron-left"></i></button>
+        <button type="button" className="btn btn-outline-info mt-3 font-weight-bold" disabled>{this.state.pagina}</button>
+        <button className="btn btn-info mt-3 ml-2" type="submit" onClick={() => this.proyectosSiguiente(1)}><i className="fas fa-chevron-right"></i></button>
+        </div>;
         return this.state.exito ? (
         <div>
-            <div className="text-center">
-                <button className="btn btn-primary mt-3 mr-2" type="submit" onClick={() => this.proyectosSiguiente(-1)}><i class="fas fa-chevron-left"></i></button>
-                <button type="button" className="btn btn-outline-primary mt-3" disabled>{this.state.pagina}</button>
-                <button className="btn btn-primary mt-3 ml-2" type="submit" onClick={() => this.proyectosSiguiente(1)}><i class="fas fa-chevron-right"></i></button>
-            </div>
+            {botones}
             <div className="row">
             {this.state.proyectos.map(proyecto => {
                 return <ProyectoGeneral key={proyecto.bpin} proyecto={proyecto}/> ;
             })}
             </div>
+            {botones}
         </div>) : 
         (<div>
           {this.state.mensaje}
