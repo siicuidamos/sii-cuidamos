@@ -68,13 +68,6 @@ mongoose.connect(
     }
 );
 
-// Se habilita CORS en el puerto 4200. Donde corre el cliente.
-app.use(
-    cors({
-        origin: "http://localhost:4200"
-    })
-);
-
 // Configura las peticiones con cuerpo de tipo JSON
 app.use(
     bodyParser.json({
@@ -90,8 +83,15 @@ app.use(
     })
 );
 
+// Se habilita CORS en el puerto 4200. Donde corre el cliente.
+app.use(
+    cors({
+        origin: "http://localhost:3000"
+    })
+);
+
 // Se define la ruta de archivos estáticos para el front
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "client/build"));
 
 // Mensaje para probar el servidor por ahora
 app.get('/', (req, res) => {
@@ -104,7 +104,7 @@ app.use(rutaApi, comentarios); // Ruta de los comentarios
 
 //Se conecta al front
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname + "/public/index.html"));
+    res.sendFile(path.join(__dirname, "client/build", 'index.html'));
 });
 
 //Se define el puerto en el que trabaja el servidor
