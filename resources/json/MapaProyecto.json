@@ -1904,14 +1904,14 @@
 }, {
     "region": "Region Centro Oriente",
     "departamentos": [{
-        "departamento": "Bogota",
+        "departamento": "Bogotá",
         "numProyectos": 51,
         "municipios": [{
-            "municipio": "Bogota, D.c",
+            "municipio": "Bogotá, D.C.",
             "numProyectos": 51
         }]
     }, {
-        "departamento": "Boyaca",
+        "departamento": "Boyacá",
         "numProyectos": 3309,
         "municipios": [{
             "municipio": "Almeida",
