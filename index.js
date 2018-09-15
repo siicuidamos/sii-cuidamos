@@ -7,6 +7,9 @@ const env = require('./env');
 // Se usa Express, una infraestructura web rápida, minimalista y flexible para Node.js
 const express = require("express");
 
+// Inicializacion de Express
+const app = express();
+
 // Objeto para las rutas - API
 const router = express.Router();
 
@@ -17,7 +20,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 // Se usa CORS, que permite proveer un middleware Connect/Express que puede ser usado para habilitar CORS con varias opciones
-const cors = require("cors");
+//const cors = require("cors");
 
 // Se usa para poder implementar paths
 const path = require('path');
@@ -27,9 +30,6 @@ const port = process.env.PORT || 8080;
 
 // Se obtiene la configuración de la base de datos
 const config = require("./configurations/database");
-
-// Inicializacion de Express
-const app = express();
 
 // Ruta api
 const rutaApi = '/vpp/api/';
@@ -83,28 +83,23 @@ app.use(
     })
 );
 
-// Se habilita CORS en el puerto 4200. Donde corre el cliente.
-app.use(
-    cors({
-        origin: "http://localhost:3000"
-    })
-);
+// // Se habilita CORS en el puerto 4200. Donde corre el cliente.
+// app.use(
+//     cors({
+//         origin: "http://localhost:3000"
+//     })
+// );
 
 // Se define la ruta de archivos estáticos para el front
-app.use(express.static(__dirname + "client/build"));
-
-// Mensaje para probar el servidor por ahora
-app.get('/', (req, res) => {
-    return res.send("¡Hola Nata!");
-});
+app.use(express.static(path.resolve(__dirname, 'client/build')));
 
 app.use(rutaApi, autenticacion); // Ruta de autenticacion de usuarios
-app.use(rutaApi, proyectos); // Ruta de proyectos
+app.use('', proyectos); // Ruta de proyectos
 app.use(rutaApi, comentarios); // Ruta de los comentarios
 
 //Se conecta al front
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client/build", 'index.html'));
+app.get('*', function(request, response) {
+    response.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
 });
 
 //Se define el puerto en el que trabaja el servidor

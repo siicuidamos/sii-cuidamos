@@ -6,7 +6,7 @@ const Proyecto = require("../models/proyecto");
 
 module.exports = router => {
     // API para obtener todos los proyectos
-    router.get("/proyectos/:pagina", (req, res) => {
+    router.get("/vpp/api/proyectos/:pagina", (req, res) => {
         let pagina = req.params.pagina || 0;
         let limite = pagina * 10;
         Proyecto.find({},

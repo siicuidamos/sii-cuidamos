@@ -14,12 +14,13 @@ class Inicio extends Component {
       }  
     
       componentDidMount() {
-        this.proyectosSiguiente(1);
+        this.proyectosSiguiente(0);
       }
 
       proyectosSiguiente(valor) {
-        if((valor === -1 && this.state.pagina > 1) || valor === 1)  {
-            axios.get("http://localhost:8080/vpp/api/proyectos/" + this.state.pagina).then(res => {
+        if((valor === -1 && this.state.pagina >= 1) || valor >= 0)  {
+            axios.get("/vpp/api/proyectos/" + (this.state.pagina + valor)).then(res => {
+              console.log('entra');
                 const exito = res.data.exito;
                 if (exito){
                   this.setState({ exito: exito, proyectos: res.data.proyectos });
@@ -38,7 +39,7 @@ class Inicio extends Component {
       render() {
         const botones = <div className="text-center">
         <button className="btn btn-info mt-3 mr-2" type="submit" onClick={() => this.proyectosSiguiente(-1)}><i className="fas fa-chevron-left"></i></button>
-        <button type="button" className="btn btn-outline-info mt-3 font-weight-bold" disabled>{this.state.pagina}</button>
+        <button type="button" className="btn btn-outline-info mt-3 font-weight-bold" disabled>{this.state.pagina + 1}</button>
         <button className="btn btn-info mt-3 ml-2" type="submit" onClick={() => this.proyectosSiguiente(1)}><i className="fas fa-chevron-right"></i></button>
         </div>;
         return this.state.exito ? (
@@ -52,6 +53,7 @@ class Inicio extends Component {
             {botones}
         </div>) : 
         (<div>
+          {console.log('error en peticion')}
           {this.state.mensaje}
         </div>);
       }
