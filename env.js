@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 // Se mira si la carpeta public existe, ya que en ese caso se usa la configuración del modo en producción (production).
-if (fs.existsSync('./public')) {
+if (fs.existsSync('client/build')) {
     process.env.NODE_ENV = 'production';
     process.env.databaseUri = process.env.MONGODB_URI;
     process.env.databaseName = 'production database: proyectosveeduria';

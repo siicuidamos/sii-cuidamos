@@ -1,12 +1,21 @@
 {
-  "name": "veeduria-proyectos-publicos",
+  "name": "vpp-colombia",
   "version": "1.0.0",
+  "author": "Gabriel Pinto & Vivian Gómez",
+  "license": "MIT",
   "description": "Esta aplicación expone proyectos públicos de inversión con el fin de que los ciudadanos le puedan hacer un seguimiento correcto al desarrollo e implementación de estos.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build": "cd client && ng build --prod && cd .. && node index.js"
+    "start": "node index",
+    "heroku-postbuild": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
+  "engines": {
+    "node": "8.11.1"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ],
   "keywords": [
     "Colombia",
     "Proyectos",
@@ -17,8 +26,10 @@
     "Participación",
     "ciudadana"
   ],
-  "author": "Gabriel Pinto & Vivian Gómez",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glpinto10/veeduria-proyectos-publicos.git"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
