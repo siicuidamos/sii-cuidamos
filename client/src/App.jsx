@@ -10,11 +10,13 @@ class App extends Component {
 
   render() {
     return (
+      <div>
+        <NavBar/>
+        <div className="container container-fluid mb-5 mt-1">
+        <h1 className="text-center">Veeduría de proyectos públicos</h1>
 
-      <div className="container container-fluid mb-5 mt-1">
-      <NavBar/>
-      <h1 className="text-center">Veeduría de proyectos públicos</h1>
-      <Inicio/>
+        <Inicio/>
+        </div>
       </div>
     );
   }

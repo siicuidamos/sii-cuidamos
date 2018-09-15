@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProyectoGeneral from "./ProyectoGeneral.jsx";
+import ProyectoGeneral from "./ProyectoGeneral";
 import axios from "axios";
 
 class Inicio extends Component {
