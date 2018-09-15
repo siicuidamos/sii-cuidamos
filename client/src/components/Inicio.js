@@ -20,7 +20,6 @@ class Inicio extends Component {
       proyectosSiguiente(valor) {
         if((valor === -1 && this.state.pagina >= 1) || valor >= 0)  {
             axios.get("/vpp/api/proyectos/" + (this.state.pagina + valor)).then(res => {
-              console.log('entra');
                 const exito = res.data.exito;
                 if (exito){
                   this.setState({ exito: exito, proyectos: res.data.proyectos });
@@ -53,8 +52,8 @@ class Inicio extends Component {
             {botones}
         </div>) : 
         (<div>
-          {console.log('error en peticion')}
-          {this.state.mensaje}
+          <hr/>
+          <h3 className="text-center">Los proyectos públicos están siendo cargados. Por favor espera <i className="far fa-smile-beam text-warning"></i></h3>
         </div>);
       }
 }
