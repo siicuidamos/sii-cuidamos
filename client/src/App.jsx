@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect, Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Inicio from './components/Inicio';
 import NavBar from './components/NavBar.jsx';
 import Principal from './components/Principal';
-import DetailProyecto from './components/DetailProyecto';
 
 class App extends Component {
   render() {

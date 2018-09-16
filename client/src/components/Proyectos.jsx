@@ -186,11 +186,12 @@ class Proyectos extends Component {
   resultadoBusqueda() {
     if (this.state.proyectos.length > 0) {
       let mostrar = [];
-      this.state.proyectos.map(proyecto => {
+      for (let index = 0; index < this.state.proyectos.length; index++) {
+        const proyecto = this.state.proyectos[index];
         mostrar.push(
           <ProyectoGeneral key={proyecto.bpin} proyecto={proyecto} />
         );
-      });
+      }
       return mostrar;
     } else if (this.state.bpin) {
       return (
