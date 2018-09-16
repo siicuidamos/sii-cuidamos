@@ -46,6 +46,17 @@ let aniosFin = [];
 // Mapa general de los proyectos. Región -> Departamento -> Municipio
 let mapaProyectos = [];
 
+function compare(a, b) {
+    if (a.link > b.link)
+        return -1;
+    if (a.link < b.link)
+        return 1;
+    return 0;
+}
+
+proyectos.sort(compare);
+
+
 // Iterador sobre los proyectos para pulir los datos 
 for (let index = 0; index < proyectos.length; index++) {
     const proyectoJson = proyectos[index];
@@ -96,8 +107,8 @@ for (let index = 0; index < proyectos.length; index++) {
 console.log("Se empiezan a remover los duplicados");
 
 // Remueve los proyectos repetidos por BPIN
-let proyectosNuevos = removerDuplicados(proyectosProcesados, 'bpin');
-console.log('Tamaño original: ' + proyectosProcesados.length + ' - Nuevo tamaño: ' + proyectosNuevos.length + ' - Repetidos: ' + (proyectosProcesados.length - proyectosNuevos.length));
+let proyectosNuevos = proyectosProcesados;
+//console.log('Tamaño original: ' + proyectosProcesados.length + ' - Nuevo tamaño: ' + proyectosNuevos.length + ' - Repetidos: ' + (proyectosProcesados.length - proyectosNuevos.length));
 
 // Configuracion a usar para evitar errores por deprecated
 mongoose.set('useCreateIndex', true);

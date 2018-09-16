@@ -1,12 +1,16 @@
 // Se usa javascript en modo estricto
-"use strict;
+"use strict";
 
 const fs = require('fs');
 
-let jsonLinks = require('../json/BaseDeDatosVideos.json');
-let json = require('../json/EnlacesProyectosPorEntidad.json')['rows'];
+let jsonLinks = require('../json/BaseDeDatosVideos.json')['rows'];
+let json = require('../json/EnlacesProyectosPorEntidad.json');
+
+console.log(json.length);
+console.log(jsonLinks.length);
 
 for (let x = 0; x < jsonLinks.length; x++) {
+    console.log(x);
     let bpin = jsonLinks[x]['bpin'];
     let link = jsonLinks[x]['link'];
 
@@ -21,3 +25,5 @@ for (let x = 0; x < jsonLinks.length; x++) {
 
 let data = JSON.stringify(json);
 fs.writeFileSync("../json/Proyectos.json", data);
+
+console.log('Listo');

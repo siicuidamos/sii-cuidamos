@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Login extends Component {
+class Registro extends Component {
   constructor(props) {
     super(props);
 
@@ -66,7 +66,7 @@ class Login extends Component {
             delete usuario._id;
             localStorage.setItem('tokenVPP', data.token);
             localStorage.setItem('usuarioVPP', JSON.stringify(data.usuario));
-            document.getElementById('cerrarLoginModal').click();
+            document.getElementById('cerrarRegistroModal').click();
             this.verificar();
           }
         })
@@ -104,7 +104,7 @@ class Login extends Component {
     return (
       <div
         className="modal fade"
-        id="loginModal"
+        id="registroModal"
         tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
@@ -121,7 +121,7 @@ class Login extends Component {
               </h5>
               <button
                 type="button"
-                id="cerrarLoginModal"
+                id="cerrarRegistroModal"
                 className="close"
                 data-dismiss="modal"
                 aria-label="Close"
@@ -169,4 +169,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default Registro;
