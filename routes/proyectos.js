@@ -108,7 +108,7 @@ module.exports = router => {
                     } else {
                         res.json({
                             exito: true,
-                            proyecto: proyecto
+                            proyectos: [proyecto]
                         });
                     }
                 }

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Principal extends Component {
 
 	render() {
 		return(
-
+<div>
 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
 		<ol className="carousel-indicators">
 		<li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -31,7 +32,18 @@ class Principal extends Component {
 		<span className="carousel-control-next-icon" aria-hidden="true"></span>
 		<span className="sr-only">Next</span>
 	</a>
-</div>    	
+</div>  
+<div class="container-fluid">
+      <center>
+				<Link to="/proyectos" className="nav-link">
+				<button type="button" class="btn btn-primary">
+				Empieza a informarte y a participar! 
+		   	</button>
+				</Link>
+			</center>
+</div> 
+</div>
+  	
 		);	 
 	}
 }
