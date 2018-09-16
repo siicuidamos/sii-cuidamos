@@ -36,7 +36,7 @@ class Principal extends Component {
 <div class="container-fluid">
       <center>
 				<Link to="/proyectos" className="nav-link">
-				<button type="button" class="btn btn-primary">
+				<button type="button" className="btn btn-primary">
 				Empieza a informarte y a participar! 
 		   	</button>
 				</Link>
