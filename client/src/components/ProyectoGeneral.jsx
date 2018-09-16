@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-//import DetailProyecto from './DetailProyecto';
-//import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class ProyectoGeneral extends Component {
+  constructor(props) {
+    super(props);
+
+    this.proyecto = this.props.proyecto;
+  }
+
   render() {
-    const proyecto = this.props.proyecto;
-    const bpin = proyecto.bpin;
-    const nombre = proyecto.nombre;
-    const region = proyecto.region;
-    const departamento = proyecto.departamento;
-    const municipio = proyecto.municipio;
-    const sector = proyecto.sector;
-    const inicio = proyecto.anioInicioEjecucion;
-    const fin = proyecto.anioFinEjecucion;
+    const bpin = this.proyecto.bpin;
+    const nombre = this.proyecto.nombre;
+    const region = this.proyecto.region;
+    const departamento = this.proyecto.departamento;
+    const municipio = this.proyecto.municipio;
+    const sector = this.proyecto.sector;
+    const inicio = this.proyecto.anioInicioEjecucion;
+    const fin = this.proyecto.anioFinEjecucion;
 
     return (
       <div className="col-12 mt-4">
@@ -24,8 +28,10 @@ class ProyectoGeneral extends Component {
             <p className="card-text">
               <i className="fas fa-fingerprint" />
               &nbsp;
-              <b>BPIN: </b>
-              {bpin}
+              <Link to={'/proyectos/' + bpin}>
+                <b>BPIN: </b>
+                {bpin}
+              </Link>
             </p>
 
             <p className="card-text">
