@@ -4,7 +4,7 @@ import OpcionesDeFiltros from './OpcionesDeFiltros';
 class Inicio extends Component {
   render() {
     return (
-      <div>
+      <div className="container container-fluid mb-5">
         <OpcionesDeFiltros />
       </div>
     );
