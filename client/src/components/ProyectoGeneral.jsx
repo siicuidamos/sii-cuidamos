@@ -1,10 +1,28 @@
 import React, { Component } from "react";
+import DetailProyecto from "./DetailProyecto.jsx";
 import axios from "axios";
 
 
 class ProyectoGeneral extends Component {
 
+
+  state = {
+    redirect: false
+  }
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <DetailProyecto />
+    }
+  }
+
+
   render() {
+
     const proyecto = this.props.proyecto;
     const nombre = proyecto.nombre;
     const region = proyecto.region;
@@ -32,6 +50,8 @@ class ProyectoGeneral extends Component {
             </p>
           </div>
         </div>
+         <div>
+         </div>
       </div>
     );
   }

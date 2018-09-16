@@ -291,5 +291,209 @@ module.exports = router => {
         }
     });
 
+    //API para obtener los proyectos por departamento y municipio
+    router.get("/proyectos/departamento/:departamento/municipio/:municipio/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let departamento = req.params.departamento;
+        let municipio = req.params.municipio;
+        if (!municipio) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un municipio válido"
+            });
+        } else if (!departamento) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un departamento válido"
+            });
+        } else {
+            municipio = municipio.replace(/_/g, " ").toUpperCase();
+            departamento = departamento.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                departamento: departamento,
+                municipio: municipio
+            }, null, {
+                skip: limite,
+                limit: 10
+            }, (err, proyectos) => {
+                if (err) {
+                    res.json({
+                        exito: false,
+                        mensaje: "Se presentó un error en la consulta. Error: " + err
+                    });
+                } else if (!proyectos || proyectos.length === 0) {
+                    res.json({
+                        exito: false,
+                        proyectos: "No hay proyectos con pertenecientes al departamtno " + departamento + " y en el municipio " + municipio
+                    });
+                } else {
+                    res.json({
+                        exito: true,
+                        proyectos: proyectos
+                    });
+                }
+            });
+        }
+    });
+
+    //API para obtener los proyectos por municipio y sector
+    router.get("/proyectos/municipio/:municipio/sector/:sector/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let sector = req.params.sector;
+        let municipio = req.params.municipio;
+        if (!municipio) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un municipio válido"
+            });
+        } else if (!sector) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un sector válido"
+            });
+        } else {
+            municipio = municipio.replace(/_/g, " ").toUpperCase();
+            sector = sector.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                sector: sector,
+                municipio: municipio
+            }, null, {
+                skip: limite,
+                limit: 10
+            }, (err, proyectos) => {
+                if (err) {
+                    res.json({
+                        exito: false,
+                        mensaje: "Se presentó un error en la consulta. Error: " + err
+                    });
+                } else if (!proyectos || proyectos.length === 0) {
+                    res.json({
+                        exito: false,
+                        proyectos: "No hay proyectos con pertenecientes al sector " + sector + " y en el municipio " + municipio
+                    });
+                } else {
+                    res.json({
+                        exito: true,
+                        proyectos: proyectos
+                    });
+                }
+            });
+        }
+    });
+
+    //API para obtener los proyectos por departamento y fecha de inicio
+    router.get("/proyectos/departamento/:departamento/anioInicioEjecucion/:anioInicioEjecucion/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let departamento = req.params.departamento;
+        let anioInicioEjecucion = req.params.anioInicioEjecucion;
+        if (!anioInicioEjecucion) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un año de inicio válido"
+            });
+        } else if (!anioInicioEjecucion.match(/^[0-9]+$/)) {
+            res.json({
+                exito: false,
+                mensaje: "El año solo puede ser un número."
+            });
+        }
+        else if (!departamento) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un departamento válido"
+            });
+        }
+         else {
+            departamento = departamento.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                    departamento: departamento,
+                    anioInicioEjecucion: anioInicioEjecucion
+                },
+                null, {
+                    skip: limite,
+                    limit: 10
+                },
+                (err, proyectos) => {
+                    if (err) {
+                        res.json({
+                            exito: false,
+                            mensaje: "Se presentó un error en la consulta. Error: " + err
+                        });
+                    } else if (!proyectos || proyectos.length === 0) {
+                        res.json({
+                            exito: false,
+                            proyectos: "No hay proyectos con fecha de inicio " + anioInicioEjecucion
+                        });
+                    } else {
+                        res.json({
+                            exito: true,
+                            proyectos: proyectos
+                        });
+                    }
+                }
+            );
+        }
+    });
+
+    //API para obtener los proyectos por municipio y fecha de inicio
+    router.get("/proyectos/municipio/:municipio/anioInicioEjecucion/:anioInicioEjecucion/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let municipio = req.params.municipio;
+        let anioInicioEjecucion = req.params.anioInicioEjecucion;
+        if (!anioInicioEjecucion) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un año de inicio válido"
+            });
+        } else if (!anioInicioEjecucion.match(/^[0-9]+$/)) {
+            res.json({
+                exito: false,
+                mensaje: "El año solo puede ser un número."
+            });
+        }
+        else if (!municipio) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un municipio válido"
+            });
+        }
+         else {
+            municipio = municipio.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                    municipio: municipio,
+                    anioInicioEjecucion: anioInicioEjecucion
+                },
+                null, {
+                    skip: limite,
+                    limit: 10
+                },
+                (err, proyectos) => {
+                    if (err) {
+                        res.json({
+                            exito: false,
+                            mensaje: "Se presentó un error en la consulta. Error: " + err
+                        });
+                    } else if (!proyectos || proyectos.length === 0) {
+                        res.json({
+                            exito: false,
+                            proyectos: "No hay proyectos con fecha de inicio " + anioInicioEjecucion
+                        });
+                    } else {
+                        res.json({
+                            exito: true,
+                            proyectos: proyectos
+                        });
+                    }
+                }
+            );
+        }
+    });
+
+
+
     return router;
 };

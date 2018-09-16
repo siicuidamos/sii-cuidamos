@@ -26,8 +26,6 @@ class Login extends Component {
     event.preventDefault();
   }
 
-
-
   render() {
     return (
       <div className="Login">
