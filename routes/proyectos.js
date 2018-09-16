@@ -279,7 +279,7 @@ module.exports = router => {
                 } else if (!proyectos || proyectos.length === 0) {
                     res.json({
                         exito: false,
-                        proyectos: "No hay proyectos con pertenecientes al departamtno de " + departamento + " y en el sector de " + sector
+                        proyectos: "No hay proyectos con pertenecientes al departamento de " + departamento + " y en el sector de " + sector
                     });
                 } else {
                     res.json({
@@ -325,7 +325,7 @@ module.exports = router => {
                 } else if (!proyectos || proyectos.length === 0) {
                     res.json({
                         exito: false,
-                        proyectos: "No hay proyectos con pertenecientes al departamtno " + departamento + " y en el municipio " + municipio
+                        proyectos: "No hay proyectos con pertenecientes al departamento " + departamento + " y en el municipio " + municipio
                     });
                 } else {
                     res.json({
@@ -425,7 +425,7 @@ module.exports = router => {
                     } else if (!proyectos || proyectos.length === 0) {
                         res.json({
                             exito: false,
-                            proyectos: "No hay proyectos con fecha de inicio " + anioInicioEjecucion
+                            proyectos: "No hay proyectos con pertenecientes al departamento " + departamento + " y con fecha de inicio " + anioInicioEjecucion
                         });
                     } else {
                         res.json({
@@ -480,7 +480,7 @@ module.exports = router => {
                     } else if (!proyectos || proyectos.length === 0) {
                         res.json({
                             exito: false,
-                            proyectos: "No hay proyectos con fecha de inicio " + anioInicioEjecucion
+                            proyectos: "No hay proyectos con pertenecientes al municipio " + municipio + " y con fecha de inicio " + anioInicioEjecucion
                         });
                     } else {
                         res.json({
@@ -493,6 +493,311 @@ module.exports = router => {
         }
     });
 
+
+    //API para obtener los proyectos por municipio, sector y fecha de inicio
+    router.get("/proyectos/municipio/:municipio/sector/:sector/anioInicioEjecucion/:anioInicioEjecucion/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let municipio = req.params.municipio;
+        let sector = req.params.sector;
+        let anioInicioEjecucion = req.params.anioInicioEjecucion;
+
+        if (!anioInicioEjecucion) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un año de inicio válido"
+            });
+        } else if (!sector) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un sector válido"
+            });
+        }
+        else if (!municipio) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un municipio válido"
+            });
+        }
+         else {
+            municipio = municipio.replace(/_/g, " ").toUpperCase();
+            sector = sector.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                    municipio: municipio,
+                    sector: sector,
+                    anioInicioEjecucion: anioInicioEjecucion
+                },
+                null, {
+                    skip: limite,
+                    limit: 10
+                },
+                (err, proyectos) => {
+                    if (err) {
+                        res.json({
+                            exito: false,
+                            mensaje: "Se presentó un error en la consulta. Error: " + err
+                        });
+                    } else if (!proyectos || proyectos.length === 0) {
+                        res.json({
+                            exito: false,
+                            proyectos: "No hay proyectos con pertenecientes al municipio " + municipio + ", el sector "+ sector +" y con fecha de inicio " + anioInicioEjecucion
+                        });
+                    } else {
+                        res.json({
+                            exito: true,
+                            proyectos: proyectos
+                        });
+                    }
+                }
+            );
+        }
+    });
+
+    //API para obtener los proyectos por departamento, sector y fecha de inicio
+    router.get("/proyectos/departamento/:departamento/sector/:sector/anioInicioEjecucion/:anioInicioEjecucion/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let departamento = req.params.departamento;
+        let sector = req.params.sector;
+        let anioInicioEjecucion = req.params.anioInicioEjecucion;
+
+        if (!anioInicioEjecucion) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un año de inicio válido"
+            });
+        } else if (!sector) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un sector válido"
+            });
+        }
+        else if (!departamento) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un departamento válido"
+            });
+        }
+         else {
+            departamento = departamento.replace(/_/g, " ").toUpperCase();
+            sector = sector.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                    departamento: departamento,
+                    sector: sector,
+                    anioInicioEjecucion: anioInicioEjecucion
+                },
+                null, {
+                    skip: limite,
+                    limit: 10
+                },
+                (err, proyectos) => {
+                    if (err) {
+                        res.json({
+                            exito: false,
+                            mensaje: "Se presentó un error en la consulta. Error: " + err
+                        });
+                    } else if (!proyectos || proyectos.length === 0) {
+                        res.json({
+                            exito: false,
+                            proyectos: "No hay proyectos con pertenecientes al departamento " + departamento + ", el sector "+ sector +" y con fecha de inicio " + anioInicioEjecucion
+                        });
+                    } else {
+                        res.json({
+                            exito: true,
+                            proyectos: proyectos
+                        });
+                    }
+                }
+            );
+        }
+    });
+
+//API para obtener los proyectos por departamento, municipio y fecha de inicio
+    router.get("/proyectos/departamento/:departamento/municipio/:municipio/anioInicioEjecucion/:anioInicioEjecucion/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let departamento = req.params.departamento;
+        let municipio = req.params.municipio;
+        let anioInicioEjecucion = req.params.anioInicioEjecucion;
+
+        if (!anioInicioEjecucion) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un año de inicio válido"
+            });
+        } else if (!municipio) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un municipio válido"
+            });
+        }
+        else if (!departamento) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un departamento válido"
+            });
+        }
+         else {
+            departamento = departamento.replace(/_/g, " ").toUpperCase();
+            municipio = municipio.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                    departamento: departamento,
+                    municipio: municipio,
+                    anioInicioEjecucion: anioInicioEjecucion
+                },
+                null, {
+                    skip: limite,
+                    limit: 10
+                },
+                (err, proyectos) => {
+                    if (err) {
+                        res.json({
+                            exito: false,
+                            mensaje: "Se presentó un error en la consulta. Error: " + err
+                        });
+                    } else if (!proyectos || proyectos.length === 0) {
+                        res.json({
+                            exito: false,
+                            proyectos: "No hay proyectos con pertenecientes al departamento " + departamento + ", el municipio "+ municipio +" y con fecha de inicio " + anioInicioEjecucion
+                        });
+                    } else {
+                        res.json({
+                            exito: true,
+                            proyectos: proyectos
+                        });
+                    }
+                }
+            );
+        }
+    });
+
+//API para obtener los proyectos por departamento, municipio y sector
+    router.get("/proyectos/departamento/:departamento/municipio/:municipio/sector/:sector/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let departamento = req.params.departamento;
+        let municipio = req.params.municipio;
+        let sector = req.params.sector;
+
+        if (!sector) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un sector  válido"
+            });
+        } else if (!municipio) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un municipio válido"
+            });
+        }
+        else if (!departamento) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un departamento válido"
+            });
+        }
+         else {
+            departamento = departamento.replace(/_/g, " ").toUpperCase();
+            municipio = municipio.replace(/_/g, " ").toUpperCase();
+            sector = sector.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                    departamento: departamento,
+                    municipio: municipio,
+                    sector: sector
+                },
+                null, {
+                    skip: limite,
+                    limit: 10
+                },
+                (err, proyectos) => {
+                    if (err) {
+                        res.json({
+                            exito: false,
+                            mensaje: "Se presentó un error en la consulta. Error: " + err
+                        });
+                    } else if (!proyectos || proyectos.length === 0) {
+                        res.json({
+                            exito: false,
+                            proyectos: "No hay proyectos con pertenecientes al departamento " + departamento + ", el municipio "+ municipio +" y sector " + sector
+                        });
+                    } else {
+                        res.json({
+                            exito: true,
+                            proyectos: proyectos
+                        });
+                    }
+                }
+            );
+        }
+    });
+
+//API para obtener los proyectos por departamento, municipio, sector y anio
+    router.get("/proyectos/departamento/:departamento/municipio/:municipio/sector/:sector/anioInicioEjecucion/:anioInicioEjecucion/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let departamento = req.params.departamento;
+        let municipio = req.params.municipio;
+        let sector = req.params.sector;
+        let anioInicioEjecucion = req.params.anioInicioEjecucion;
+
+        if (!anioInicioEjecucion) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un año de inicio válido"
+            });
+        }
+        else if (!sector) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un sector  válido"
+            });
+        } else if (!municipio) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un municipio válido"
+            });
+        }
+        else if (!departamento) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un departamento válido"
+            });
+        }
+         else {
+            departamento = departamento.replace(/_/g, " ").toUpperCase();
+            municipio = municipio.replace(/_/g, " ").toUpperCase();
+            sector = sector.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                    departamento: departamento,
+                    municipio: municipio,
+                    sector: sector,
+                    anioInicioEjecucion: anioInicioEjecucion
+                },
+                null, {
+                    skip: limite,
+                    limit: 10
+                },
+                (err, proyectos) => {
+                    if (err) {
+                        res.json({
+                            exito: false,
+                            mensaje: "Se presentó un error en la consulta. Error: " + err
+                        });
+                    } else if (!proyectos || proyectos.length === 0) {
+                        res.json({
+                            exito: false,
+                            proyectos: "No hay proyectos con pertenecientes al departamento " + departamento + ", el municipio "+ municipio +", sector " + sector+" y año "+anioInicioEjecucion
+                        });
+                    } else {
+                        res.json({
+                            exito: true,
+                            proyectos: proyectos
+                        });
+                    }
+                }
+            );
+        }
+    });
 
 
     return router;
