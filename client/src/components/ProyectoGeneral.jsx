@@ -1,24 +1,10 @@
 import React, { Component } from "react";
-import DetailProyecto from "./DetailProyecto.jsx";
-import axios from "axios";
+import DetailProyecto from './DetailProyecto';
+import { Link, Route } from "react-router-dom";
 
 
 class ProyectoGeneral extends Component {
 
-
-  state = {
-    redirect: false
-  }
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
-  }
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <DetailProyecto />
-    }
-  }
 
   render() {
 
@@ -37,6 +23,14 @@ class ProyectoGeneral extends Component {
           <div className="card-body">
             <p className="card-title font-weight-bold">{nombre}</p>
             <hr />
+                        
+            <p className="card-text">
+              <i className="fas fa-fingerprint" />
+              &nbsp;<b>BPIN: </b> 
+              <Link to={`/${proyecto.bpin}`}>{proyecto.bpin} </Link>
+              <Route path={`/:bpin`} render={(props)=> <DetailProyecto proyecto={proyecto} />}/>
+            </p>
+
             <p className="card-text">
               <i className="fas fa-map-marker-alt fa-lg text-danger" />
               &nbsp;
@@ -54,8 +48,6 @@ class ProyectoGeneral extends Component {
             </p>
           </div>
         </div>
-         <div>
-         </div>
       </div>
     );
   }

@@ -2,9 +2,8 @@ import React, { Component } from "react";
 
 class DetailProyecto extends Component {
 
-  render() {
 
-    const { match } = this.props;
+  render() {
 
     const proyecto = this.props.proyecto;
     const nombre = proyecto.nombre;
@@ -21,35 +20,38 @@ class DetailProyecto extends Component {
     const link = proyecto.link;
 
     function validarVideo(){
-    	if(link===""){
-    		var ruta= '../sectores/'+sector+'.jpg';
-    		return (<img width="30%" height="40%" src={ruta} ></img>)
-    	}
-    	else
-    	{
-        return (<iframe width="30%" height="40%" src={link}></iframe>);
-    	}
+      if(link==""){
+        console.log("Ruta imagen= "+sector)
+        var ruta= "../sectores/"+sector.replace(" ","_")+".jpg" ; 
+        return (<img width="100%" height="100%" src={require("../sectores/Trabajo.jpg")}/>);
+      }
+      else 
+      {
+        console.log("Ruta video= "+link.substr(17,11))
+        const ruta='https://www.youtube.com/embed/'+link.substr(17,11)+''
+        return (<iframe width="100%" height="100%" src={ruta}  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>);
+      }
     }
+
 
     return (
       <div className="containter">
-
       		<div className="col-xs-12 col-sm-12 col-md-12">
-      		 <hr/>
-           <center>
-             <h3>{nombre}</h3>
-           </center>
-           <hr/>
+      		  <hr/>
+               <center>
+               <h3>{nombre}</h3>
+               </center>
+             <hr/>
           </div>
 
 
           <div  className="container">
           <div className="row">
-            <div className="col-xs-4 col-sm-4 col-md-4">
+            <div className="col-xs-12 col-sm-12 col-md-4">
             	{validarVideo()}
             </div>
 
-            <div className="col-xs-8 col-sm-8 col-md-8">
+            <div className="col-xs-12 col-sm-12 col-md-8">
             <p>
              <i className="fas fa-fingerprint"></i> &nbsp;<b>BPIN: </b> {bpin}
             </p>
