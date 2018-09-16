@@ -8,6 +8,6 @@ if (fs.existsSync('client/build')) {
     process.env.databaseName = 'production database: proyectosveeduria';
 } else {
     process.env.NODE_ENV = 'development';
-    process.env.databaseUri = 'mongodb://localhost:27017/proyectosveeduria'; // Base de datos real
+    process.env.databaseUri = 'mongodb://admin:lanata123@ds143932.mlab.com:43932/proyectosveeduria'; // Base de datos real
     process.env.databaseName = 'development database: proyectosveeduria';
 }
