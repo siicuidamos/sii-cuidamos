@@ -3,6 +3,7 @@ import Proyectos from './Proyectos';
 const departamentos = require('../json/Departamentos.json');
 const sectores = require('../json/Sectores.json');
 const aniosInicio = require('../json/AniosInicio.json');
+const departamentosMunicipio = require('../json/MapaProyecto.json');
 
 class OpcionesDeFiltros extends Component {
   constructor(props) {
@@ -14,11 +15,26 @@ class OpcionesDeFiltros extends Component {
       anioInicioF: '',
       sectorF: ''
     };
+    this.departamentoMunicipios = [];
   }
 
   cambiarDepartamento(departamento) {
     this.setState({
       departamentoF: this.procesarTexto(departamento)
+    });
+
+    let departamentoB = departamentosMunicipio.find(dpto => {
+      return dpto.departamento === departamento;
+    });
+
+    if (departamentoB) {
+      this.departamentoMunicipios = departamentoB.municipios;
+    }
+  }
+
+  cambiarMunicipio(municipio) {
+    this.setState({
+      municipioF: this.procesarTexto(municipio)
     });
   }
 
@@ -32,6 +48,43 @@ class OpcionesDeFiltros extends Component {
     this.setState({
       anioInicioF: anio
     });
+  }
+
+  mostrarMunicipiosDepartamento(departamento) {
+    if (departamento !== '') {
+      return (
+        <div className="dropdown mb-3">
+          <button
+            className="btn btn-outline-info dropdown-toggle mr-2 mb-2"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Municipio
+          </button>
+          {this.indicador(this.state.municipioF, 4)}
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {this.departamentoMunicipios.map(municipio => {
+              console.log(municipio);
+              return (
+                <a
+                  key={municipio.municipio}
+                  className="dropdown-item pointer"
+                  onClick={this.cambiarMunicipio.bind(
+                    this,
+                    municipio.municipio
+                  )}
+                >
+                  {municipio.municipio}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
   }
 
   procesarTexto(texto) {
@@ -75,6 +128,18 @@ class OpcionesDeFiltros extends Component {
               type="button"
               className="btn btn-outline-danger mb-2"
               onClick={this.cambiarAnioInicio.bind(this, '')}
+            >
+              {this.revertirTexto(valor)}
+              &nbsp;
+              <i className="fas fa-times-circle" />
+            </button>
+          );
+        case 4:
+          return (
+            <button
+              type="button"
+              className="btn btn-outline-danger mb-2"
+              onClick={this.cambiarMunicipio.bind(this, '')}
             >
               {this.revertirTexto(valor)}
               &nbsp;
@@ -125,6 +190,7 @@ class OpcionesDeFiltros extends Component {
                 })}
               </div>
             </div>
+            {this.mostrarMunicipiosDepartamento(this.state.departamentoF)}
           </div>
           <div className="col-lg-5 col-12">
             <div className="dropdown mb-3">

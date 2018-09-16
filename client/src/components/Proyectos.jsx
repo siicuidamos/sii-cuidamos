@@ -126,7 +126,7 @@ class Proyectos extends Component {
   botones() {
     let botones = [];
 
-    if (this.state.proyectos.length === 10) {
+    if (this.state.proyectos.length >= 1) {
       if (this.state.pagina === 0) {
         botones.push(
           <button
