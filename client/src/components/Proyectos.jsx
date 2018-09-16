@@ -129,8 +129,7 @@ class Proyectos extends Component {
         } else {
           this.setState({
             exito: exito,
-            mensaje: res.data.mensaje,
-            proyectos: []
+            mensaje: res.data.mensaje
           });
         }
       });
@@ -141,19 +140,7 @@ class Proyectos extends Component {
     let botones = [];
 
     if (this.state.proyectos.length >= 1) {
-      if (this.state.pagina === 0) {
-        botones.push(
-          <button
-            key="atrasBloqueado"
-            className="btn btn-dark mt-3 mr-2"
-            type="submit"
-            onClick={() => this.desplazarEntreProyectos(this.state.ruta, -1)}
-            disabled
-          >
-            <i className="fas fa-chevron-left" />
-          </button>
-        );
-      } else {
+      if (this.state.pagina !== 0) {
         botones.push(
           <button
             key="atras"
@@ -166,27 +153,31 @@ class Proyectos extends Component {
         );
       }
 
-      botones.push(
-        <button
-          key="centro"
-          type="button"
-          className="btn btn-outline-dark mt-3 font-weight-bold"
-          disabled
-        >
-          {this.state.pagina + 1}
-        </button>
-      );
+      if (this.state.proyectos.length === 10 || this.state.pagina > 0) {
+        botones.push(
+          <button
+            key="centro"
+            type="button"
+            className="btn btn-outline-dark mt-3 font-weight-bold"
+            disabled
+          >
+            {this.state.pagina + 1}
+          </button>
+        );
+      }
 
-      botones.push(
-        <button
-          key="adelanteBloqueado"
-          className="btn btn-dark mt-3 ml-2"
-          type="submit"
-          onClick={() => this.desplazarEntreProyectos(this.state.ruta, 1)}
-        >
-          <i className="fas fa-chevron-right" />
-        </button>
-      );
+      if (this.state.proyectos.length === 10) {
+        botones.push(
+          <button
+            key="adelanteBloqueado"
+            className="btn btn-dark mt-3 ml-2"
+            type="submit"
+            onClick={() => this.desplazarEntreProyectos(this.state.ruta, 1)}
+          >
+            <i className="fas fa-chevron-right" />
+          </button>
+        );
+      }
     }
 
     return botones;
