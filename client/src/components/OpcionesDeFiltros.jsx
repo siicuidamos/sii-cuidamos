@@ -163,7 +163,6 @@ class OpcionesDeFiltros extends Component {
   render() {
     return (
       <div>
-        <p>{this.state.bpinF}</p>
         <hr />
         <div className="row">
           <div className="col-12">
@@ -178,6 +177,7 @@ class OpcionesDeFiltros extends Component {
                     placeholder="Ingresa el BPIN del proyecto"
                     aria-label="Recipient's username"
                     aria-describedby="button-addon2"
+                    maxLength="18"
                   />
                   <div className="input-group-append">
                     <button
