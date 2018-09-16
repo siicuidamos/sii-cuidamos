@@ -158,6 +158,7 @@ module.exports = (router) => {
                             });
                         usuario.clave = 'MeAtrapaste';
                         // Mensaje de exito al iniciar sesion
+                        delete usuario.regex;
                         res.json({
                             exito: true,
                             mensaje: '¡Bienvenido ' + body.nombreDeUsuario + '!',
