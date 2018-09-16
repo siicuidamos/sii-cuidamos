@@ -493,6 +493,61 @@ module.exports = router => {
         }
     });
 
+    //API para obtener los proyectos por sector y fecha de inicio
+    router.get("/proyectos/sector/:sector/anioInicioEjecucion/:anioInicioEjecucion/:pagina", (req, res) => {
+        let pagina = req.params.pagina || 0;
+        let limite = pagina * 10;
+        let sector = req.params.sector;
+        let anioInicioEjecucion = req.params.anioInicioEjecucion;
+        if (!anioInicioEjecucion) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un año de inicio válido"
+            });
+        } else if (!anioInicioEjecucion.match(/^[0-9]+$/)) {
+            res.json({
+                exito: false,
+                mensaje: "El año solo puede ser un número."
+            });
+        }
+        else if (!sector) {
+            res.json({
+                exito: false,
+                mensaje: "Debe seleccionar un sector válido"
+            });
+        }
+         else {
+            sector = sector.replace(/_/g, " ").toUpperCase();
+            Proyecto.find({
+                    sector: sector,
+                    anioInicioEjecucion: anioInicioEjecucion
+                },
+                null, {
+                    skip: limite,
+                    limit: 10
+                },
+                (err, proyectos) => {
+                    if (err) {
+                        res.json({
+                            exito: false,
+                            mensaje: "Se presentó un error en la consulta. Error: " + err
+                        });
+                    } else if (!proyectos || proyectos.length === 0) {
+                        res.json({
+                            exito: false,
+                            proyectos: "No hay proyectos con pertenecientes al sector " + sector + " y con fecha de inicio " + anioInicioEjecucion
+                        });
+                    } else {
+                        res.json({
+                            exito: true,
+                            proyectos: proyectos
+                        });
+                    }
+                }
+            );
+        }
+    });
+
 
     //API para obtener los proyectos por municipio, sector y fecha de inicio
     router.get("/proyectos/municipio/:municipio/sector/:sector/anioInicioEjecucion/:anioInicioEjecucion/:pagina", (req, res) => {

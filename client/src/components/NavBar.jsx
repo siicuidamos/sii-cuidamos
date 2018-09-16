@@ -24,7 +24,6 @@ class Navbar extends Component {
         <Link to="/ayuda" className="nav-link">Ayuda</Link>
       </li>
 
-
       <li className="nav-item navbar-right">
         <Link to="/login" className="nav-link">Iniciar Sesión</Link>
       </li>
