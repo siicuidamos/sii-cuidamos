@@ -201,15 +201,27 @@ class Proyectos extends Component {
         );
       });
       return mostrar;
+    } else if (this.state.bpin) {
+      return (
+        <div className="alert alert-info mx-auto" role="alert">
+          No se encontró un proyecto con código <b>{this.state.bpin}</b> en
+          nuestra base de datos.
+        </div>
+      );
     } else {
-      return <p>No hay proyectos</p>;
+      return (
+        <div className="alert alert-info mx-auto" role="alert">
+          No se encontraron proyectos que cumplan con las características
+          seleccionadas en nuestra base de datos.
+        </div>
+      );
     }
   }
 
   render() {
     return (
       <div>
-        <p>{this.state.ruta}</p>
+        <hr />
         <div className="row">{this.resultadoBusqueda()}</div>
         <div className="text-center">{this.botones()}</div>
       </div>
