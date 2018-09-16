@@ -33,16 +33,14 @@ class Proyectos extends Component {
       nextProps.municipio !== this.state.municipio ||
       nextProps.bpin !== this.state.bpin ||
       nextProps.sector !== this.state.sector ||
-      nextProps.anioInicio !== this.state.anioInicio ||
-      nextProps.bpin !== this.state.bpin
+      nextProps.anioInicio !== this.state.anioInicio
     ) {
       this.setState(
         {
           departamento: nextProps.departamento,
           municipio: nextProps.municipio,
           sector: nextProps.sector,
-          anioInicio: nextProps.anioInicio,
-          bpin: nextProps.bpin
+          anioInicio: nextProps.anioInicio
         },
         () => this.buscarProyectos(0)
       );
@@ -64,11 +62,7 @@ class Proyectos extends Component {
             ruta: ruta
           });
         } else {
-          this.setState({
-            exito: exito,
-            mensaje: res.data.mensaje,
-            proyectos: []
-          });
+          this.setState({ exito: exito, mensaje: res.data.mensaje });
         }
       });
     } else {
@@ -99,11 +93,7 @@ class Proyectos extends Component {
             varios: true
           });
         } else {
-          this.setState({
-            exito: exito,
-            mensaje: res.data.mensaje,
-            proyectos: []
-          });
+          this.setState({ exito: exito, mensaje: res.data.mensaje });
         }
       });
     }
@@ -127,11 +117,7 @@ class Proyectos extends Component {
             pagina: this.state.pagina + valor
           });
         } else {
-          this.setState({
-            exito: exito,
-            mensaje: res.data.mensaje,
-            proyectos: []
-          });
+          this.setState({ exito: exito, mensaje: res.data.mensaje });
         }
       });
     }
@@ -192,25 +178,14 @@ class Proyectos extends Component {
     return botones;
   }
 
-  resultadoBusqueda() {
-    if (this.state.proyectos.length > 0) {
-      let mostrar = [];
-      this.state.proyectos.map(proyecto => {
-        mostrar.push(
-          <ProyectoGeneral key={proyecto.bpin} proyecto={proyecto} />
-        );
-      });
-      return mostrar;
-    } else {
-      return <p>No hay proyectos</p>;
-    }
-  }
-
   render() {
     return (
       <div>
-        <p>{this.state.ruta}</p>
-        <div className="row">{this.resultadoBusqueda()}</div>
+        <div className="row">
+          {this.state.proyectos.map(proyecto => {
+            return <ProyectoGeneral key={proyecto.bpin} proyecto={proyecto} />;
+          })}
+        </div>
         <div className="text-center">{this.botones()}</div>
       </div>
     );

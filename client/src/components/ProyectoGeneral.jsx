@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import DetailProyecto from "./DetailProyecto.jsx";
-import { Link, Route } from "react-router-dom";
 import axios from "axios";
 
 
@@ -57,8 +56,6 @@ class ProyectoGeneral extends Component {
         </div>
          <div>
          </div>
-           <li key={proyecto.bpin}>
-           </li>
       </div>
     );
   }
