@@ -18,10 +18,9 @@ class Navbar extends Component {
   mostrarSeccionAutenticacion() {
     if (this.state.usuario && this.state.token) {
       return (
-        <li className="nav-item dropdown">
+        <li className="nav-item dropdown pointer">
           <a
             className="nav-link dropdown-toggle"
-            href="#"
             id="navbarDropdown"
             role="button"
             data-toggle="dropdown"
@@ -44,7 +43,7 @@ class Navbar extends Component {
       const lista = [];
 
       lista.push(
-        <li className="nav-item navbar-right">
+        <li key="loginModalKey" className="nav-item navbar-right">
           <a
             className="nav-link pointer"
             data-toggle="modal"
@@ -56,7 +55,7 @@ class Navbar extends Component {
       );
 
       lista.push(
-        <li className="nav-item navbar-right">
+        <li key="registroModalKey" className="nav-item navbar-right">
           <a
             className="nav-link pointer"
             data-toggle="modal"

@@ -1,14 +1,11 @@
-import React, { Component } from "react";
-import DetailProyecto from './DetailProyecto';
-import { Link, Route } from "react-router-dom";
-
+import React, { Component } from 'react';
+//import DetailProyecto from './DetailProyecto';
+//import { Link, Route } from 'react-router-dom';
 
 class ProyectoGeneral extends Component {
-
-
   render() {
-
     const proyecto = this.props.proyecto;
+    const bpin = proyecto.bpin;
     const nombre = proyecto.nombre;
     const region = proyecto.region;
     const departamento = proyecto.departamento;
@@ -23,12 +20,12 @@ class ProyectoGeneral extends Component {
           <div className="card-body">
             <p className="card-title font-weight-bold">{nombre}</p>
             <hr />
-                        
+
             <p className="card-text">
               <i className="fas fa-fingerprint" />
-              &nbsp;<b>BPIN: </b> 
-              <Link to={`/${proyecto.bpin}`}>{proyecto.bpin} </Link>
-              <Route path={`/:bpin`} render={(props)=> <DetailProyecto proyecto={proyecto} />}/>
+              &nbsp;
+              <b>BPIN: </b>
+              {bpin}
             </p>
 
             <p className="card-text">

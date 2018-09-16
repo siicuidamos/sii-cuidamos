@@ -132,26 +132,26 @@ class Login extends Component {
             <div className="modal-body">
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="exampleInputEmail1">
+                  <label htmlFor="nombreDeUsuarioInput">
                     <b>Nombre de usuario</b>
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputEmail1"
+                    id="nombreDeUsuarioInput"
                     value={this.state.value}
                     onChange={this.handleChangeNombreDeUsuario}
                     required
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="exampleInputPassword1">
+                  <label htmlFor="loginInputPassword">
                     <b>Contraseña</b>
                   </label>
                   <input
                     type="password"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="loginInputPassword1"
                     value={this.state.value}
                     onChange={this.handleChangeClave}
                     required
