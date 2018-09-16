@@ -15,21 +15,26 @@ class OpcionesDeFiltros extends Component {
       anioInicioF: '',
       sectorF: ''
     };
+    this.handleChange = this.handleChange.bind(this);
     this.departamentoMunicipios = [];
   }
 
   cambiarDepartamento(departamento) {
+    if (departamento === '') {
+      this.cambiarMunicipio('');
+    } else {
+      let departamentoB = departamentosMunicipio.find(dpto => {
+        return dpto.departamento === departamento;
+      });
+
+      if (departamentoB) {
+        this.departamentoMunicipios = departamentoB.municipios;
+      }
+    }
+
     this.setState({
       departamentoF: this.procesarTexto(departamento)
     });
-
-    let departamentoB = departamentosMunicipio.find(dpto => {
-      return dpto.departamento === departamento;
-    });
-
-    if (departamentoB) {
-      this.departamentoMunicipios = departamentoB.municipios;
-    }
   }
 
   cambiarMunicipio(municipio) {
@@ -67,7 +72,6 @@ class OpcionesDeFiltros extends Component {
           {this.indicador(this.state.municipioF, 4)}
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {this.departamentoMunicipios.map(municipio => {
-              console.log(municipio);
               return (
                 <a
                   key={municipio.municipio}
@@ -152,12 +156,45 @@ class OpcionesDeFiltros extends Component {
     }
   }
 
+  handleChange(event) {
+    this.setState({ bpinF: event.target.value });
+  }
+
   render() {
     return (
       <div>
+        <p>{this.state.bpinF}</p>
         <hr />
         <div className="row">
-          <div className="col-lg-4 col-12">
+          <div className="col-12">
+            <form>
+              <div className="form-row">
+                <div className="col-lg-4 col-md-5 input-group mb-3">
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    placeholder="Ingresa el BPIN del proyecto"
+                    aria-label="Recipient's username"
+                    aria-describedby="button-addon2"
+                  />
+                  <div className="input-group-append">
+                    <button
+                      className="btn btn-secondary"
+                      type="button"
+                      id="button-addon2"
+                      disabled
+                    >
+                      <i className="fas fa-search" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div className="col-lg-4 col-md-6 col-12">
             <div className="dropdown mb-3">
               <button
                 className="btn btn-info dropdown-toggle mr-2 mb-2"
@@ -223,7 +260,7 @@ class OpcionesDeFiltros extends Component {
               </div>
             </div>
           </div>
-          <div className="col-lg-3 col-12">
+          <div className="col-lg-3 col-md-6 col-12">
             <div className="dropdown mb-3">
               <button
                 className="btn btn-success dropdown-toggle mr-2 mb-2"
