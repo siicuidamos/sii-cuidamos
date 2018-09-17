@@ -10,7 +10,7 @@ class App extends Component {
       <div>
         <NavBar />
         <div className="container container-fluid mb-5 mt-1">
-          <h1 className="text-center">Veeduría de proyectos públicos</h1>
+          <h1 className="text-center mt-3">Veeduría de proyectos públicos</h1>
         </div>
         <div className="container container-fluid mb-5">
           <Switch>
