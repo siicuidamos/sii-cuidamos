@@ -7,6 +7,13 @@ Esta aplicación expone proyectos públicos de inversión de Colombia con el fin
 
 ## La aplicación se encuentra desplegada en: http://vpp.ineffableinventions.com.co/
 
+## Descripción
+En VPP todos los ciudadanos pueden conocer la información más relevante de más de 20.000 proyectos de inversión pública. De cada proyecto pueden conocer: nombre, BPIN, ubicación (región, departamento y municipio), estado, el monto de SGR, OCAD, sector al que pertenece, fecha de inicio, fecha de finalización y en algunos casos, un video representantivo del estado actual del proyecto.
+
+Una vez registrado en el sistema, se podrán comentar los proyectos en diferentes categorías y a su vez calificarlo a partir de cada una de estás categorías. 
+
+Es posible a su vez compartir el link del proyecto que esta siendo visto en redes y escribir en redes sobre el proyecto usando un hastag específico.
+
 ## Instructivo para ejecución
 
 ### Requisitos
