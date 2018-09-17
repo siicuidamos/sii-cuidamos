@@ -20,37 +20,37 @@ class ProyectoGeneral extends Component {
 
     return (
       <div className="col-12 mt-4">
-        <div className="card w-100 shadow">
-          <div className="card-body">
-            <p className="card-title font-weight-bold">{nombre}</p>
-            <hr />
+        <Link to={'/proyectos/' + bpin} style={{ textDecoration: 'none' }}>
+          <div className="card w-100 shadow text-dark">
+            <div className="card-body">
+              <p className="card-title font-weight-bold">{nombre}</p>
+              <hr />
 
-            <p className="card-text">
-              <i className="fas fa-fingerprint" />
-              &nbsp;
-              <Link to={'/proyectos/' + bpin}>
+              <p className="card-text">
+                <i className="fas fa-fingerprint" />
+                &nbsp;
                 <b>BPIN: </b>
                 {bpin}
-              </Link>
-            </p>
+              </p>
 
-            <p className="card-text">
-              <i className="fas fa-map-marker-alt fa-lg text-danger" />
-              &nbsp;
-              {region}, {departamento}, {municipio}
-            </p>
-            <p className="card-text">
-              <i className="fas fa-list-ul fa-lg text-primary" />
-              &nbsp;
-              {sector}
-            </p>
-            <p className="card-text">
-              <i className="fas fa-calendar fa-lg text-success" />
-              &nbsp;
-              {inicio} - {fin}
-            </p>
+              <p className="card-text">
+                <i className="fas fa-map-marker-alt fa-lg text-danger" />
+                &nbsp;
+                {region}, {departamento}, {municipio}
+              </p>
+              <p className="card-text">
+                <i className="fas fa-list-ul fa-lg text-primary" />
+                &nbsp;
+                {sector}
+              </p>
+              <p className="card-text">
+                <i className="fas fa-calendar fa-lg text-success" />
+                &nbsp;
+                {inicio} - {fin}
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     );
   }

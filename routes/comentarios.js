@@ -137,10 +137,8 @@ module.exports = router => {
   });
 
   // Api para obtener todos los comentarios de un proyecto
-  router.get("/comentarios/bpin/:bpin/:pagina", (req, res) => {
+  router.get("/comentarios/bpin/:bpin", (req, res) => {
     let bpin = req.params.bpin;
-    let pagina = req.params.pagina || 0;
-    let limite = pagina * 10;
 
     if (!bpin) {
       res.json({
@@ -155,10 +153,7 @@ module.exports = router => {
     } else {
       Comentario.find({
         bpin: bpin
-      }, null, {
-        skip: limite,
-        limit: 10
-      }, (err, comentarios) => {
+      }, null, (err, comentarios) => {
         if (err) {
           res.json({
             exito: false,
