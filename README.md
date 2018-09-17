@@ -2,8 +2,8 @@
 Esta aplicación expone proyectos públicos de inversión de Colombia con el fin de que los ciudadanos le puedan hacer un seguimiento correcto al desarrollo e implementación de estos.
 
 ## Integrantes del equipo
-- Vivian Gómez
-- Gabriel Pinto
+- Gabriel Pinto - https://glpinto10.github.io/gabriel-pinto-pineda/
+- Vivian Gómez - https://viviangomez.github.io/proyect1_mypersonalpage/
 
 ## La aplicación se encuentra desplegada en: http://vpp.ineffableinventions.com.co/
 
@@ -13,6 +13,10 @@ En VPP todos los ciudadanos pueden conocer la información más relevante de má
 Una vez registrado en el sistema, se podrán comentar los proyectos en diferentes categorías y a su vez calificarlo a partir de cada una de estás categorías. 
 
 Es posible a su vez compartir el link del proyecto que esta siendo visto en redes y escribir en redes sobre el proyecto usando un hastag específico.
+
+## Objetivo
+
+Buscamos informar a la ciudadanía, en especial a los colombianos, sobre lo que sucede con los diferentes proyectos del país para que puedan darle un correcto seguimiento al cumplimiento de estos.
 
 ## Instructivo para ejecución
 
