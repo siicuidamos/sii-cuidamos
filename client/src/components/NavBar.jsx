@@ -50,7 +50,7 @@ class Navbar extends Component {
             data-toggle="modal"
             data-target="#loginModal"
           >
-            Iniciar Sesión
+            Iniciar sesión
           </a>
         </li>
       );
@@ -104,37 +104,42 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link to="/" className="navbar-brand">
-            VPP
-          </Link>{' '}
-          <span className="sr-only">(current)</span>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link to="/proyectos" className="nav-link">
-                  Proyectos
-                </Link>
-              </li>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div className="container container-fluid">
+            <Link to="/" className="navbar-brand">
+              VPP
+            </Link>{' '}
+            <span className="sr-only">(current)</span>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                  <Link to="/proyectos" className="nav-link">
+                    Proyectos
+                  </Link>
+                </li>
 
-              <li className="nav-item">
-                <Link to="/ayuda" className="nav-link">
-                  Ayuda
-                </Link>
-              </li>
-              {this.mostrarSeccionAutenticacion()}
-            </ul>
+                <li className="nav-item">
+                  <Link to="/ayuda" className="nav-link">
+                    Ayuda
+                  </Link>
+                </li>
+                {this.mostrarSeccionAutenticacion()}
+              </ul>
+            </div>
           </div>
         </nav>
         <Login verificar={this.verificarStorage} />
