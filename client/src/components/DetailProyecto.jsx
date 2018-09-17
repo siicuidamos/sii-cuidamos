@@ -347,8 +347,9 @@ class DetailProyecto extends Component {
             <br />
             <div>
             <Hashtag hashtag={'PPV' + bpin} />
-            <a href={url} className="btn btn-primary btn-sm fab fa-facebook-f" target="_blank"> Compartir</a>
-            </div>
+            <div id="fb-root"></div>
+            <a href={url} className="btn-primary btn-sm" target="_blank"><i class="fab fa-facebook-square"></i>&nbsp;&nbsp;Compartir</a>
+             </div>
             <br />
           </div>
           <div className="col-12 col-md-5">
