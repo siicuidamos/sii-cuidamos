@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
 import Principal from './components/Principal';
 import Proyecto from './components/Proyecto';
+import Ayuda from './components/Ayuda';
+
 
 class App extends Component {
   render() {
@@ -16,6 +18,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Principal} />
             <Route path="/proyectos" component={Proyecto} />
+            <Route path="/ayuda" component={Ayuda} />
           </Switch>
         </div>
       </div>
