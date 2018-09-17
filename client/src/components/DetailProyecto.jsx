@@ -353,10 +353,13 @@ class DetailProyecto extends Component {
             {this.validarVideo(bpin, link, sector)}
             <br />
             <div>
-            <Hashtag hashtag={'PPV' + bpin} />
-            <div id="fb-root"></div>
-            <a href={url} className="btn-primary btn-sm" target="_blank"><i class="fab fa-facebook-square"></i>&nbsp;&nbsp;Compartir</a>
-             </div>
+              <Hashtag hashtag={'PPV' + bpin} />
+              <div id="fb-root" />
+              <a href={url} className="btn-primary btn-sm" target="_blank">
+                <i className="fab fa-facebook-square" />
+                &nbsp;&nbsp;Compartir
+              </a>
+            </div>
             <br />
           </div>
           <div className="col-12 col-md-5 mt-3">
@@ -429,7 +432,12 @@ class DetailProyecto extends Component {
         </div>
       );
     } else {
-      return <h1>Cargando</h1>;
+      return (
+        <div className="alert alert-info mx-auto mt-4" role="alert">
+          No existe un proyecto con código BPIN <b>{this.state.bpin}</b> en
+          nuestra base de datos.
+        </div>
+      );
     }
   }
 
