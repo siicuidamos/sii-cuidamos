@@ -25,7 +25,7 @@ class DetailProyecto extends Component {
     this.handleChangeCalificacion = this.handleChangeCalificacion.bind(this);
     this.handleChangeComentario = this.handleChangeComentario.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.apiComentarios = '/vpp/api/comentarios/';
+    this.apiComentarios = '/vpp/api/comentarios';
   }
 
   handleSubmit(event) {
@@ -92,12 +92,16 @@ class DetailProyecto extends Component {
   }
 
   cambiarEstadoFormCrearComentario() {
-    this.setState({
-      crearComentario: !this.state.crearComentario,
-      categoriaSeleccionada: categoriasComentarios[0],
-      calificacionSeleccionada: '-',
-      comentarioEscrito: ''
-    });
+    if (this.state.usuario) {
+      this.setState({
+        crearComentario: !this.state.crearComentario,
+        categoriaSeleccionada: categoriasComentarios[0],
+        calificacionSeleccionada: '-',
+        comentarioEscrito: ''
+      });
+    } else {
+      document.getElementById('botonParaIniciarSesion').click();
+    }
   }
 
   handleChangeCategoria(event) {
@@ -143,7 +147,9 @@ class DetailProyecto extends Component {
 
   obtenerCalificacionPromedio() {
     axios
-      .get(this.apiComentarios + 'calificacionPromedio/bpin/' + this.state.bpin)
+      .get(
+        this.apiComentarios + '/calificacionPromedio/bpin/' + this.state.bpin
+      )
       .then(res => {
         const exito = res.data.exito;
         if (exito) {
@@ -208,10 +214,10 @@ class DetailProyecto extends Component {
       return comentariosProyecto;
     } else {
       return (
-        <h3>
+        <div className="alert alert-info mx-auto mt-4" role="alert">
           Aún no hay comentarios para el proyecto en cuestión. Te invitamos a
-          que comentes sobre el.
-        </h3>
+          que <b>comentes sobre el</b>.
+        </div>
       );
     }
   }
@@ -333,7 +339,8 @@ class DetailProyecto extends Component {
       const inicio = proyecto.anioInicioEjecucion;
       const fin = proyecto.anioFinEjecucion;
       const link = proyecto.link;
-      const url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href;
+      const url =
+        'http://www.facebook.com/sharer/sharer.php?u=' + window.location.href;
 
       return (
         <div className="row">
@@ -352,7 +359,7 @@ class DetailProyecto extends Component {
              </div>
             <br />
           </div>
-          <div className="col-12 col-md-5">
+          <div className="col-12 col-md-5 mt-3">
             <p>
               <i className="fas fa-fingerprint" /> &nbsp;
               <b>BPIN: </b> {bpin}
@@ -395,7 +402,6 @@ class DetailProyecto extends Component {
               <b>Horizonte: </b>
               {inicio} - {fin}
             </p>
-
           </div>
           <div className="col-md-3">
             <h5>Calificación promedio</h5>

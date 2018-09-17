@@ -2,8 +2,8 @@
 Esta aplicación expone proyectos públicos de inversión de Colombia con el fin de que los ciudadanos le puedan hacer un seguimiento correcto al desarrollo e implementación de estos.
 
 ## Integrantes del equipo
-- Vivian Gómez
-- Gabriel Pinto
+- Gabriel Pinto - https://glpinto10.github.io/gabriel-pinto-pineda/
+- Vivian Gómez - https://viviangomez.github.io/proyect1_mypersonalpage/
 
 ## La aplicación se encuentra desplegada en: http://vpp.ineffableinventions.com.co/
 
@@ -13,6 +13,32 @@ En VPP todos los ciudadanos pueden conocer la información más relevante de má
 Una vez registrado en el sistema, se podrán comentar los proyectos en diferentes categorías y a su vez calificarlo a partir de cada una de estás categorías. 
 
 Es posible a su vez compartir el link del proyecto que esta siendo visto en redes y escribir en redes sobre el proyecto usando un hastag específico.
+
+## Objetivo
+
+Buscamos informar a la ciudadanía, en especial a los colombianos, sobre lo que sucede con los diferentes proyectos del país para que puedan darle un correcto seguimiento al cumplimiento de estos.
+
+## Tecnologías utilizadas
+
+El proyecto fue desarrollado usando el stack MERN. 
+
+- **Mongo DB**: Se utilizo una base de datos no relacional de MongoDB que está desplegada en https://mlab.com/
+- **Express**: Una infraestructura web rápida, minimalista y flexible para Node.js, que nos permite trabajar con el front y el back en JavaScript. https://expressjs.com/es/
+- **React JS**: Una librería que permite cosas increíbles y que fue utilizada para la creación del front de la aplicación. https://reactjs.org/
+- **Node JS**: Una de las herramientas más poderosas del mercado que usa JavaScript y que permite tener un servidor back totalmente funcional. Todas las peticiones son realizadas desde acá. https://nodejs.org/es/
+
+A su vez, se usaron varias dependencias instaladas por medio de NPM.
+
+- Moongose JS
+- Body Parser
+- BCrypt Node JS
+- JSON Web TokeN
+- React-router-dom
+- Bootstrap
+
+Entre otras que pueden ser observadas en los package.json de la aplicación.
+
+Finalmente, la aplicación se encuentra despleagada en https://heroku.com/ pero se usa un dominio personalizado para acceder a ella.
 
 ## Instructivo para ejecución
 

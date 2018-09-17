@@ -45,6 +45,7 @@ class Navbar extends Component {
       lista.push(
         <li key="loginModalKey" className="nav-item navbar-right">
           <a
+            id="botonParaIniciarSesion"
             className="nav-link pointer"
             data-toggle="modal"
             data-target="#loginModal"
@@ -57,6 +58,7 @@ class Navbar extends Component {
       lista.push(
         <li key="registroModalKey" className="nav-item navbar-right">
           <a
+            id="botonParaRegistrarse"
             className="nav-link pointer"
             data-toggle="modal"
             data-target="#registroModal"
