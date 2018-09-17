@@ -10,7 +10,9 @@ Esta aplicación expone proyectos públicos de inversión de Colombia con el fin
 
   **Página personal:** https://viviangomez.github.io/proyect1_mypersonalpage/
 
-## La aplicación se encuentra desplegada en: http://vpp.ineffableinventions.com.co/
+## Links de importancia
+
+**Desplegada en:** http://vpp.ineffableinventions.com.co/
 
 ## Descripción
 En VPP todos los ciudadanos pueden conocer la información más relevante de más de 20.000 proyectos de inversión pública. De cada proyecto pueden conocer: nombre, BPIN, ubicación (región, departamento y municipio), estado, el monto de SGR, OCAD, sector al que pertenece, fecha de inicio, fecha de finalización y en algunos casos, un video representantivo del estado actual del proyecto.
