@@ -231,7 +231,6 @@ class Registro extends Component {
                     id="registroInputEmail"
                     value={this.state.value}
                     onChange={this.handleChangeEmail}
-                    autoComplete="off"
                     required
                   />
                 </div>
@@ -245,7 +244,6 @@ class Registro extends Component {
                     id="registroInputUsuario"
                     value={this.state.value}
                     onChange={this.handleChangeNombreDeUsuario}
-                    autoComplete="off"
                     required
                   />
                 </div>
@@ -332,7 +330,6 @@ class Registro extends Component {
                     id="exampleInputPassword1"
                     value={this.state.value}
                     onChange={this.handleChangeClave}
-                    autoComplete="off"
                     required
                   />
                 </div>
