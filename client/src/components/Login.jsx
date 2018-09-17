@@ -100,6 +100,7 @@ class Login extends Component {
     this.setState({ clave: event.target.value });
   }
 
+  //Andrés: Podrían considerar añadir placeholders a los campos de texto en los formularios.
   render() {
     return (
       <div
@@ -141,6 +142,7 @@ class Login extends Component {
                     type="text"
                     className="form-control"
                     id="nombreDeUsuarioInput"
+                    placeholder="Nombre"
                     value={this.state.value}
                     onChange={this.handleChangeNombreDeUsuario}
                     required
@@ -154,6 +156,7 @@ class Login extends Component {
                     type="password"
                     className="form-control"
                     id="loginInputPassword1"
+                    placeholder="Contraseña"
                     value={this.state.value}
                     onChange={this.handleChangeClave}
                     autoComplete="password"
