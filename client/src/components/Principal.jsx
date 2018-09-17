@@ -53,8 +53,8 @@ class Principal extends Component {
         <div className="container-fluid">
           <center>
             <Link to="/proyectos" className="nav-link">
-              <button type="button" className="btn btn-primary">
-                Empieza a informarte y a participar!
+              <button type="button" className="btn btn-success">
+                ¡Empieza a informarte y a participar!
               </button>
             </Link>
           </center>

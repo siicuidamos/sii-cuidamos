@@ -57,5 +57,4 @@ class Comentario extends Component {
     );
   }
 }
-
 export default Comentario;
