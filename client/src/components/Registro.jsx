@@ -195,7 +195,7 @@ class Registro extends Component {
           role="document"
         >
           <div className="modal-content">
-            <div className="modal-header">
+            <div className="modal-header bg-dark text-light">
               <center>
                 <h5 className="modal-title" id="exampleModalLabel">
                   Bienvenido a VPP - Registro
@@ -208,7 +208,9 @@ class Registro extends Component {
                 data-dismiss="modal"
                 aria-label="Close"
               >
-                <span aria-hidden="true">&times;</span>
+                <span className="text-light" aria-hidden="true">
+                  &times;
+                </span>
               </button>
             </div>
             <div className="modal-body">
@@ -337,8 +339,7 @@ class Registro extends Component {
                 {this.mostrarError()}
                 <center>
                   <button type="submit" className="btn btn-success">
-                    <i className="fas fa-save" />
-                    &nbsp;Crear cuenta
+                    Crear cuenta
                   </button>
                 </center>
               </form>
