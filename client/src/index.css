@@ -30,3 +30,17 @@ html {
 .letra-pequenia {
     font-size: 12px;
 }
+
+
+
+@media(min-width: 768px) {
+    .borde-comentario {
+        border-right: 3px solid gray;
+    }
+}
+
+@media(max-width: 767px) {
+    .borde-comentario {
+        border-bottom: 3px solid gray;
+    }
+}

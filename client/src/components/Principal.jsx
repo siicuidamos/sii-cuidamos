@@ -50,7 +50,7 @@ class Principal extends Component {
             <span className="sr-only">Next</span>
           </a>
         </div>
-        <div class="container-fluid">
+        <div className="container-fluid">
           <center>
             <Link to="/proyectos" className="nav-link">
               <button type="button" className="btn btn-primary">
