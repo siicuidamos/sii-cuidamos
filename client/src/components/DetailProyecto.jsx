@@ -352,17 +352,11 @@ class DetailProyecto extends Component {
           <div className="col-12 col-md-4 mb-5">
             {this.validarVideo(bpin, link, sector)}
             <br />
-            <div className="mb-5">
-              <Hashtag hashtag={'PPV' + bpin} />
-              <a
-                href={url}
-                className="btn btn-primary btn-sm fab fa-facebook-f mb-3"
-                target="_blank"
-              >
-                {' '}
-                Compartir
-              </a>
-            </div>
+            <div>
+            <Hashtag hashtag={'PPV' + bpin} />
+            <div id="fb-root"></div>
+            <a href={url} className="btn-primary btn-sm" target="_blank"><i class="fab fa-facebook-square"></i>&nbsp;&nbsp;Compartir</a>
+             </div>
             <br />
           </div>
           <div className="col-12 col-md-5 mt-3">
