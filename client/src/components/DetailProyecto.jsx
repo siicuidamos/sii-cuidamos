@@ -435,7 +435,12 @@ class DetailProyecto extends Component {
         </div>
       );
     } else {
-      return <h1>Cargando</h1>;
+      return (
+        <div className="alert alert-info mx-auto mt-4" role="alert">
+          No existe un proyecto con código BPIN <b>{this.state.bpin}</b> en
+          nuestra base de datos.
+        </div>
+      );
     }
   }
 
