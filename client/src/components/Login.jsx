@@ -158,11 +158,12 @@ class Login extends Component {
                   />
                 </div>
                 {this.mostrarError()}
-               <center>
-                <button type="submit" className="btn btn-success">
-                  Iniciar sesión
-                </button>
-               </center>
+                <center>
+                  <button type="submit" className="btn btn-success">
+                    Iniciar sesión
+                  </button>
+                </center>
+                <br />
               </form>
             </div>
           </div>
