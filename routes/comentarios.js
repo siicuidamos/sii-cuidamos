@@ -24,15 +24,15 @@ module.exports = router => {
           exito: false,
           mensaje: "Debe existir un texto en el comentario."
         });
-      } else if (body.texto.length < 80 || body.texto.length > 500) {
+      } else if (body.texto.length < 100 || body.texto.length > 500) {
         res.json({
           exito: false,
-          mensaje: "El comentario debe tener entre 80 y 500 caracteres."
+          mensaje: "El comentario debe tener entre 100 y 500 caracteres."
         });
-      } else if (body.calificacion < 1 || body.calificacion > 5) {
+      } else if (body.calificacion < 1 || body.calificacion > 10) {
         res.json({
           exito: false,
-          mensaje: "La calificacion debe ser entre 1 y 5."
+          mensaje: "La calificacion debe ser entre 1 y 10."
         });
       } else if (!body.calificacion) {
         res.json({

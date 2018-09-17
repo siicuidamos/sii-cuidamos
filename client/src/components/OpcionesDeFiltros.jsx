@@ -92,11 +92,11 @@ class OpcionesDeFiltros extends Component {
   }
 
   procesarTexto(texto) {
-    return texto.replace(' ', '_');
+    return texto.replace(/ /g, '_');
   }
 
   revertirTexto(texto) {
-    return texto.replace('_', ' ');
+    return texto.replace(/_/g, ' ');
   }
 
   indicador(valor, opcion) {
@@ -163,7 +163,6 @@ class OpcionesDeFiltros extends Component {
   render() {
     return (
       <div>
-        <hr />
         <div className="row">
           <div className="col-12">
             <form>
