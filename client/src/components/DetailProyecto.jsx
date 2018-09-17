@@ -333,7 +333,8 @@ class DetailProyecto extends Component {
       const inicio = proyecto.anioInicioEjecucion;
       const fin = proyecto.anioFinEjecucion;
       const link = proyecto.link;
-      const url = "http://www.facebook.com/sharer/sharer.php?u="+window.location.href;
+      const url =
+        'http://www.facebook.com/sharer/sharer.php?u=' + window.location.href;
 
       return (
         <div className="row">
@@ -345,13 +346,20 @@ class DetailProyecto extends Component {
           <div className="col-12 col-md-4 mb-5">
             {this.validarVideo(bpin, link, sector)}
             <br />
-            <div>
-            <Hashtag hashtag={'PPV' + bpin} />
-            <a href={url} className="btn btn-primary btn-sm fab fa-facebook-f" target="_blank"> Compartir</a>
+            <div className="mb-5">
+              <Hashtag hashtag={'PPV' + bpin} />
+              <a
+                href={url}
+                className="btn btn-primary btn-sm fab fa-facebook-f mb-3"
+                target="_blank"
+              >
+                {' '}
+                Compartir
+              </a>
             </div>
             <br />
           </div>
-          <div className="col-12 col-md-5">
+          <div className="col-12 col-md-5 mt-3">
             <p>
               <i className="fas fa-fingerprint" /> &nbsp;
               <b>BPIN: </b> {bpin}
@@ -394,7 +402,6 @@ class DetailProyecto extends Component {
               <b>Horizonte: </b>
               {inicio} - {fin}
             </p>
-
           </div>
           <div className="col-md-3">
             <h5>Calificación promedio</h5>
