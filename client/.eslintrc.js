@@ -1,3 +1,4 @@
+//No es necesario subir la configuración de ESlint al repositorio
 module.exports = {
     "env": {
         "browser": true
