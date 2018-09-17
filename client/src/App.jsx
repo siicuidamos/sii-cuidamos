@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect, Link, Route, Switch } from 'react-router-dom';
-import Inicio from './components/Inicio';
+import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
 import Principal from './components/Principal';
-import DetailProyecto from './components/DetailProyecto';
+import Proyecto from './components/Proyecto';
 
 class App extends Component {
   render() {
@@ -13,10 +12,12 @@ class App extends Component {
         <div className="container container-fluid mb-5 mt-1">
           <h1 className="text-center">Veeduría de proyectos públicos</h1>
         </div>
-        <Switch>
-          <Route exact path="/" component={Principal} />
-          <Route path="/proyectos" component={Inicio} />
-        </Switch>
+        <div className="container container-fluid mb-5">
+          <Switch>
+            <Route exact path="/" component={Principal} />
+            <Route path="/proyectos" component={Proyecto} />
+          </Switch>
+        </div>
       </div>
     );
   }

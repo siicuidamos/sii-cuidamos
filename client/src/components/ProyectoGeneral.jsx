@@ -1,53 +1,56 @@
-import React, { Component } from "react";
-import DetailProyecto from './DetailProyecto';
-import { Link, Route } from "react-router-dom";
-
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class ProyectoGeneral extends Component {
+  constructor(props) {
+    super(props);
 
+    this.proyecto = this.props.proyecto;
+  }
 
   render() {
-
-    const proyecto = this.props.proyecto;
-    const nombre = proyecto.nombre;
-    const region = proyecto.region;
-    const departamento = proyecto.departamento;
-    const municipio = proyecto.municipio;
-    const sector = proyecto.sector;
-    const inicio = proyecto.anioInicioEjecucion;
-    const fin = proyecto.anioFinEjecucion;
+    const bpin = this.proyecto.bpin;
+    const nombre = this.proyecto.nombre;
+    const region = this.proyecto.region;
+    const departamento = this.proyecto.departamento;
+    const municipio = this.proyecto.municipio;
+    const sector = this.proyecto.sector;
+    const inicio = this.proyecto.anioInicioEjecucion;
+    const fin = this.proyecto.anioFinEjecucion;
 
     return (
       <div className="col-12 mt-4">
-        <div className="card w-100 shadow">
-          <div className="card-body">
-            <p className="card-title font-weight-bold">{nombre}</p>
-            <hr />
-                        
-            <p className="card-text">
-              <i className="fas fa-fingerprint" />
-              &nbsp;<b>BPIN: </b> 
-              <Link to={`/${proyecto.bpin}`}>{proyecto.bpin} </Link>
-              <Route path={`/:bpin`} render={(props)=> <DetailProyecto proyecto={proyecto} />}/>
-            </p>
+        <Link to={'/proyectos/' + bpin} style={{ textDecoration: 'none' }}>
+          <div className="card w-100 shadow text-dark">
+            <div className="card-body">
+              <p className="card-title font-weight-bold">{nombre}</p>
+              <hr />
 
-            <p className="card-text">
-              <i className="fas fa-map-marker-alt fa-lg text-danger" />
-              &nbsp;
-              {region}, {departamento}, {municipio}
-            </p>
-            <p className="card-text">
-              <i className="fas fa-list-ul fa-lg text-primary" />
-              &nbsp;
-              {sector}
-            </p>
-            <p className="card-text">
-              <i className="fas fa-calendar fa-lg text-success" />
-              &nbsp;
-              {inicio} - {fin}
-            </p>
+              <p className="card-text">
+                <i className="fas fa-fingerprint" />
+                &nbsp;
+                <b>BPIN: </b>
+                {bpin}
+              </p>
+
+              <p className="card-text">
+                <i className="fas fa-map-marker-alt fa-lg text-danger" />
+                &nbsp;
+                {region}, {departamento}, {municipio}
+              </p>
+              <p className="card-text">
+                <i className="fas fa-list-ul fa-lg text-primary" />
+                &nbsp;
+                {sector}
+              </p>
+              <p className="card-text">
+                <i className="fas fa-calendar fa-lg text-success" />
+                &nbsp;
+                {inicio} - {fin}
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     );
   }
