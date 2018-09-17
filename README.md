@@ -38,6 +38,8 @@ A su vez, se usaron varias dependencias instaladas por medio de NPM.
 
 Entre otras que pueden ser observadas en los package.json de la aplicación.
 
+Finalmente, la aplicación se encuentra despleagada en https://heroku.com/ pero se usa un dominio personalizado para acceder a ella.
+
 ## Instructivo para ejecución
 
 ### Requisitos
