@@ -94,9 +94,40 @@ class Registro extends Component {
               error: errores
             });
           } else {
-            alert('Ya estás registrado en VPP');
-            document.getElementById('cerrarRegistroModal').click();
-            this.verificar();
+            axios
+              .post('/vpp/api/iniciarSesion', {
+                nombreDeUsuario: this.state.nombreDeUsuario,
+                clave: this.state.clave
+              })
+              .then(res => {
+                let exito = res.data.exito;
+                if (!exito) {
+                  errores.push(
+                    <p>
+                      &bull;&nbsp;
+                      {res.data.mensaje}
+                    </p>
+                  );
+                  this.setState({
+                    error: errores
+                  });
+                } else {
+                  let data = res.data;
+                  let usuario = data.usuario;
+                  delete usuario.clave;
+                  delete usuario._id;
+                  localStorage.setItem('tokenVPP', data.token);
+                  localStorage.setItem(
+                    'usuarioVPP',
+                    JSON.stringify(data.usuario)
+                  );
+                  document.getElementById('cerrarRegistroModal').click();
+                  this.verificar();
+                }
+              })
+              .catch(function(error) {
+                console.log(error);
+              });
           }
         })
         .catch(function(error) {
@@ -167,7 +198,7 @@ class Registro extends Component {
             <div className="modal-header">
               <center>
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Bienvenido a VPP
+                  Bienvenido a VPP - Registro
                 </h5>
               </center>
               <button
@@ -181,30 +212,38 @@ class Registro extends Component {
               </button>
             </div>
             <div className="modal-body">
+              <p>
+                Al registrarte en VPP podrás comentar sobre cualquier proyecto
+                que desees, compartiendo así tu opinión sobre los proyectos
+                públicos de Colombia.
+              </p>
+              <hr />
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="exampleInputEmail">
+                  <label htmlFor="registroInputEmail">
                     <b>Correo</b>
                   </label>
                   <input
-                    type="mail"
+                    type="email"
                     className="form-control"
-                    id="exampleInputEmail"
+                    id="registroInputEmail"
                     value={this.state.value}
                     onChange={this.handleChangeEmail}
+                    autoComplete="off"
                     required
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="exampleInputEmail1">
+                  <label htmlFor="registroInputUsuario">
                     <b>Nombre de usuario</b>
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputEmail1"
+                    id="registroInputUsuario"
                     value={this.state.value}
                     onChange={this.handleChangeNombreDeUsuario}
+                    autoComplete="off"
                     required
                   />
                 </div>
@@ -291,13 +330,15 @@ class Registro extends Component {
                     id="exampleInputPassword1"
                     value={this.state.value}
                     onChange={this.handleChangeClave}
+                    autoComplete="off"
                     required
                   />
                 </div>
                 {this.mostrarError()}
                 <center>
                   <button type="submit" className="btn btn-success">
-                    Registrarte
+                    <i className="fas fa-save" />
+                    &nbsp;Crear cuenta
                   </button>
                 </center>
               </form>
