@@ -18,6 +18,9 @@ Es posible a su vez compartir el link del proyecto que esta siendo visto en rede
 
 Buscamos informar a la ciudadanía, en especial a los colombianos, sobre lo que sucede con los diferentes proyectos del país para que puedan darle un correcto seguimiento al cumplimiento de estos.
 
+## Screenshot
+![Alt text](resources/images/VPP.png?raw=true "Screenshot de VPP")
+
 ## Tecnologías utilizadas
 
 El proyecto fue desarrollado usando el stack MERN. 
@@ -38,7 +41,7 @@ A su vez, se usaron varias dependencias instaladas por medio de NPM.
 
 Entre otras que pueden ser observadas en los package.json de la aplicación.
 
-Finalmente, la aplicación se encuentra despleagada en https://heroku.com/ pero se usa un dominio personalizado para acceder a ella.
+Finalmente, la aplicación se encuentra despleagada en https://heroku.com/ pero se usa un dominio personalizado para acceder a ella. Que en este caso es http://vpp.ineffableinventions.com.co/
 
 ## Instructivo para ejecución
 
