@@ -11,7 +11,7 @@ class Registro extends Component {
       email:'',
       nombreDeUsuario: '',
       clave: '',
-      nivelEducativo:'Pregrado',
+      nivelEducativo:'Basica Primaria',
       sector:'Ingenieria',
       departamentoDeOrigen:'Amazonas',
       departamentoDeResidencia:'Amazonas',
@@ -152,7 +152,7 @@ class Registro extends Component {
 
   render() {
     return (
-      <div
+      <div className="container-fluid"
         className="modal fade"
         id="registroModal"
         tabIndex="-1"
@@ -161,14 +161,16 @@ class Registro extends Component {
         aria-hidden="true"
       >
         <div
-          className="modal-dialog modal-dialog-centered modal-sm"
+          className="modal-dialog modal-dialog-centered modal-lg"
           role="document"
         >
           <div className="modal-content">
             <div className="modal-header">
+              <center>
               <h5 className="modal-title" id="exampleModalLabel">
                 Bienvenido a VPP
               </h5>
+              </center>
               <button
                 type="button"
                 id="cerrarRegistroModal"
@@ -211,11 +213,11 @@ class Registro extends Component {
                   <label htmlFor="exampleInputUser1">
                     <b>Nivel educativo</b>
                   </label>
-                  <select className="form-control" onChange={this.handleChangeNivelEducativo}>
+                  <select className="form-control" value={this.nivelEducativo}  onChange={this.handleChangeNivelEducativo}>
                     <option value="Basica Primaria">Básica Primaria</option>
                     <option value="Basica Secundaria">Básica Secundaria</option>
                     <option value="Educacion Media">Educación Media</option>
-                    <option selected value="Pregrado">Educación Superior-Pregrado</option>
+                    <option value="Pregrado">Educación Superior-Pregrado</option>
                     <option value="Postgrado">Educación Superior - Postgrado</option>
                   </select>
                 </div>
@@ -223,8 +225,8 @@ class Registro extends Component {
                   <label htmlFor="exampleInputSector1">
                     <b>Sector</b>
                   </label>
-                  <select className="form-control" onChange={this.handleChangeSector}>
-                    <option selected value="Ingenieria">Ingeniería</option>
+                  <select className="form-control" value={this.sector}  onChange={this.handleChangeSector}>
+                    <option value="Ingenieria">Ingeniería</option>
                     <option value="Economia">Economía</option>
                     <option value="Ciencias Sociales">Ciencias Sociales</option>
                     <option value="Trabajo Social">Trabajo Social</option>
@@ -234,12 +236,10 @@ class Registro extends Component {
                 <label htmlFor="exampleInputDO1">
                  <b>Departamento de origen</b>
                 </label>   
-                <select className="form-control" onChange={this.handleDepartamentoDeOrigen}>           
+                <select className="form-control" value={this.departamentoDeResidencia}  onChange={this.handleDepartamentoDeOrigen}>           
                 {departamentos.map(departamento => {
                   return (
-                    <option
-                      value={departamento}
-                    >
+                    <option value={departamento}>
                       {departamento}
                     </option>
                   );
@@ -251,7 +251,7 @@ class Registro extends Component {
                 <label htmlFor="exampleInputDO1">
                  <b>Departamento de residencia</b>
                 </label>   
-                <select className="form-control" onChange={this.handleDepartamentoDeResidencia}>           
+                <select className="form-control" value={this.departamentoDeResidencia} onChange={this.handleDepartamentoDeResidencia}>           
                 {departamentos.map(departamento => {
                   return (
                     <option
@@ -278,9 +278,11 @@ class Registro extends Component {
                   />
                 </div>
                 {this.mostrarError()}
+                <center>
                 <button type="submit" className="btn btn-success">
                   Registrarte
                 </button>
+                </center>
               </form>
             </div>
           </div>
