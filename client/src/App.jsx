@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
-import Principal from './components/Principal';
-import Proyecto from './components/Proyecto';
+import OpcionesDeFiltros from './components/OpcionesDeFiltros';
+import DetailProyecto from './components/DetailProyecto';
 import Ayuda from './components/Ayuda';
 
 
@@ -12,12 +12,13 @@ class App extends Component {
       <div>
         <NavBar />
         <div className="container container-fluid mb-5 mt-1">
-          <h1 className="text-center">Veeduría de proyectos públicos</h1>
+          <h1 className="text-center mt-3">Veeduría de proyectos públicos</h1>
         </div>
         <div className="container container-fluid mb-5">
+          <Route exact path="/" component={OpcionesDeFiltros} />
           <Switch>
-            <Route exact path="/" component={Principal} />
-            <Route path="/proyectos" component={Proyecto} />
+            <Route exact path="/proyectos" component={OpcionesDeFiltros} />
+            <Route path="/proyectos/:bpin" component={DetailProyecto} />
             <Route path="/ayuda" component={Ayuda} />
           </Switch>
         </div>

@@ -75,11 +75,14 @@ class Navbar extends Component {
       localStorage.getItem('usuarioVPP') &&
       localStorage.getItem('tokenVPP')
     ) {
-      this.setState({
-        usuario: JSON.parse(localStorage.getItem('usuarioVPP')),
-        token: localStorage.getItem('tokenVPP'),
-        sesionIniciada: true
-      });
+      this.setState(
+        {
+          usuario: JSON.parse(localStorage.getItem('usuarioVPP')),
+          token: localStorage.getItem('tokenVPP'),
+          sesionIniciada: true
+        },
+        window.location.reload()
+      );
     }
   }
 
