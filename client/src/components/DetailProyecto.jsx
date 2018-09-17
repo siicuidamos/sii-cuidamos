@@ -92,12 +92,16 @@ class DetailProyecto extends Component {
   }
 
   cambiarEstadoFormCrearComentario() {
-    this.setState({
-      crearComentario: !this.state.crearComentario,
-      categoriaSeleccionada: categoriasComentarios[0],
-      calificacionSeleccionada: '-',
-      comentarioEscrito: ''
-    });
+    if (this.state.usuario) {
+      this.setState({
+        crearComentario: !this.state.crearComentario,
+        categoriaSeleccionada: categoriasComentarios[0],
+        calificacionSeleccionada: '-',
+        comentarioEscrito: ''
+      });
+    } else {
+      document.getElementById('botonParaIniciarSesion').click();
+    }
   }
 
   handleChangeCategoria(event) {
@@ -210,10 +214,10 @@ class DetailProyecto extends Component {
       return comentariosProyecto;
     } else {
       return (
-        <h3>
+        <div className="alert alert-info mx-auto mt-4" role="alert">
           Aún no hay comentarios para el proyecto en cuestión. Te invitamos a
-          que comentes sobre el.
-        </h3>
+          que <b>comentes sobre el</b>.
+        </div>
       );
     }
   }
