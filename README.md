@@ -2,8 +2,10 @@
 Esta aplicación expone proyectos públicos de inversión de Colombia con el fin de que los ciudadanos le puedan hacer un seguimiento correcto al desarrollo e implementación de estos.
 
 ## Integrantes del equipo
-- Gabriel Pinto - https://glpinto10.github.io/gabriel-pinto-pineda/
-- Vivian Gómez - https://viviangomez.github.io/proyect1_mypersonalpage/
+- Gabriel Pinto 
+Página personal: https://glpinto10.github.io/gabriel-pinto-pineda/
+- Vivian Gómez
+Página personal: https://viviangomez.github.io/proyect1_mypersonalpage/
 
 ## La aplicación se encuentra desplegada en: http://vpp.ineffableinventions.com.co/
 
