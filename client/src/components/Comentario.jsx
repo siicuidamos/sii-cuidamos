@@ -13,6 +13,7 @@ class Comentario extends Component {
     const nombreDeUsuario = this.comentario.nombreDeUsuario;
     const sectorUsuario = this.comentario.sectorUsuario;
     const calificacion = this.comentario.calificacion;
+    const categoria = this.comentario.categoria;
 
     return (
       <div className="col-12 mt-4">
@@ -35,13 +36,17 @@ class Comentario extends Component {
                     {calificacion}
                   </div>
                   <div className="col-12">
-                    <i className="fas fa-user" />
+                    <i className="far fa-list-alt" />
                     &nbsp;
-                    {nombreDeUsuario}
+                    {categoria}
                     <br />
                     <i className="fas fa-flask" />
                     &nbsp;
                     {sectorUsuario}
+                    <br />
+                    <i className="fas fa-user" />
+                    &nbsp;
+                    {nombreDeUsuario}
                   </div>
                 </div>
               </div>

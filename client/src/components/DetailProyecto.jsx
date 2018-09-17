@@ -12,10 +12,104 @@ class DetailProyecto extends Component {
       proyecto: null,
       exito: false,
       calificacionPromedio: 0,
-      comentarios: []
+      comentarios: [],
+      crearComentario: false,
+      categoriaSeleccionada: categoriasComentarios[0],
+      calificacionSeleccionada: '-',
+      comentarioEscrito: '',
+      errores: [],
+      usuario: JSON.parse(localStorage.getItem('usuarioVPP'))
     };
     this.buscarProyecto();
+    this.handleChangeCategoria = this.handleChangeCategoria.bind(this);
+    this.handleChangeCalificacion = this.handleChangeCalificacion.bind(this);
+    this.handleChangeComentario = this.handleChangeComentario.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.apiComentarios = '/vpp/api/comentarios/';
+  }
+
+  handleSubmit(event) {
+    let errores = [];
+    if (
+      this.state.comentarioEscrito.length < 100 ||
+      this.state.comentarioEscrito.length > 500
+    ) {
+      errores.push(
+        <p>&bull;&nbsp;El comentario debe tener entre 100 y 500 caracteres.</p>
+      );
+    }
+
+    if (
+      this.state.calificacionSeleccionada === '-' ||
+      this.state.calificacionSeleccionada < 1 ||
+      this.state.calificacionSeleccionada > 10
+    ) {
+      errores.push(<p>&bull;&nbsp;La calificación debe ser entre 1 y 10.</p>);
+    }
+
+    if (this.state.usuario && errores.length === 0) {
+      axios
+        .post(this.apiComentarios + '/crear', {
+          texto: this.state.comentarioEscrito,
+          categoria: this.state.categoriaSeleccionada,
+          calificacion: this.state.calificacionSeleccionada,
+          bpin: this.state.bpin,
+          nombreDeUsuario: this.state.usuario.nombreDeUsuario,
+          sectorUsuario: this.state.usuario.sector,
+          nivelEducativoUsuario: this.state.usuario.nivelEducativo
+        })
+        .then(res => {
+          let exito = res.data.exito;
+          if (!exito) {
+            errores.push(
+              <p>
+                &bull;&nbsp;
+                {res.data.mensaje}
+              </p>
+            );
+            this.setState({
+              errores: errores
+            });
+          } else {
+            this.setState(
+              {
+                crearComentario: false
+              },
+              this.obtenerParticipacionProyecto()
+            );
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    } else {
+      this.setState({
+        errores: errores
+      });
+    }
+
+    event.preventDefault();
+  }
+
+  cambiarEstadoFormCrearComentario() {
+    this.setState({
+      crearComentario: !this.state.crearComentario,
+      categoriaSeleccionada: categoriasComentarios[0],
+      calificacionSeleccionada: '-',
+      comentarioEscrito: ''
+    });
+  }
+
+  handleChangeCategoria(event) {
+    this.setState({ categoriaSeleccionada: event.target.value });
+  }
+
+  handleChangeCalificacion(event) {
+    this.setState({ calificacionSeleccionada: event.target.value });
+  }
+
+  handleChangeComentario(event) {
+    this.setState({ comentarioEscrito: event.target.value });
   }
 
   buscarProyecto() {
@@ -122,6 +216,107 @@ class DetailProyecto extends Component {
     }
   }
 
+  cargarOpcionesCategoria() {
+    let opciones = [];
+    categoriasComentarios.forEach(categoria => {
+      opciones.push(
+        <option key={categoria} value={categoria}>
+          {categoria}
+        </option>
+      );
+    });
+    return opciones;
+  }
+
+  formCrearComentario() {
+    if (this.state.usuario && this.state.crearComentario) {
+      return (
+        <div className="col-12">
+          <hr />
+          <div className="container container-fluid border border-secondary rounded">
+            <form className="mt-3 mb-3" onSubmit={this.handleSubmit}>
+              <div className="row">
+                <div className="col-md-4 col-12 form-group ">
+                  <label htmlFor="inputState">
+                    <b>Categoría del comentario</b>
+                  </label>
+                  <select
+                    id="inputState"
+                    className="form-control"
+                    onChange={this.handleChangeCategoria}
+                    value={this.state.value}
+                  >
+                    {this.cargarOpcionesCategoria()}
+                  </select>
+                </div>
+                <div className="col-md-8 col-12">
+                  <label htmlFor="customRange2">
+                    <b>Calificación</b>
+                    &nbsp; <i className="fas fa-arrow-right" />{' '}
+                    <span className="text-warning font-weight-bold">
+                      &nbsp;
+                      {this.state.calificacionSeleccionada} de 10
+                    </span>
+                  </label>
+                  <input
+                    type="range"
+                    className="custom-range"
+                    min="1"
+                    max="10"
+                    id="customRange2"
+                    onChange={this.handleChangeCalificacion}
+                    value={this.state.value}
+                  />
+                </div>
+                <div className="col-12 form-group">
+                  <label htmlFor="exampleFormControlTextarea1">
+                    <b>Texto del comentario </b>
+                    &nbsp; <i className="fas fa-arrow-right" />{' '}
+                    <span className="text-primary font-weight-bold">
+                      &nbsp;
+                      {500 - this.state.comentarioEscrito.length} caracteres
+                      disponibles
+                    </span>
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    onChange={this.handleChangeComentario}
+                    value={this.state.value}
+                  />
+                </div>
+              </div>
+              {this.mostrarError()}
+              <button type="submit" className="btn btn-success mr-4">
+                <i className="fas fa-check" />
+                &nbsp;Crear comentario
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={() => this.cambiarEstadoFormCrearComentario()}
+              >
+                <i className="fas fa-times" />
+                &nbsp; Cancelar
+              </button>
+            </form>
+          </div>
+          <hr />
+        </div>
+      );
+    }
+  }
+
+  mostrarError() {
+    if (this.state.errores.length > 0) {
+      return (
+        <div className="alert alert-danger letra-pequenia" role="alert">
+          {this.state.errores}
+        </div>
+      );
+    }
+  }
+
   mostrarProyecto() {
     if (this.state.exito) {
       const proyecto = this.state.proyecto;
@@ -205,10 +400,20 @@ class DetailProyecto extends Component {
           <div className="col-12 mt-2">
             <hr />
           </div>
-          <div className="col-lg-12">
+          <div className="col-md-8 col-12">
             <h2>Comentarios</h2>
-            {this.mostrarComentarios()}
           </div>
+          <div className="col-md-4 col-12 text-center">
+            <button
+              className="btn btn-success"
+              onClick={() => this.cambiarEstadoFormCrearComentario()}
+            >
+              <i className="fas fa-plus" />
+              &nbsp;Añadir
+            </button>
+          </div>
+          {this.formCrearComentario()}
+          <div className="col-12">{this.mostrarComentarios()}</div>
         </div>
       );
     } else {
