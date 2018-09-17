@@ -76,3 +76,7 @@ html {
 .fuente-normal {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.proyecto-general:hover {
+    transform: scale(1.04);
+}

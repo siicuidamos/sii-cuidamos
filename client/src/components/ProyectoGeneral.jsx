@@ -21,7 +21,7 @@ class ProyectoGeneral extends Component {
     return (
       <div className="col-12 mt-4">
         <Link to={'/proyectos/' + bpin} style={{ textDecoration: 'none' }}>
-          <div className="card w-100 shadow text-dark">
+          <div className="card w-100 shadow text-dark proyecto-general">
             <div className="card-body">
               <p className="card-title font-weight-bold">{nombre}</p>
               <hr />
