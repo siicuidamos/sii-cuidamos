@@ -18,7 +18,9 @@ class DetailProyecto extends Component {
       calificacionSeleccionada: '-',
       comentarioEscrito: '',
       errores: [],
-      usuario: JSON.parse(localStorage.getItem('usuarioVPP'))
+      usuario: JSON.parse(localStorage.getItem('usuarioVPP')),
+      mensaje:
+        'Estamos buscando el proyecto en la base de datos. Por favor espera.'
     };
     this.buscarProyecto();
     this.handleChangeCategoria = this.handleChangeCategoria.bind(this);
@@ -127,8 +129,13 @@ class DetailProyecto extends Component {
         });
         this.obtenerParticipacionProyecto();
       } else {
+        let mensaje =
+          'No existe un proyecto con código BPIN ' +
+          this.state.bpin +
+          ' en nuestra base de datos.';
         this.setState({
-          exito: exito
+          exito: exito,
+          mensaje: mensaje
         });
       }
     });
@@ -345,7 +352,6 @@ class DetailProyecto extends Component {
       return (
         <div className="row">
           <div className="col-12">
-            <hr />
             <h3 className="text-center">{nombre}</h3>
             <hr />
           </div>
@@ -434,8 +440,7 @@ class DetailProyecto extends Component {
     } else {
       return (
         <div className="alert alert-info mx-auto mt-4" role="alert">
-          No existe un proyecto con código BPIN <b>{this.state.bpin}</b> en
-          nuestra base de datos.
+          {this.state.mensaje}
         </div>
       );
     }

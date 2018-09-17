@@ -115,7 +115,7 @@ class Login extends Component {
           role="document"
         >
           <div className="modal-content">
-            <div className="modal-header">
+            <div className="modal-header bg-dark text-light">
               <h5 className="modal-title" id="exampleModalLabel">
                 Bienvenido a VPP
               </h5>
@@ -126,7 +126,9 @@ class Login extends Component {
                 data-dismiss="modal"
                 aria-label="Close"
               >
-                <span aria-hidden="true">&times;</span>
+                <span className="text-light" aria-hidden="true">
+                  &times;
+                </span>
               </button>
             </div>
             <div className="modal-body">

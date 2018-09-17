@@ -106,7 +106,7 @@ class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container container-fluid">
-            <Link to="/" className="navbar-brand">
+            <Link to="/proyectos" className="navbar-brand">
               VPP
             </Link>{' '}
             <span className="sr-only">(current)</span>
