@@ -163,7 +163,6 @@ class OpcionesDeFiltros extends Component {
   render() {
     return (
       <div>
-        <hr />
         <div className="row">
           <div className="col-12">
             <form>
