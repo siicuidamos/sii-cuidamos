@@ -156,6 +156,7 @@ class Login extends Component {
                     id="loginInputPassword1"
                     value={this.state.value}
                     onChange={this.handleChangeClave}
+                    autoComplete="password"
                     required
                   />
                 </div>

@@ -330,6 +330,7 @@ class Registro extends Component {
                     id="exampleInputPassword1"
                     value={this.state.value}
                     onChange={this.handleChangeClave}
+                    autoComplete="foo"
                     required
                   />
                 </div>
