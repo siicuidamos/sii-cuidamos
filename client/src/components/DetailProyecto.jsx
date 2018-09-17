@@ -163,14 +163,14 @@ class DetailProyecto extends Component {
 
   validarVideo(bpin, link, sector) {
     if (link === '') {
-      console.log('Ruta imagen= ' + sector);
-      var ruta = '../sectores/' + sector.replace(' ', '_') + '.jpg';
+      let sectorRuta = sector.replace(/ /g, '_').toLowerCase() + '.jpeg';
       return (
         <img
           width="100%"
           height="100%"
-          src={require('../sectores/Trabajo.jpg')}
+          src={require('../images/sectores/' + sectorRuta)}
           alt={sector}
+          className="rounded shadow mb-3"
         />
       );
     } else {
