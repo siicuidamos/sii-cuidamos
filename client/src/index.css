@@ -72,3 +72,7 @@ html {
     font-size: 14px;
     padding: 0 3px
 }
+
+.fuente-normal {
+    font-family: Arial, Helvetica, sans-serif;
+}
