@@ -25,7 +25,7 @@ class DetailProyecto extends Component {
     this.handleChangeCalificacion = this.handleChangeCalificacion.bind(this);
     this.handleChangeComentario = this.handleChangeComentario.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.apiComentarios = '/vpp/api/comentarios/';
+    this.apiComentarios = '/vpp/api/comentarios';
   }
 
   handleSubmit(event) {
@@ -143,7 +143,9 @@ class DetailProyecto extends Component {
 
   obtenerCalificacionPromedio() {
     axios
-      .get(this.apiComentarios + 'calificacionPromedio/bpin/' + this.state.bpin)
+      .get(
+        this.apiComentarios + '/calificacionPromedio/bpin/' + this.state.bpin
+      )
       .then(res => {
         const exito = res.data.exito;
         if (exito) {
