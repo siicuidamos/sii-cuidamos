@@ -17,6 +17,10 @@ module.exports = (router) => {
 
         // Cuerpo de la peticion
         const body = req.body;
+        
+        //Juan David: En general, salvo que tengas la necesidad de contrastar información con respecto a la BD, es mejor hacer 
+        //las validaciones de campos vacios directamente desde el formulario en el front. Más aun, es buena idea que no se le
+        //permita al usuario enviar los datos sin que estén completos.
 
         if (!body.email) { // Revisa que se haya ingresado un correo
             res.json({
