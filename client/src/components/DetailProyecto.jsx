@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Hashtag } from 'react-twitter-widgets';
 import Comentario from './Comentario';
+import { FacebookShareButton } from 'react-share';
+
 const categoriasComentarios = require('../json/CategoriasComentarios.json');
+
 
 class DetailProyecto extends Component {
   constructor(props) {
@@ -346,8 +349,7 @@ class DetailProyecto extends Component {
       const inicio = proyecto.anioInicioEjecucion;
       const fin = proyecto.anioFinEjecucion;
       const link = proyecto.link;
-      const url =
-        'http://www.facebook.com/sharer/sharer.php?u=' + window.location.href;
+      const url = window.location.href;
 
       return (
         <div className="row">
@@ -360,11 +362,11 @@ class DetailProyecto extends Component {
             <br />
             <div>
               <Hashtag hashtag={'PPV' + bpin} />
-              <div id="fb-root" />
-              <a href={url} className="btn-primary btn-sm" target="_blank">
-                <i className="fab fa-facebook-square" />
+              <FacebookShareButton quote={nombre} url={url} >
+                <a className="btn-primary btn-sm" target="_blank"><i className="fab fa-facebook-square" />
                 &nbsp;&nbsp;Compartir
-              </a>
+                </a>
+              </FacebookShareButton>
             </div>
             <br />
           </div>
