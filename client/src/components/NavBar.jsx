@@ -137,6 +137,13 @@ class Navbar extends Component {
                     Ayuda
                   </Link>
                 </li>
+
+                <li className="nav-item">
+                  <Link to="/sobreVPP" className="nav-link">
+                    Sobre VPP
+                  </Link>
+                </li> 
+
                 {this.mostrarSeccionAutenticacion()}
               </ul>
             </div>

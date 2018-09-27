@@ -7,26 +7,26 @@ class Ayuda extends Component {
   
     return (
       <div>
-      <h4>Bienvenido a VPP</h4>
-      <p>Queremos ayudar a los Colombianos a informarse sobre los proyectos financiados con regalias en el territorio
-      nacional y permitirles participar en el seguimiento de los mismos. En esta sección te <b>ayudaremos a entender los 
-      términos</b> utilizados en este contexto.
-      </p>
+        <h4>Bienvenido a VPP</h4>
+        <p>Queremos ayudar a los Colombianos a informarse sobre los proyectos financiados con regalias en el territorio
+        nacional y permitirles participar en el seguimiento de los mismos. En esta sección te <b>ayudaremos a entender los 
+        términos</b> utilizados en este contexto.
+        </p>
 
-      <h5>Información de los proyectos</h5>
-      <div>
-            <p>
-              <i className="fas fa-fingerprint" /> &nbsp;
-              <b>BPIN: </b> 20142401060013
-              <br/>
+        <h5>Información de los proyectos</h5>
+        <div>
+          <p>
+            <i className="fas fa-fingerprint" /> &nbsp;
+            <b>BPIN: </b> 20142401060013
+            <br/>
               Es el código único que identifica cada uno de los proyectos para el Banco de Programas y Proyectos de Inversión Nacional (BPIN).
-            </p>
-            <hr/>
-            <p>
-              <i className="fas fa-map-marker-alt fa-lg text-danger" />
+          </p>
+          <hr/>
+          <p>
+            <i className="fas fa-map-marker-alt fa-lg text-danger" />
               &nbsp;
-              <b>Ubicación: </b>Region Caribe, Bolivar, Rio Viejo 
-              <br/>
+            <b>Ubicación: </b>Region Caribe, Bolivar, Rio Viejo 
+            <br/>
               Contiene la ubicación del proyecto -Región, Departamento, Municipio -           
               </p>
             <hr/>

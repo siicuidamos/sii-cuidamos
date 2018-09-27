@@ -4,6 +4,7 @@ import NavBar from './components/NavBar.jsx';
 import OpcionesDeFiltros from './components/OpcionesDeFiltros';
 import DetailProyecto from './components/DetailProyecto';
 import Ayuda from './components/Ayuda';
+import SobreVPP from './components/SobreVPP';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path="/proyectos" component={OpcionesDeFiltros} />
             <Route path="/proyectos/:bpin" component={DetailProyecto} />
             <Route path="/ayuda" component={Ayuda} />
+            <Route path="/sobreVPP" component={SobreVPP} />
           </Switch>
         </div>
       </div>

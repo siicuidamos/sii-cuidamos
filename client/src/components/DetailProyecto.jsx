@@ -361,9 +361,9 @@ class DetailProyecto extends Component {
             {this.validarVideo(bpin, link, sector)}
             <br />
             <div>
-              <Hashtag hashtag={'PPV' + bpin} />
+              <Hashtag hashtag={'VPP' + bpin} />
               <FacebookShareButton quote={nombre} url={url} >
-                <a className="btn-primary btn-sm" target="_blank"><i className="fab fa-facebook-square" />
+                <a className="btn-primary btn-sm text-white" target="_blank"><i className="fab fa-facebook-square" />
                 &nbsp;&nbsp;Compartir
                 </a>
               </FacebookShareButton>
