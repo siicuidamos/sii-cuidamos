@@ -5,6 +5,7 @@ import OpcionesDeFiltros from './components/OpcionesDeFiltros';
 import DetailProyecto from './components/DetailProyecto';
 import Ayuda from './components/Ayuda';
 import SobreVPP from './components/SobreVPP';
+import Footer from './components/Footer';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route path="/sobreVPP" component={SobreVPP} />
           </Switch>
         </div>
+        <Footer />
       </div>
     );
   }

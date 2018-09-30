@@ -138,11 +138,11 @@ class Navbar extends Component {
                   </Link>
                 </li>
 
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link to="/sobreVPP" className="nav-link">
                     Sobre VPP
                   </Link>
-                </li> 
+                </li>  */}
 
                 {this.mostrarSeccionAutenticacion()}
               </ul>

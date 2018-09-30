@@ -27,6 +27,10 @@ html {
     overflow-x: hidden;
 }
 
+footer {
+    min-height: 200px;
+}
+
 .letra-pequenia {
     font-size: 12px;
 }
@@ -79,4 +83,38 @@ html {
 
 .proyecto-general:hover {
     transform: scale(1.04);
+}
+
+.raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.f-18 {
+    font-size: 18px;
+}
+
+.zoom-tilt img {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.zoom-tilt img:hover {
+    -webkit-transform: rotate(5deg) scale(1.3);
+    -moz-transform: rotate(5deg) scale(1.3);
+    -ms-transform: rotate(5deg) scale(1.3);
+    -o-transform: rotate(5deg) scale(1.3);
+    transform: rotate(5deg) scale(1.3);
+}
+
+.mw-280 {
+    max-width: 280px;
+}
+
+@media (max-width:763px) {
+    #desarrollado {
+        text-align: center !important;
+    }
 }
