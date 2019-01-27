@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Login from './Login';
 import Registro from './Registro';
 
@@ -43,7 +43,11 @@ class Navbar extends Component {
       const lista = [];
 
       lista.push(
-        <li key="loginModalKey" className="nav-item navbar-right">
+        <li
+          key="loginModalKey"
+          className="nav-item navbar-right"
+          onClick={() => this.closeToggler()}
+        >
           <a
             id="botonParaIniciarSesion"
             className="nav-link pointer"
@@ -56,7 +60,11 @@ class Navbar extends Component {
       );
 
       lista.push(
-        <li key="registroModalKey" className="nav-item navbar-right">
+        <li
+          key="registroModalKey"
+          className="nav-item navbar-right"
+          onClick={() => this.closeToggler()}
+        >
           <a
             id="botonParaRegistrarse"
             className="nav-link pointer"
@@ -69,6 +77,12 @@ class Navbar extends Component {
       );
 
       return lista;
+    }
+  }
+
+  closeToggler() {
+    if (window.innerWidth < 992) {
+      document.getElementById('closeToggler').click();
     }
   }
 
@@ -106,12 +120,16 @@ class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container container-fluid">
-            <Link to="/proyectos" className="navbar-brand">
-              VPP
-            </Link>{' '}
+            <NavLink
+              to="/proyectos"
+              className="navbar-brand d-lg-none d-md-block"
+            >
+              Seguimiento de P.P.
+            </NavLink>{' '}
             <span className="sr-only">(current)</span>
             <button
               className="navbar-toggler"
+              id="closeToggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarSupportedContent"
@@ -125,23 +143,29 @@ class Navbar extends Component {
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <Link to="/proyectos" className="nav-link">
+              <ul className="navbar-nav mx-auto">
+                <li className="nav-item" onClick={() => this.closeToggler()}>
+                  <NavLink to="/proyectos" className="nav-link">
                     Proyectos
-                  </Link>
+                  </NavLink>
                 </li>
 
-                <li className="nav-item">
-                  <Link to="/ayuda" className="nav-link">
+                <li className="nav-item" onClick={() => this.closeToggler()}>
+                  <NavLink to="/sobreElProyecto" className="nav-link">
+                    Sobre el proyecto
+                  </NavLink>
+                </li>
+
+                <li className="nav-item" onClick={() => this.closeToggler()}>
+                  <NavLink to="/ayuda" className="nav-link">
                     Ayuda
-                  </Link>
+                  </NavLink>
                 </li>
 
                 {/* <li className="nav-item">
-                  <Link to="/sobreVPP" className="nav-link">
+                  <NavLink to="/sobreVPP" className="nav-link">
                     Sobre VPP
-                  </Link>
+                  </NavLink>
                 </li>  */}
 
                 {this.mostrarSeccionAutenticacion()}

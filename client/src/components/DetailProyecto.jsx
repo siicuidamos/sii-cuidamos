@@ -6,7 +6,6 @@ import { FacebookShareButton } from 'react-share';
 
 const categoriasComentarios = require('../json/CategoriasComentarios.json');
 
-
 class DetailProyecto extends Component {
   constructor(props) {
     super(props);
@@ -354,6 +353,7 @@ class DetailProyecto extends Component {
       return (
         <div className="row">
           <div className="col-12">
+            <hr />
             <h3 className="text-center">{nombre}</h3>
             <hr />
           </div>
@@ -362,9 +362,10 @@ class DetailProyecto extends Component {
             <br />
             <div>
               <Hashtag hashtag={'VPP' + bpin} />
-              <FacebookShareButton quote={nombre} url={url} >
-                <a className="btn-primary btn-sm text-white" target="_blank"><i className="fab fa-facebook-square" />
-                &nbsp;&nbsp;Compartir
+              <FacebookShareButton quote={nombre} url={url}>
+                <a className="btn-primary btn-sm text-white" target="_blank">
+                  <i className="fab fa-facebook-square" />
+                  &nbsp;&nbsp;Compartir
                 </a>
               </FacebookShareButton>
             </div>

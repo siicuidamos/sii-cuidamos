@@ -83,13 +83,6 @@ app.use(
     })
 );
 
-// // Se habilita CORS en el puerto 4200. Donde corre el cliente.
-// app.use(
-//     cors({
-//         origin: "http://localhost:3000"
-//     })
-// );
-
 // Se define la ruta de archivos estáticos para el front
 app.use(express.static(path.resolve(__dirname, 'client/build')));
 
@@ -97,8 +90,8 @@ app.use(rutaApi, autenticacion); // Ruta de autenticacion de usuarios
 app.use('', proyectos); // Ruta de proyectos
 app.use(rutaApi, comentarios); // Ruta de los comentarios
 
-//Se conecta al front
-app.get('*', function(request, response) {
+//Se redirige desde cualquiere página al index.html
+app.get('*', function (request, response) {
     response.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
 });
 

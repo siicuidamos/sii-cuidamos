@@ -117,7 +117,7 @@ class Login extends Component {
           <div className="modal-content">
             <div className="modal-header bg-dark text-light">
               <h5 className="modal-title" id="exampleModalLabel">
-                Bienvenido a VPP
+                ¡Bienvenido!
               </h5>
               <button
                 type="button"

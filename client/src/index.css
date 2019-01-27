@@ -118,3 +118,11 @@ footer {
         text-align: center !important;
     }
 }
+
+#projectsContainer {
+    min-height: 570px;
+}
+
+.h-custom {
+    height: 1px;
+}

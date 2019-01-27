@@ -198,7 +198,7 @@ class Registro extends Component {
             <div className="modal-header bg-dark text-light">
               <center>
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Bienvenido a VPP - Registro
+                  Bienvenido - Registro
                 </h5>
               </center>
               <button
@@ -215,9 +215,9 @@ class Registro extends Component {
             </div>
             <div className="modal-body">
               <p>
-                Al registrarte en VPP podrás comentar sobre cualquier proyecto
-                que desees, compartiendo así tu opinión sobre los proyectos
-                públicos de Colombia.
+                Al registrarte podrás comentar sobre cualquier proyecto que
+                desees, compartiendo así tu opinión sobre los proyectos públicos
+                de Colombia.
               </p>
               <hr />
               <form onSubmit={this.handleSubmit}>

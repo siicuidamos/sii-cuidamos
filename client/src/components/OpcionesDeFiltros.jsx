@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Proyectos from './Proyectos';
+import Informacion from './Informacion';
 const departamentos = require('../json/Departamentos.json');
 const sectores = require('../json/Sectores.json');
 const aniosInicio = require('../json/AniosInicio.json');
@@ -102,56 +103,56 @@ class OpcionesDeFiltros extends Component {
   indicador(valor, opcion) {
     if (valor !== '') {
       switch (opcion) {
-        case 1:
-          return (
-            <button
-              type="button"
-              className="btn btn-outline-danger mb-2"
-              onClick={this.cambiarDepartamento.bind(this, '')}
-            >
-              {this.revertirTexto(valor)}
+      case 1:
+        return (
+          <button
+            type="button"
+            className="btn btn-outline-danger mb-2"
+            onClick={this.cambiarDepartamento.bind(this, '')}
+          >
+            {this.revertirTexto(valor)}
               &nbsp;
-              <i className="fas fa-times-circle" />
-            </button>
-          );
-        case 2:
-          return (
-            <button
-              type="button"
-              className="btn btn-outline-danger mb-2"
-              onClick={this.cambiarSector.bind(this, '')}
-            >
-              {this.revertirTexto(valor)}
+            <i className="fas fa-times-circle" />
+          </button>
+        );
+      case 2:
+        return (
+          <button
+            type="button"
+            className="btn btn-outline-danger mb-2"
+            onClick={this.cambiarSector.bind(this, '')}
+          >
+            {this.revertirTexto(valor)}
               &nbsp;
-              <i className="fas fa-times-circle" />
-            </button>
-          );
-        case 3:
-          return (
-            <button
-              type="button"
-              className="btn btn-outline-danger mb-2"
-              onClick={this.cambiarAnioInicio.bind(this, '')}
-            >
-              {this.revertirTexto(valor)}
+            <i className="fas fa-times-circle" />
+          </button>
+        );
+      case 3:
+        return (
+          <button
+            type="button"
+            className="btn btn-outline-danger mb-2"
+            onClick={this.cambiarAnioInicio.bind(this, '')}
+          >
+            {this.revertirTexto(valor)}
               &nbsp;
-              <i className="fas fa-times-circle" />
-            </button>
-          );
-        case 4:
-          return (
-            <button
-              type="button"
-              className="btn btn-outline-danger mb-2"
-              onClick={this.cambiarMunicipio.bind(this, '')}
-            >
-              {this.revertirTexto(valor)}
+            <i className="fas fa-times-circle" />
+          </button>
+        );
+      case 4:
+        return (
+          <button
+            type="button"
+            className="btn btn-outline-danger mb-2"
+            onClick={this.cambiarMunicipio.bind(this, '')}
+          >
+            {this.revertirTexto(valor)}
               &nbsp;
-              <i className="fas fa-times-circle" />
-            </button>
-          );
-        default:
-          return null;
+            <i className="fas fa-times-circle" />
+          </button>
+        );
+      default:
+        return null;
       }
     }
   }
@@ -165,6 +166,8 @@ class OpcionesDeFiltros extends Component {
       <div>
         <div className="row">
           <div className="col-12">
+            <Informacion />
+            <hr />
             <form>
               <div className="form-row">
                 <div className="col-lg-4 col-md-5 input-group mb-3">
