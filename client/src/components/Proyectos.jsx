@@ -134,6 +134,10 @@ class Proyectos extends Component {
         }
       });
     }
+
+    const element = document.getElementById('projectsNewData');
+
+    element.scrollIntoView();
   }
 
   botones() {
@@ -214,7 +218,9 @@ class Proyectos extends Component {
     return (
       <div>
         <hr />
-        <div className="row">{this.resultadoBusqueda()}</div>
+        <div id="projectsNewData" className="row">
+          {this.resultadoBusqueda()}
+        </div>
         <div className="text-center">{this.botones()}</div>
       </div>
     );
