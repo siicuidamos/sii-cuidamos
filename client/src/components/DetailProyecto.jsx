@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Hashtag } from 'react-twitter-widgets';
 import Comentario from './Comentario';
 import { FacebookShareButton } from 'react-share';
+import { Link } from 'react-router-dom';
 
 const categoriasComentarios = require('../json/CategoriasComentarios.json');
 
@@ -353,6 +354,14 @@ class DetailProyecto extends Component {
       return (
         <div className="row">
           <div className="col-12">
+            <div className="text-center">
+              <Link to="/proyectos" className="text-white text-decoration-none">
+                <button className="btn btn-primary text-white">
+                  <i className="fas fa-list-ul" />
+                  &nbsp;Lista de proyectos
+                </button>
+              </Link>
+            </div>
             <hr />
             <h3 className="text-center">{nombre}</h3>
             <hr />
@@ -442,8 +451,19 @@ class DetailProyecto extends Component {
       );
     } else {
       return (
-        <div className="alert alert-info mx-auto mt-4" role="alert">
-          {this.state.mensaje}
+        <div className="col-12">
+          <div className="text-center">
+            <Link to="/proyectos" className="text-white text-decoration-none">
+              <button className="btn btn-primary text-white">
+                <i className="fas fa-list-ul" />
+                &nbsp;Lista de proyectos
+              </button>
+            </Link>
+          </div>
+          <hr />
+          <div className="alert alert-info mx-auto mt-4" role="alert">
+            {this.state.mensaje}
+          </div>
         </div>
       );
     }
