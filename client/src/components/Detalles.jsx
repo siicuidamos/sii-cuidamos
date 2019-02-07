@@ -151,18 +151,14 @@ class Detalles extends Component {
                 Políticas de seguridad Información
               </h3>
               <div className="text-center mt-2">
-                <button className="btn btn-dark text-white">
-                  <a
-                    className="text-white text-decoration-none"
-                    href={
-                      process.env.PUBLIC_URL + '/SII-Cuidamos_Politicas.pdf'
-                    }
-                    target="blank"
-                  >
-                    <i className="fas fa-file-pdf" />
-                    &nbsp;Ver archivo pdf
-                  </a>
-                </button>
+                <a
+                  className="btn btn-dark text-white text-white text-decoration-none"
+                  href={process.env.PUBLIC_URL + '/SII-Cuidamos_Politicas.pdf'}
+                  target="blank"
+                >
+                  <i className="fas fa-file-pdf" />
+                  &nbsp;Ver archivo pdf
+                </a>
               </div>
             </div>
           </div>
