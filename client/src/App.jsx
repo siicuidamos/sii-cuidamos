@@ -14,10 +14,8 @@ class App extends Component {
       <div>
         <NavBar />
         <div className="container container-fluid mt-1">
-          <h2 className="text-center mt-4">
-            Seguimiento ciudadano de proyectos de inversión pública
-          </h2>
-          <p className="text-center small">Prototipo 1</p>
+          <h2 className="text-center mt-4">SII-Cuidamos</h2>
+          <p className="text-center small">Versión 1.0</p>
         </div>
         <div id="projectsContainer" className="container container-fluid mb-5">
           <Route exact path="/" component={OpcionesDeFiltros} />
@@ -28,7 +26,7 @@ class App extends Component {
             <Route path="/sobreElProyecto" component={Detalles} />
           </Switch>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

@@ -124,7 +124,7 @@ class Navbar extends Component {
               to="/proyectos"
               className="navbar-brand d-lg-none d-md-block"
             >
-              Seguimiento de P.P.
+              SII-Cuidamos
             </NavLink>{' '}
             <span className="sr-only">(current)</span>
             <button

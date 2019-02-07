@@ -5,10 +5,8 @@ class Informacion extends Component {
     return (
       <Fragment>
         <p>
-          Somos una <b>red social</b> para la participación ciudadana en el{' '}
-          <b>seguimiento de los proyectos financiados con los impuestos</b> de
-          los ciudadanos de tal forma que se asegure la solución de los
-          principales problemas de las comunidades de nuestro país.
+          Semillero de Investigación Interdisciplinario para estimular en los
+          jóvenes el cuidado de proyectos y recursos públicos.
         </p>
 
         <p className="mb-4">
