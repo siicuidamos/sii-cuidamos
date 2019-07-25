@@ -6,11 +6,11 @@ Esta aplicación expone proyectos públicos de inversión de Colombia con el fin
 
 - Gabriel Pinto
 
-  **Página personal:** https://gabrielpinto.me
+  [Página](https://gabrielpinto.me) -  [GitHub](https://github.com/gabrielpintop)
 
 - Vivian Gómez
 
-  **Página personal:** https://viviangomezcubillos.herokuapp.com
+  [Página](https://viviangomezcubillos.herokuapp.com) - [GitHub](https://github.com/VivianGomez) 
 
 ## Links de importancia
 
