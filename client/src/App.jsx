@@ -12,14 +12,13 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />  
         <div className="container banner">
           <div className="row">
               <div className="col-md-2 col-sm-6">
                <center>
                 <img 
-                 width="80%"
-                 height="80%"
+                 width="60%"
+                 height="60%"
                  src={require('./images/logos/siiCuidamosLogo.png')}
                  alt="Logo de la app"
                  className="responsive"
@@ -27,19 +26,21 @@ class App extends Component {
                 </center>
               </div>
               
-              <div className="col-md-8 col-sm-6" >
+              <div className="col-md-4 col-sm-6" >
                     <div className="container container-fluid mt-1">
                     <h2 className="text-center mt-4 bannerText">SII-Cuidamos</h2>
                     </div>      
                    <div className="bannerText"><b>Compromiso . Comunidad . Responsabilidad</b></div> 
               </div>
 
-              <div className="col-2">
+              <div className="col-6">
                
               </div>
           </div>
       </div>
-        <div  className="container container-fluid mb-5">
+      <NavBar />  
+
+        <div  className="container-fluid">
           <Route exact path="/" component={LandingPage} />
           <Switch>
             <Route exact path="/proyectos" component={OpcionesDeFiltros} />

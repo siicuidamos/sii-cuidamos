@@ -352,6 +352,7 @@ class DetailProyecto extends Component {
       const url = window.location.href;
 
       return (
+        <div className="container mb-5">
         <div className="row">
           <div className="col-12">
             <div className="text-center">
@@ -447,6 +448,7 @@ class DetailProyecto extends Component {
           </div>
           {this.formCrearComentario()}
           <div className="col-12">{this.mostrarComentarios()}</div>
+        </div>
         </div>
       );
     } else {

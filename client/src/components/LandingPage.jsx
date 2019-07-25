@@ -1,49 +1,32 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+
 
 class LandingPage extends Component {
   render() {
     return (
-      <div classNameName="container">
-        <div className="bd-example">
-        <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
-            <ol className="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-{/*             <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
- */}            </ol>
-            <div className="carousel-inner">
-            <div className="carousel-item active">
-                <img src={require('../images/slides/community.jpeg')} className="d-block w-100" alt="..."/>
-                <div className="carousel-caption d-none d-md-block">
-                <h5><b>Creémos en los Colombianos</b></h5>
-                <p>Por eso queremos que hagas parte de nuestra comunidad, regístrate y participa.</p>
-                </div>
-            </div>
-            <div className="carousel-item">
-                <img src={require('../images/slides/devTeam.jpg')} className="d-block w-100" alt="..."/>
-                <div className="carousel-caption d-none d-md-block">
-                <h5><b>¡ÚNETE!</b></h5>
-                <p>Somos una comunidad interdisciplinaria, así que envía un correo con tu interés a contacto@siicuidamos.org</p>
-                </div>
-            </div>
-{/*             <div className="carousel-item">
-                <img src={require('../images/slides/3.PNG')} className="d-block w-100" alt="..."/>
-                <div className="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </div>
-            </div> */}
-            </div>
-            <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">Previous</span>
-            </a>
-            <a className="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="sr-only">Next</span>
-            </a>
+      <div className="container-fluid">
+      <div className="row">
+        <div className="col-12 parent">
+        <img 
+                 width="100%"
+                 height="100%"
+                 src={require('../images/slides/ht1.jpg')}
+                 alt="gente hablando"
+                 className="responsive"
+                 />
+        </div>  
+        <div className="col-6 child-element-left">
+        <h1 className="text-white"><b>Bienvenido</b></h1> 
+        <hr/>
+        <h5 className="text-white">Haz parte de si cuidamos, un lugar para participar y crear comunidad.</h5> 
+        </div>
+        <div className="col-6  child-element-right">
+        <div class="box3 sb14">Descubre cómo trabajamos
+        <button className="btn btn-outline-light"><i class="fas fa-play"></i>&nbsp;Ver video</button>
         </div>
         </div>
+      </div>
       </div>
     );
   }

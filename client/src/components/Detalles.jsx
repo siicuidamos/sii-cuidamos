@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class Detalles extends Component {
   render() {
     return (
+      <div className="container mb-5">
       <div className="row bg-dark rounded shadow-lg">
         <div className="col-12">
           <br />
@@ -167,6 +168,8 @@ class Detalles extends Component {
           <br />
         </div>
       </div>
+      </div>
+
     );
   }
 }

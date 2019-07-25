@@ -54,7 +54,7 @@ class Navbar extends Component {
             data-toggle="modal"
             data-target="#loginModal"
           >
-            <i class="fas fa-sign-in-alt"></i>&nbsp;Iniciar sesión
+            <button className="btn btn-outline-info"><i class="fas fa-sign-in-alt "></i>&nbsp;Iniciar sesión</button>
           </a>
         </li>
       );
@@ -71,7 +71,9 @@ class Navbar extends Component {
             data-toggle="modal"
             data-target="#registroModal"
           >
-            <i class="fas fa-user-plus"></i>&nbsp;Registrarse
+            
+            <button className="btn text-info"><i class="fas fa-user-plus"></i>&nbsp;Registrarse</button>
+
           </a>
         </li>
       );
@@ -120,7 +122,7 @@ class Navbar extends Component {
       <div>
         <div>
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark" align="center">
-          <Link to={`/`} className="navbar-brand" align="center"> Sii-Cuidamos </Link>
+          <Link to={`/`} className="navbar-brand marg" align="center"> Sii-Cuidamos </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>
