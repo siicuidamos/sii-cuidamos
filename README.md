@@ -1,4 +1,4 @@
-# Veeduría proyectos públicos
+# Sii-Cuidamos
 
 Esta aplicación expone proyectos públicos de inversión de Colombia con el fin de que los ciudadanos le puedan hacer un seguimiento correcto al desarrollo e implementación de estos.
 
@@ -6,7 +6,7 @@ Esta aplicación expone proyectos públicos de inversión de Colombia con el fin
 
 - Gabriel Pinto
 
-  **Página personal:** https://glpinto10.github.io/gabriel-pinto-pineda/
+  **Página personal:** https://gabrielpinto.me
 
 - Vivian Gómez
 
@@ -14,11 +14,11 @@ Esta aplicación expone proyectos públicos de inversión de Colombia con el fin
 
 ## Links de importancia
 
-**Desplegada en:** http://sii-cuidamos.herokuapp.com/
+**Desplegada en:** http://www.siicuidamos.org
 
 ## Descripción
 
-En VPP todos los ciudadanos pueden conocer la información más relevante de más de 20.000 proyectos de inversión pública. De cada proyecto pueden conocer: nombre, BPIN, ubicación (región, departamento y municipio), estado, el monto de SGR, OCAD, sector al que pertenece, fecha de inicio, fecha de finalización y en algunos casos, un video representantivo del estado actual del proyecto.
+En Sii-Cuidamos todos los ciudadanos pueden conocer la información más relevante de más de 20.000 proyectos de inversión pública. De cada proyecto pueden conocer: nombre, BPIN, ubicación (región, departamento y municipio), estado, el monto de SGR, OCAD, sector al que pertenece, fecha de inicio, fecha de finalización y en algunos casos, un video representantivo del estado actual del proyecto.
 
 Una vez registrado en el sistema, se podrán comentar los proyectos en diferentes categorías y a su vez calificarlo a partir de cada una de estás categorías.
 
@@ -27,10 +27,6 @@ Es posible a su vez compartir el link del proyecto que esta siendo visto en rede
 ## Objetivo
 
 Buscamos informar a la ciudadanía, en especial a los colombianos, sobre lo que sucede con los diferentes proyectos del país para que puedan darle un correcto seguimiento al cumplimiento de estos.
-
-## Screenshot
-
-![Alt text](resources/images/VPP.png?raw=true 'Screenshot de VPP')
 
 ## Tecnologías utilizadas
 
@@ -52,7 +48,7 @@ A su vez, se usaron varias dependencias instaladas por medio de NPM.
 
 Entre otras que pueden ser observadas en los package.json de la aplicación.
 
-Finalmente, la aplicación se encuentra despleagada en https://heroku.com/ pero se usa un dominio personalizado para acceder a ella. Que en este caso es http://vpp.ineffableinventions.com.co/
+Finalmente, la aplicación se encuentra despleagada en https://heroku.com/ pero se usa un dominio personalizado para acceder a ella. Que en este caso es http://siicuidamos.org/
 
 ## Instructivo para ejecución
 
@@ -70,9 +66,9 @@ Es necesario tenerlo para correr la aplicación localmente. Se puede descargar d
 
 Instalarlo usando en el cmd "npm i -g nodemon". Esta dependencia actualiza el servidor del back apenas detecta cambios.
 
-### Pasos para ejecutar
+### Pasos para ejecutar - Desarrollo
 
-1. Poner a correr MongoDB, entrando al directorio donde se instalando y ejecutando desde el CMD "mongod".
+1. Poner a correr MongoDB, entrando al directorio donde se instaló y ejecutando desde el CMD "mongod".
 2. Abrir la carpeta raíz en un CMD.
 3. Ejecutar "npm install" para instalar todas las dependencias necesarias.
 4. Ejecutar "npm run dev" si se cuenta con Nodemon o ejecutar "npm start".
@@ -83,3 +79,9 @@ Instalarlo usando en el cmd "npm i -g nodemon". Esta dependencia actualiza el se
 8. La aplicación será abierta de forma automática en http://localhost:3000/
 
 El servidor del back quedará corriendo en http://localhost:8080
+
+### Probar con datos de producción
+
+Con el fin de poder probar la aplicación con la base de datos de producción, se debe editar el archivo "env.js" encontrado en la raíz del proyecto en la sección de "development", y modificar la variable de "databaseUri" por la uri que apunta a la base de datos de producción. **LA URI DE PRODUCCIÓN NO SE DEBE SUBIR AL REPOSITORIO**
+
+
