@@ -204,11 +204,23 @@ footer{
 }
 
 .parent {
-	height: 100%;
-	width: 100%;
-	text-align: center;
-	padding: 0;
-	margin: 0;
+	/* The image used */
+    background-image: url(./images/slides/ht1.jpg);
+
+    /* Full height */
+    height: 500px; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .child{
+	vertical-align: middle;
+	padding: 5%;
+	margin-top: 10%;
+	text-decoration: none;
   }
   
   .child-element-right {
@@ -223,13 +235,9 @@ footer{
   }
   
   .child-element-left {
-	position: absolute;
-	width: 100vw;
-	left: calc(-50vw + 65%);
-	height: 50px;
 	vertical-align: middle;
-	padding: 16%;
-	margin-top: 10%;
+	padding: 5%;
+	margin-left: 10%;
 	text-decoration: none;
   }
 
