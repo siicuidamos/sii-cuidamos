@@ -223,6 +223,11 @@ footer{
 	height: 30%;
   }
 
+  .backBlack{
+	background-color: #292c2f;
+	opacity: .50;
+  }
+
   .logorreg-button{
 	margin-top: 50px;
 	align-content: left;

@@ -139,8 +139,8 @@ class Navbar extends Component {
                         <Link className="nav-link" to={`/ayuda`}> Ayuda</Link>
                         </li>
                     </ul>
+                    {this.mostrarSeccionAutenticacion()}
                 </div>
-                {this.mostrarSeccionAutenticacion()}
             </nav>
         </div> 
         <Login verificar={this.verificarStorage} />

@@ -18,15 +18,13 @@ class LandingPage extends Component {
             </div>
           </div>
        </div> 
-{/*        <div className="row logorreg">
-         <div className="col-12">
+       <div className="row logorreg">
+         <div className="col-12 logorreg-button">
           <center>
-           <button className="btn btn-outline-light "><i class="fas fa-sign-in-alt "></i>&nbsp;Iniciar sesión</button>
-           <h5 className="text-white ">o</h5> 
-           <button className="btn btn-outline-light "><i class="fas fa-sign-in-alt "></i>&nbsp;Iniciar sesión</button>
+           <h6 className="text-white ">Únete! registrate y participa, o haz parte del grupo interdisciplinario envíandonos un correo a contacto@siicuidamos.org </h6> 
            </center>
          </div>
-       </div> */}
+       </div>
       </div>
     );
   }
