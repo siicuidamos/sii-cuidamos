@@ -2,7 +2,7 @@
 
 Esta aplicación expone proyectos públicos de inversión de Colombia con el fin de que los ciudadanos le puedan hacer un seguimiento correcto al desarrollo e implementación de estos.
 
-## Integrantes del equipo
+## Colaboradores
 
 - Gabriel Pinto
 
