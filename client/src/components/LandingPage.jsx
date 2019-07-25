@@ -21,7 +21,7 @@ class LandingPage extends Component {
        <div className="row logorreg">
          <div className="col-12 logorreg-button">
           <center>
-           <h6 className="text-white ">Únete! registrate y participa, o haz parte del grupo interdisciplinario envíandonos un correo a contacto@siicuidamos.org </h6> 
+           <h6 className="text-white ">Únete! registrate y participa, o haz parte del grupo interdisciplinario envíandonos un correo a <a href="mailto:contacto@siicuidamos.org">contacto@siicuidamos.org</a></h6> 
            </center>
          </div>
        </div>
