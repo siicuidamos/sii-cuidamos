@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Login from './Login';
 import Registro from './Registro';
 
@@ -18,9 +18,9 @@ class Navbar extends Component {
   mostrarSeccionAutenticacion() {
     if (this.state.usuario && this.state.token) {
       return (
-        <li className="nav-item dropdown pointer">
+        <li className="nav-item dropdown pointer nolist">
           <a
-            className="nav-link dropdown-toggle"
+            className="nav-link dropdown-toggle text-light"
             id="navbarDropdown"
             role="button"
             data-toggle="dropdown"
@@ -45,16 +45,16 @@ class Navbar extends Component {
       lista.push(
         <li
           key="loginModalKey"
-          className="nav-item navbar-right"
+          className="nav-item navbar-right nolist"
           onClick={() => this.closeToggler()}
         >
           <a
             id="botonParaIniciarSesion"
-            className="nav-link pointer"
+            className="nav-link pointer text-light"
             data-toggle="modal"
             data-target="#loginModal"
           >
-            Iniciar sesión
+            <i class="fas fa-sign-in-alt"></i>&nbsp;Iniciar sesión
           </a>
         </li>
       );
@@ -62,16 +62,16 @@ class Navbar extends Component {
       lista.push(
         <li
           key="registroModalKey"
-          className="nav-item navbar-right"
+          className="nav-item navbar-right nolist"
           onClick={() => this.closeToggler()}
         >
           <a
             id="botonParaRegistrarse"
-            className="nav-link pointer"
+            className="nav-link pointer text-light"
             data-toggle="modal"
             data-target="#registroModal"
           >
-            Registrarse
+            <i class="fas fa-user-plus"></i>&nbsp;Registrarse
           </a>
         </li>
       );
@@ -118,61 +118,29 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div className="container container-fluid">
-            <NavLink
-              to="/proyectos"
-              className="navbar-brand d-lg-none d-md-block"
-            >
-              SII-Cuidamos
-            </NavLink>{' '}
-            <span className="sr-only">(current)</span>
-            <button
-              className="navbar-toggler"
-              id="closeToggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav mx-auto">
-                <li className="nav-item" onClick={() => this.closeToggler()}>
-                  <NavLink to="/proyectos" className="nav-link">
-                    Proyectos
-                  </NavLink>
-                </li>
-
-                <li className="nav-item" onClick={() => this.closeToggler()}>
-                  <NavLink to="/sobreElProyecto" className="nav-link">
-                    Sobre el proyecto
-                  </NavLink>
-                </li>
-
-                <li className="nav-item" onClick={() => this.closeToggler()}>
-                  <NavLink to="/ayuda" className="nav-link">
-                    Ayuda
-                  </NavLink>
-                </li>
-
-                {/* <li className="nav-item">
-                  <NavLink to="/sobreVPP" className="nav-link">
-                    Sobre VPP
-                  </NavLink>
-                </li>  */}
-
+        <div>
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark" align="center">
+          <Link to={`/`} className="navbar-brand" align="center"> Sii-Cuidamos </Link>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+                </button>
+            
+                <div className="collapse navbar-collapse" id="navbar">
+                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li className="nav-item">
+                        <Link className="nav-link" to={`/proyectos`}>Proyectos</Link>
+                        </li>
+                        <li className="nav-item">
+                        <Link className="nav-link"to={`/sobreElProyecto`}>Sobre nosotros</Link>
+                        </li>
+                        <li className="nav-item">
+                        <Link className="nav-link" to={`/ayuda`}> Ayuda</Link>
+                        </li>
+                    </ul>
+                </div>
                 {this.mostrarSeccionAutenticacion()}
-              </ul>
-            </div>
-          </div>
-        </nav>
+            </nav>
+        </div> 
         <Login verificar={this.verificarStorage} />
         <Registro verificar={this.verificarStorage} />
       </div>
