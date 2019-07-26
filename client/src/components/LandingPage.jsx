@@ -1,11 +1,23 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { Component} from 'react';
+import ModalVideo from 'react-modal-video'
 
 class LandingPage extends Component {
+  constructor () {
+    super()
+    this.state = {
+      isOpen: false
+    }
+    this.openModal = this.openModal.bind(this)
+  }
+
+  openModal () {
+    this.setState({isOpen: true})
+  }
+
   render() {
     return (
       <div className="container-fluid parent">
+      <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId='oZg0pxebB4A' onClose={() => this.setState({isOpen: false})} />
       <div className="row ">
           <div className="col-md-6 col-sm-12 child ">
             <h1 className="text-white"><b>Bienvenido</b></h1> 
@@ -14,7 +26,7 @@ class LandingPage extends Component {
           </div>
           <div className="col-md-6 col-sm-12 child">
             <div class="box3 sb14">Descubre cómo trabajamos
-              <button className="btn btn-outline-light"><i class="fas fa-play"></i>&nbsp;Ver video</button>
+              <button className="btn btn-outline-light" onClick={this.openModal}><i class="fas fa-play"></i>&nbsp;Ver video</button>
             </div>
           </div>
        </div> 
@@ -26,6 +38,8 @@ class LandingPage extends Component {
          </div>
        </div>
       </div>
+
+      
     );
   }
 }
