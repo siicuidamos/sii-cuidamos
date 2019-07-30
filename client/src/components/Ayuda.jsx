@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 class Ayuda extends Component {
   render() {
     return (
-      <div className="container mb-5">
-        <hr />
+      <div className="container mb-5 mt-4">
         <h4>¡Bienvenido!</h4>
         <p>
           Queremos ayudar a los Colombianos a informarse sobre los proyectos
