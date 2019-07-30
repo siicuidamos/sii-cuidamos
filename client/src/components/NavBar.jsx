@@ -117,11 +117,7 @@ class Navbar extends Component {
 
   cerrarSesion() {
     datosUsuario.eliminarDatos();
-    this.setState({
-      usuario: null,
-      token: null,
-      sesionIniciada: false
-    });
+    window.location.reload();
   }
 
   render() {

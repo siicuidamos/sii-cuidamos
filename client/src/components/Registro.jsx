@@ -318,6 +318,30 @@ class Registro extends Component {
                     required
                   />
                 </div>
+
+                <div class="form-group form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="politicasDeInformacionCheckbox"
+                    required
+                  />
+                  <label
+                    class="form-check-label"
+                    for="politicasDeInformacionCheckbox"
+                  >
+                    Acepto las&nbsp;
+                    <a
+                      href={
+                        process.env.PUBLIC_URL + '/SII-Cuidamos_Politicas.pdf'
+                      }
+                      target="blank"
+                    >
+                      políticas de seguridad de información
+                    </a>
+                  </label>
+                </div>
+
                 {this.mostrarError()}
                 <center>
                   {this.state.loading ? (
