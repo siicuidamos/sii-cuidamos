@@ -171,7 +171,7 @@ module.exports = router => {
                     const nuevoUsuario = new UsuarioCognito({
                       idCognito: result.userSub,
                       nombreDeUsuario: body.nombreDeUsuario,
-                      email: body.email
+                      email: body.email.toLowerCase()
                     });
 
                     nuevoUsuario.save(errorGuardando => {

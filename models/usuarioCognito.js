@@ -20,8 +20,7 @@ const UsuarioCognitoSchema = new Schema({
   nombreDeUsuario: {
     type: String,
     required: true,
-    unique: true,
-    lowercase: true
+    unique: true
   },
   idCognito: {
     type: String,

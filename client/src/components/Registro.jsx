@@ -118,7 +118,7 @@ class Registro extends Component {
   }
 
   handleChangeEmail(event) {
-    this.setState({ email: event.target.value });
+    this.setState({ email: event.target.value.toLowerCase() });
   }
 
   handleChangeNombreDeUsuario(event) {
@@ -324,6 +324,7 @@ class Registro extends Component {
                     type="checkbox"
                     class="form-check-input"
                     id="politicasDeInformacionCheckbox"
+                    disabled={this.state.loading}
                     required
                   />
                   <label
