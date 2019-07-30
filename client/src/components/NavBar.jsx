@@ -33,6 +33,13 @@ class Navbar extends Component {
             {this.state.usuario.nombreDeUsuario}
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            {this.state.usuario.rol === 'administrador' ? (
+              <Link className="dropdown-item pointer" to={`/dashboard`}>
+                Dashboard
+              </Link>
+            ) : (
+              ''
+            )}
             <a
               className="dropdown-item pointer"
               onClick={() => this.cerrarSesion()}

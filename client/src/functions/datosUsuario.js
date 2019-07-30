@@ -5,7 +5,7 @@ const usuarioSiiCuidamos = 'usuarioSiiCuidamos';
 
 // Obtiene los datos del usuario
 function obtenerDatosDeUsuario() {
-  const stringUsuario = JSON.parse(localStorage.getItem(usuarioSiiCuidamos));
+  const stringUsuario = obtenerUsuarioString();
   const token = obtenerToken();
   if (!stringUsuario || !token) {
     localStorage.clear();
@@ -33,6 +33,10 @@ function obtenerToken() {
   return localStorage.getItem(tokenSiiCuidamos);
 }
 
+function obtenerUsuarioString() {
+  return JSON.parse(localStorage.getItem(usuarioSiiCuidamos));
+}
+
 // Guarda los datos en el local storage
 function guardarDatosLogin(datos) {
   localStorage.setItem(tokenSiiCuidamos, datos.token);
@@ -52,10 +56,30 @@ function eliminarDatos() {
   localStorage.clear();
 }
 
+function esAdministrador() {
+  if (datosPresentes()) {
+    try {
+      const usuario = JSON.parse(
+        aes.decrypt(obtenerUsuarioString(), obtenerToken()).toString(utf8)
+      );
+      if (usuario && usuario.rol && usuario.rol === 'administrador') {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
 module.exports = {
   obtenerDatosDeUsuario,
   guardarDatosLogin,
   datosPresentes,
   obtenerToken,
-  eliminarDatos
+  eliminarDatos,
+  esAdministrador
 };

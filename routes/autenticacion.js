@@ -133,7 +133,7 @@ module.exports = router => {
               attributeList.push(
                 new AmazonCognitoIdentity.CognitoUserAttribute({
                   Name: 'custom:rol',
-                  Value: 'usuario'
+                  Value: 'administrador'
                 })
               );
 
