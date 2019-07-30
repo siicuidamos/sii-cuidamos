@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import datosUsuario from '../functions/datosUsuario.js';
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      nombreDeUsuario: '',
+      email: '',
       clave: '',
-      error: []
+      error: [],
+      loading: false
     };
 
     this.verificar = props.verificar;
 
-    this.handleChangeNombreDeUsuario = this.handleChangeNombreDeUsuario.bind(
-      this
-    );
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
 
     this.handleChangeClave = this.handleChangeClave.bind(this);
 
@@ -24,60 +24,50 @@ class Login extends Component {
 
   handleSubmit(event) {
     let errores = [];
-    if (
-      this.state.nombreDeUsuario.length < 3 ||
-      this.state.nombreDeUsuario.length > 15
-    ) {
-      errores.push(
-        <p>
-          &bull;&nbsp;El nombre de usuario debe tener entre 3 y 15 carateres.
-        </p>
-      );
-    }
+    this.setState({
+      error: [],
+      loading: true
+    });
 
-    if (this.state.clave.length < 8 || this.state.clave.length > 30) {
-      errores.push(
-        <p>&bull;&nbsp;La contraseña debe tener entre 8 y 35 carateres.</p>
-      );
-    }
-
-    if (errores.length === 0) {
-      axios
-        .post('/vpp/api/iniciarSesion', {
-          nombreDeUsuario: this.state.nombreDeUsuario,
-          clave: this.state.clave
-        })
-        .then(res => {
-          let exito = res.data.exito;
-          if (!exito) {
-            errores.push(
-              <p>
-                &bull;&nbsp;
-                {res.data.mensaje}
-              </p>
-            );
-            this.setState({
-              error: errores
-            });
-          } else {
-            let data = res.data;
-            let usuario = data.usuario;
-            delete usuario.clave;
-            delete usuario._id;
-            localStorage.setItem('tokenVPP', data.token);
-            localStorage.setItem('usuarioVPP', JSON.stringify(data.usuario));
-            document.getElementById('cerrarLoginModal').click();
-            this.verificar();
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
+    axios
+      .post('/vpp/api/iniciarSesion', {
+        email: this.state.email.toLowerCase(),
+        clave: this.state.clave
+      })
+      .then(res => {
+        let exito = res.data.exito;
+        if (!exito) {
+          errores.push(
+            <p className="mb-0" key="primerErrorLogin">
+              &bull;&nbsp;
+              {res.data.mensaje}
+            </p>
+          );
+          this.setState({
+            error: errores,
+            loading: false
+          });
+        } else {
+          this.setState({
+            loading: false
+          });
+          let data = res.data;
+          datosUsuario.guardarDatosLogin(data);
+          document.getElementById('cerrarLoginModal').click();
+          this.verificar();
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({
+          error: [
+            <p className="mb-0" key="primerErrorLogin">
+              &bull;&nbsp;Se presentó un error realizando la petición
+            </p>
+          ],
+          loading: false
         });
-    } else {
-      this.setState({
-        error: errores
       });
-    }
 
     event.preventDefault();
   }
@@ -92,8 +82,8 @@ class Login extends Component {
     }
   }
 
-  handleChangeNombreDeUsuario(event) {
-    this.setState({ nombreDeUsuario: event.target.value });
+  handleChangeEmail(event) {
+    this.setState({ email: event.target.value });
   }
 
   handleChangeClave(event) {
@@ -110,10 +100,7 @@ class Login extends Component {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div
-          className="modal-dialog modal-dialog-centered modal-sm"
-          role="document"
-        >
+        <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header bg-dark text-light">
               <h5 className="modal-title" id="exampleModalLabel">
@@ -134,15 +121,16 @@ class Login extends Component {
             <div className="modal-body">
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="nombreDeUsuarioInput">
-                    <b>Nombre de usuario</b>
+                  <label htmlFor="emailInput">
+                    <b>Correo</b>
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     className="form-control"
-                    id="nombreDeUsuarioInput"
+                    id="emailInput"
                     value={this.state.value}
-                    onChange={this.handleChangeNombreDeUsuario}
+                    onChange={this.handleChangeEmail}
+                    disabled={this.state.loading}
                     required
                   />
                 </div>
@@ -152,19 +140,26 @@ class Login extends Component {
                   </label>
                   <input
                     type="password"
+                    minLength="8"
+                    maxLength="35"
                     className="form-control"
                     id="loginInputPassword1"
                     value={this.state.value}
                     onChange={this.handleChangeClave}
                     autoComplete="password"
+                    disabled={this.state.loading}
                     required
                   />
                 </div>
                 {this.mostrarError()}
                 <center>
-                  <button type="submit" className="btn btn-success">
-                    Iniciar sesión
-                  </button>
+                  {this.state.loading ? (
+                    <i className="fas fa-spin fa-spinner fa-2x" />
+                  ) : (
+                    <button type="submit" className="btn btn-success">
+                      Iniciar sesión
+                    </button>
+                  )}
                 </center>
                 <br />
               </form>

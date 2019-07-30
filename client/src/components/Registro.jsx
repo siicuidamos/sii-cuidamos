@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 const departamentos = require('../json/Departamentos.json');
+const sectoresProfesionales = require('../json/SectoresProfesionales.json');
 
 class Registro extends Component {
   constructor(props) {
@@ -8,13 +9,14 @@ class Registro extends Component {
 
     this.state = {
       email: '',
-      nombreDeUsuario: '',
       clave: '',
-      nivelEducativo: 'Basica Primaria',
-      sector: 'Ingenieria',
-      departamentoDeOrigen: 'Amazonas',
-      departamentoDeResidencia: 'Amazonas',
-      error: []
+      nivelEducativo: '',
+      sector: '',
+      departamentoDeOrigen: '',
+      departamentoDeResidencia: '',
+      nombreDeUsuario: '',
+      error: [],
+      loading: false
     };
 
     this.verificar = props.verificar;
@@ -45,99 +47,62 @@ class Registro extends Component {
   }
 
   handleSubmit(event) {
+    this.setState({
+      loading: true,
+      error: []
+    });
     let errores = [];
+    axios
+      .post('/vpp/api/registrarUsuario', {
+        email: this.state.email.toLowerCase(),
+        clave: this.state.clave,
+        nivelEducativo: this.state.nivelEducativo,
+        sector: this.state.sector,
+        nombreDeUsuario: this.state.nombreDeUsuario,
+        origen: this.state.departamentoDeOrigen,
+        residencia: this.state.departamentoDeResidencia
+      })
+      .then(res => {
+        let exito = res.data.exito;
 
-    if (this.state.email.length < 5) {
-      errores.push(
-        <p>&bull;&nbsp;El nombre de correo debe tener al menos 5 carateres.</p>
-      );
-    }
-
-    if (
-      this.state.nombreDeUsuario.length < 3 ||
-      this.state.nombreDeUsuario.length > 15
-    ) {
-      errores.push(
-        <p>
-          &bull;&nbsp;El nombre de usuario debe tener entre 3 y 15 carateres.
-        </p>
-      );
-    }
-
-    if (this.state.clave.length < 8 || this.state.clave.length > 30) {
-      errores.push(
-        <p>&bull;&nbsp;La contraseña debe tener entre 8 y 35 carateres.</p>
-      );
-    }
-
-    if (errores.length === 0) {
-      axios
-        .post('/vpp/api/registrarUsuario', {
-          email: this.state.email,
-          nombreDeUsuario: this.state.nombreDeUsuario,
-          clave: this.state.clave,
-          nivelEducativo: this.state.nivelEducativo,
-          sector: this.state.sector,
-          departamentoDeOrigen: this.state.departamentoDeOrigen,
-          departamentoDeResidencia: this.state.departamentoDeResidencia
-        })
-        .then(res => {
-          let exito = res.data.exito;
-          if (!exito) {
-            errores.push(
-              <p>
-                &bull;&nbsp;
-                {res.data.mensaje}
-              </p>
-            );
-            this.setState({
-              error: errores
-            });
-          } else {
-            axios
-              .post('/vpp/api/iniciarSesion', {
-                nombreDeUsuario: this.state.nombreDeUsuario,
-                clave: this.state.clave
-              })
-              .then(res => {
-                let exito = res.data.exito;
-                if (!exito) {
-                  errores.push(
-                    <p>
-                      &bull;&nbsp;
-                      {res.data.mensaje}
-                    </p>
-                  );
-                  this.setState({
-                    error: errores
-                  });
-                } else {
-                  let data = res.data;
-                  let usuario = data.usuario;
-                  delete usuario.clave;
-                  delete usuario._id;
-                  localStorage.setItem('tokenVPP', data.token);
-                  localStorage.setItem(
-                    'usuarioVPP',
-                    JSON.stringify(data.usuario)
-                  );
-                  document.getElementById('cerrarRegistroModal').click();
-                  this.verificar();
-                }
-              })
-              .catch(function(error) {
-                console.log(error);
-              });
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
+        if (!exito) {
+          errores.push(
+            <p className="mb-0">
+              &bull;&nbsp;
+              {res.data.mensaje}
+            </p>
+          );
+          this.setState({
+            error: errores,
+            loading: false
+          });
+        } else {
+          this.setState(
+            {
+              email: '',
+              clave: '',
+              nivelEducativo: '',
+              sector: '',
+              departamentoDeOrigen: '',
+              departamentoDeResidencia: '',
+              nombreDeUsuario: '',
+              error: [],
+              loading: false
+            },
+            () => {
+              document.getElementById('cerrarRegistroModal').click();
+              alert(res.data.mensaje);
+              document.getElementById('botonParaIniciarSesion').click();
+            }
+          );
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({
+          loading: false
         });
-    } else {
-      this.setState({
-        error: errores
       });
-    }
 
     event.preventDefault();
   }
@@ -153,7 +118,7 @@ class Registro extends Component {
   }
 
   handleChangeEmail(event) {
-    this.setState({ email: event.target.value });
+    this.setState({ email: event.target.value.toLowerCase() });
   }
 
   handleChangeNombreDeUsuario(event) {
@@ -198,7 +163,7 @@ class Registro extends Component {
             <div className="modal-header bg-dark text-light">
               <center>
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Bienvenido - Registro
+                  Regístrate
                 </h5>
               </center>
               <button
@@ -226,24 +191,28 @@ class Registro extends Component {
                     <b>Correo</b>
                   </label>
                   <input
+                    disabled={this.state.loading}
                     type="email"
                     className="form-control"
                     id="registroInputEmail"
-                    value={this.state.value}
+                    value={this.state.email}
                     onChange={this.handleChangeEmail}
                     required
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="registroInputUsuario">
+                  <label htmlFor="nombreDeUsuarioInput">
                     <b>Nombre de usuario</b>
                   </label>
                   <input
+                    disabled={this.state.loading}
                     type="text"
                     className="form-control"
-                    id="registroInputUsuario"
-                    value={this.state.value}
+                    id="nombreDeUsuarioInput"
+                    value={this.state.nombreDeUsuario}
                     onChange={this.handleChangeNombreDeUsuario}
+                    minLength="3"
+                    maxLength="20"
                     required
                   />
                 </div>
@@ -252,15 +221,18 @@ class Registro extends Component {
                     <b>Nivel educativo</b>
                   </label>
                   <select
+                    disabled={this.state.loading}
                     className="form-control"
-                    value={this.nivelEducativo}
+                    value={this.state.nivelEducativo}
                     onChange={this.handleChangeNivelEducativo}
+                    required
                   >
+                    <option value="" />
                     <option value="Basica Primaria">Básica Primaria</option>
                     <option value="Basica Secundaria">Básica Secundaria</option>
                     <option value="Educacion Media">Educación Media</option>
                     <option value="Pregrado">
-                      Educación Superior-Pregrado
+                      Educación Superior - Pregrado
                     </option>
                     <option value="Postgrado">
                       Educación Superior - Postgrado
@@ -269,28 +241,37 @@ class Registro extends Component {
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputSector1">
-                    <b>Sector</b>
+                    <b>Sector profesional</b>
                   </label>
                   <select
+                    disabled={this.state.loading}
                     className="form-control"
-                    value={this.sector}
+                    value={this.state.sector}
                     onChange={this.handleChangeSector}
+                    required
                   >
-                    <option value="Ingenieria">Ingeniería</option>
-                    <option value="Economia">Economía</option>
-                    <option value="Ciencias Sociales">Ciencias Sociales</option>
-                    <option value="Trabajo Social">Trabajo Social</option>
+                    <option value="" />
+                    {sectoresProfesionales.map(sector => {
+                      return (
+                        <option value={sector} key={sector}>
+                          {sector}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="exampleInputDO1">
+                  <label>
                     <b>Departamento de origen</b>
                   </label>
                   <select
+                    disabled={this.state.loading}
                     className="form-control"
-                    value={this.departamentoDeResidencia}
+                    value={this.state.departamentoDeOrigen}
                     onChange={this.handleDepartamentoDeOrigen}
+                    required
                   >
+                    <option value="" />
                     {departamentos.map(departamento => {
                       return (
                         <option value={departamento} key={departamento}>
@@ -300,16 +281,18 @@ class Registro extends Component {
                     })}
                   </select>
                 </div>
-
                 <div className="form-group">
-                  <label htmlFor="exampleInputDO1">
+                  <label>
                     <b>Departamento de residencia</b>
                   </label>
                   <select
+                    disabled={this.state.loading}
                     className="form-control"
-                    value={this.departamentoDeResidencia}
+                    value={this.state.departamentoDeResidencia}
                     onChange={this.handleDepartamentoDeResidencia}
+                    required
                   >
+                    <option value="" />
                     {departamentos.map(departamento => {
                       return (
                         <option value={departamento} key={2 + departamento}>
@@ -325,20 +308,50 @@ class Registro extends Component {
                     <b>Contraseña</b>
                   </label>
                   <input
+                    disabled={this.state.loading}
                     type="password"
+                    minLength="8"
                     className="form-control"
                     id="exampleInputPassword1"
-                    value={this.state.value}
+                    value={this.state.clave}
                     onChange={this.handleChangeClave}
-                    autoComplete="foo"
                     required
                   />
                 </div>
+
+                <div class="form-group form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="politicasDeInformacionCheckbox"
+                    disabled={this.state.loading}
+                    required
+                  />
+                  <label
+                    class="form-check-label"
+                    for="politicasDeInformacionCheckbox"
+                  >
+                    Acepto las&nbsp;
+                    <a
+                      href={
+                        process.env.PUBLIC_URL + '/SII-Cuidamos_Politicas.pdf'
+                      }
+                      target="blank"
+                    >
+                      políticas de seguridad de información
+                    </a>
+                  </label>
+                </div>
+
                 {this.mostrarError()}
                 <center>
-                  <button type="submit" className="btn btn-success">
-                    Crear cuenta
-                  </button>
+                  {this.state.loading ? (
+                    <i className="fas fa-spin fa-spinner fa-2x" />
+                  ) : (
+                    <button type="submit" className="btn btn-success">
+                      Crear cuenta
+                    </button>
+                  )}
                 </center>
               </form>
             </div>
