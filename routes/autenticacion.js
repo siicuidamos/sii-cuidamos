@@ -1,6 +1,9 @@
 // Se usa javascript en modo estricto
 'use strict';
 
+// Algoritmo para cifrar
+const AES = require('crypto-js/aes');
+
 // Modelo del usuario de cognito
 const UsuarioCognito = require('../models/usuarioCognito');
 
@@ -240,6 +243,7 @@ module.exports = router => {
         onSuccess: result => {
           const idToken = result.getIdToken();
           const payload = idToken.payload;
+          const token = idToken.getJwtToken();
           const datosUsuario = {
             email: payload.email,
             nombreDeUsuario: payload['custom:username'],
@@ -250,11 +254,17 @@ module.exports = router => {
             rol: payload['custom:rol']
           };
 
+          let datosUsuarioString = JSON.stringify(datosUsuario);
+          datosUsuarioString = AES.encrypt(
+            datosUsuarioString,
+            token.toString()
+          ).toString();
+
           res.json({
             exito: true,
             mensaje: '¡Bienvenido ' + payload['custom:username'] + '!',
-            token: idToken.getJwtToken(),
-            usuario: datosUsuario
+            token: token,
+            usuario: datosUsuarioString
           });
         },
         onFailure: err => {

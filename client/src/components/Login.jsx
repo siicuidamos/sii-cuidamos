@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import datosUsuario from '../functions/datosUsuario.js';
 
 class Login extends Component {
   constructor(props) {
@@ -51,11 +52,7 @@ class Login extends Component {
             loading: false
           });
           let data = res.data;
-          let usuario = data.usuario;
-          delete usuario.clave;
-          delete usuario._id;
-          localStorage.setItem('tokenVPP', data.token);
-          localStorage.setItem('usuarioVPP', JSON.stringify(data.usuario));
+          datosUsuario.guardarDatosLogin(data);
           document.getElementById('cerrarLoginModal').click();
           this.verificar();
         }

@@ -4,6 +4,7 @@ import { Hashtag } from 'react-twitter-widgets';
 import Comentario from './Comentario';
 import { FacebookShareButton } from 'react-share';
 import { Link } from 'react-router-dom';
+import datosUsuario from '../functions/datosUsuario.js';
 
 const categoriasComentarios = require('../json/CategoriasComentarios.json');
 
@@ -21,7 +22,9 @@ class DetailProyecto extends Component {
       calificacionSeleccionada: '-',
       comentarioEscrito: '',
       errores: [],
-      usuario: JSON.parse(localStorage.getItem('usuarioVPP')),
+      usuario: datosUsuario.datosPresentes()
+        ? datosUsuario.obtenerDatosDeUsuario()
+        : null,
       mensaje:
         'Estamos buscando el proyecto en la base de datos. Por favor espera.'
     };
@@ -353,102 +356,105 @@ class DetailProyecto extends Component {
 
       return (
         <div className="container mb-5">
-        <div className="row">
-          <div className="col-12">
-            <div className="text-center">
-              <Link to="/proyectos" className="text-white text-decoration-none">
-                <button className="btn btn-primary text-white">
-                  <i className="fas fa-list-ul" />
-                  &nbsp;Lista de proyectos
-                </button>
-              </Link>
+          <div className="row">
+            <div className="col-12">
+              <div className="text-center">
+                <Link
+                  to="/proyectos"
+                  className="text-white text-decoration-none"
+                >
+                  <button className="btn btn-primary text-white">
+                    <i className="fas fa-list-ul" />
+                    &nbsp;Lista de proyectos
+                  </button>
+                </Link>
+              </div>
+              <hr />
+              <h3 className="text-center">{nombre}</h3>
+              <hr />
             </div>
-            <hr />
-            <h3 className="text-center">{nombre}</h3>
-            <hr />
-          </div>
-          <div className="col-12 col-md-4 mb-5">
-            {this.validarVideo(bpin, link, sector)}
-            <br />
-            <div>
-              <Hashtag hashtag={'VPP' + bpin} />
-              <FacebookShareButton quote={nombre} url={url}>
-                <a className="btn-primary btn-sm text-white" target="_blank">
-                  <i className="fab fa-facebook-square" />
-                  &nbsp;&nbsp;Compartir
-                </a>
-              </FacebookShareButton>
+            <div className="col-12 col-md-4 mb-5">
+              {this.validarVideo(bpin, link, sector)}
+              <br />
+              <div>
+                <Hashtag hashtag={'VPP' + bpin} />
+                <FacebookShareButton quote={nombre} url={url}>
+                  <a className="btn-primary btn-sm text-white" target="_blank">
+                    <i className="fab fa-facebook-square" />
+                    &nbsp;&nbsp;Compartir
+                  </a>
+                </FacebookShareButton>
+              </div>
+              <br />
             </div>
-            <br />
-          </div>
-          <div className="col-12 col-md-5 mt-3">
-            <p>
-              <i className="fas fa-fingerprint" /> &nbsp;
-              <b>BPIN: </b> {bpin}
-            </p>
+            <div className="col-12 col-md-5 mt-3">
+              <p>
+                <i className="fas fa-fingerprint" /> &nbsp;
+                <b>BPIN: </b> {bpin}
+              </p>
 
-            <p>
-              <i className="fas fa-map-marker-alt fa-lg text-danger" />
-              &nbsp;
-              <b>Ubicación: </b> {region}, {departamento}, {municipio}
-            </p>
+              <p>
+                <i className="fas fa-map-marker-alt fa-lg text-danger" />
+                &nbsp;
+                <b>Ubicación: </b> {region}, {departamento}, {municipio}
+              </p>
 
-            <p>
-              <i className="fas fa-thermometer-half" />
-              &nbsp;
-              <b>Estado: </b>
-              {estado}
-            </p>
+              <p>
+                <i className="fas fa-thermometer-half" />
+                &nbsp;
+                <b>Estado: </b>
+                {estado}
+              </p>
 
-            <p>
-              <i className="fas fa-dollar-sign text-warning" />
-              &nbsp;
-              <b>Financiado con SGR:</b> {sgr}
-            </p>
+              <p>
+                <i className="fas fa-dollar-sign text-warning" />
+                &nbsp;
+                <b>Financiado con SGR:</b> {sgr}
+              </p>
 
-            <p>
-              <i className="fas fa-address-card" />
-              &nbsp;
-              <b>OCAD: </b> {ocad}
-            </p>
+              <p>
+                <i className="fas fa-address-card" />
+                &nbsp;
+                <b>OCAD: </b> {ocad}
+              </p>
 
-            <p>
-              <i className="fas fa-list-ul fa-lg text-success" />
-              &nbsp;
-              <b>Sector: </b> {sector}
-            </p>
+              <p>
+                <i className="fas fa-list-ul fa-lg text-success" />
+                &nbsp;
+                <b>Sector: </b> {sector}
+              </p>
 
-            <p>
-              <i className="fas fa-calendar fa-lg text-primary" />
-              &nbsp;
-              <b>Horizonte: </b>
-              {inicio} - {fin}
-            </p>
+              <p>
+                <i className="fas fa-calendar fa-lg text-primary" />
+                &nbsp;
+                <b>Horizonte: </b>
+                {inicio} - {fin}
+              </p>
+            </div>
+            <div className="col-md-3">
+              <h5>Calificación promedio</h5>
+              <p>{cal}</p>
+              <h5>Número de comentarios</h5>
+              <p>{this.state.comentarios.length}</p>
+            </div>
+            <div className="col-12 mt-2">
+              <hr />
+            </div>
+            <div className="col-md-8 col-12">
+              <h2>Comentarios</h2>
+            </div>
+            <div className="col-md-4 col-12 text-center">
+              <button
+                className="btn btn-success"
+                onClick={() => this.cambiarEstadoFormCrearComentario()}
+              >
+                <i className="fas fa-plus" />
+                &nbsp;Añadir
+              </button>
+            </div>
+            {this.formCrearComentario()}
+            <div className="col-12">{this.mostrarComentarios()}</div>
           </div>
-          <div className="col-md-3">
-            <h5>Calificación promedio</h5>
-            <p>{cal}</p>
-            <h5>Número de comentarios</h5>
-            <p>{this.state.comentarios.length}</p>
-          </div>
-          <div className="col-12 mt-2">
-            <hr />
-          </div>
-          <div className="col-md-8 col-12">
-            <h2>Comentarios</h2>
-          </div>
-          <div className="col-md-4 col-12 text-center">
-            <button
-              className="btn btn-success"
-              onClick={() => this.cambiarEstadoFormCrearComentario()}
-            >
-              <i className="fas fa-plus" />
-              &nbsp;Añadir
-            </button>
-          </div>
-          {this.formCrearComentario()}
-          <div className="col-12">{this.mostrarComentarios()}</div>
-        </div>
         </div>
       );
     } else {

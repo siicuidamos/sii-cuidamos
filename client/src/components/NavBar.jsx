@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login';
 import Registro from './Registro';
+import datosUsuario from '../functions/datosUsuario.js';
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      usuario: JSON.parse(localStorage.getItem('usuarioVPP')),
-      token: localStorage.getItem('tokenVPP')
+      usuario: datosUsuario.datosPresentes()
+        ? datosUsuario.obtenerDatosDeUsuario()
+        : null,
+      token: datosUsuario.obtenerToken()
     };
 
     this.verificarStorage = this.verificarStorage.bind(this);
@@ -93,14 +96,11 @@ class Navbar extends Component {
   }
 
   verificarStorage() {
-    if (
-      localStorage.getItem('usuarioVPP') &&
-      localStorage.getItem('tokenVPP')
-    ) {
+    if (datosUsuario.datosPresentes()) {
       this.setState(
         {
-          usuario: JSON.parse(localStorage.getItem('usuarioVPP')),
-          token: localStorage.getItem('tokenVPP'),
+          usuario: datosUsuario.obtenerDatosDeUsuario(),
+          token: datosUsuario.obtenerToken(),
           sesionIniciada: true
         },
         window.location.reload()
@@ -109,16 +109,12 @@ class Navbar extends Component {
   }
 
   cerrarSesion() {
-    localStorage.removeItem('usuarioVPP');
-    localStorage.removeItem('tokenVPP');
-    this.setState(
-      {
-        usuario: null,
-        token: null,
-        sesionIniciada: false
-      },
-      window.location.reload()
-    );
+    datosUsuario.eliminarDatos();
+    this.setState({
+      usuario: null,
+      token: null,
+      sesionIniciada: false
+    });
   }
 
   render() {
