@@ -7,6 +7,16 @@ const Comentario = require("../models/comentario");
 // Modelo de un proyecto
 const Proyecto = require("../models/proyecto");
 
+// Filtro de lenguaje
+var Filter = require('bad-words'),
+  filter = new Filter();
+
+filter.addWords("Hijueputa", "Gonorrea", "Malparido", "Tarado", "Bobo", "Estupido", "Idiota", "Mongolico", "Atolondrado", "Pichurria", "Gonorriento", "Percanta", "Pirovo", "Zunga", "Guisa", "Marica", "Maricon", "Perra", "Sapo Hijueputa", "Huevon", "Guevon", "BalurdoLoca", "Imbecil", "Lampara", "Ñero", "Garbimba", "Simplon", "Gorsofia", "Gurrupleta", "Piroberta", "Guache", "Gasofia", "Hueva", "Gueba", "Care Chimba", "Chunchurria", "Pendejo", "Corroncho", "Care Monda", "Zorra", "Fufa", "Fufurufa", "Mierda", "Jodanse", "Jodete", "Coscorria", "Bazofia", "Garnupia", "Atontado", "Cretino", "Baboso", "Bobalicon", "Tontarro, ", "Bruto", "Insensato", "Mamerto", "Puberto", "Culicagado", "Menso", "Lerdo", "Muergano", "Tarado", "Lambon", "Zuripanta", "Puta",
+  "hijueputa", "gonorrea", "malparido", "tarado", "bobo", "estupido", "idiota", "mongolico", "atolondrado", "pichurria", "gonorriento", "percanta", "pirovo", "zunga", "guisa", "marica", "maricon", "perra", "sapo hijueputa", "huevon", "guevon", "balurdoloca", "imbecil", "lampara", "ñero", "garbimba", "simplon", "gorsofia", "gurrupleta", "piroberta", "guache", "gasofia", "hueva", "gueba", "care chimba", "chunchurria", "pendejo", "corroncho", "care monda", "zorra", "fufa", "fufurufa", "mierda", "jodanse", "jodete", "coscorria", "bazofia", "garnupia", "atontado", "cretino", "baboso", "bobalicon", "tontarro, ", "bruto", "insensato", "mamerto", "puberto", "culicagado", "menso", "lerdo", "muergano", "tarado", "lambon", "zuripanta", "puta",
+  " hijueputa", " gonorrea", " malparido", " tarado", " bobo", " estupido", " idiota", " mongolico", " atolondrado", " pichurria", " gonorriento", " percanta", " pirovo", " zunga", " guisa", " marica", " maricon", " perra", " sapo hijueputa", " huevon", " guevon", " balurdoloca", " imbecil", " lampara", " ñero", " garbimba", " simplon", " gorsofia", " gurrupleta", " piroberta", " guache", " gasofia", " hueva", " gueba", " care chimba", " chunchurria", " pendejo", " corroncho", " care monda", " zorra", " fufa", " fufurufa", " mierda", " jodanse", " jodete", " coscorria", " bazofia", " garnupia", " atontado", " cretino", " baboso", " bobalicon", " tontarro, ", " bruto", " insensato", " mamerto", " puberto", " culicagado", " menso", " lerdo", " muergano", " tarado", " lambon", " zuripanta", " puta",
+  " hijueputa ", " gonorrea ", " malparido ", " tarado ", " bobo ", " estupido ", " idiota ", " mongolico ", " atolondrado ", " pichurria ", " gonorriento ", " percanta ", " pirovo ", " zunga ", " guisa ", " marica ", " maricon ", " perra ", " sapo hijueputa ", " huevon ", " guevon ", " balurdoloca ", " imbecil ", " lampara ", " ñero ", " garbimba ", " simplon ", " gorsofia ", " gurrupleta ", " piroberta ", " guache ", " gasofia ", " hueva ", " gueba ", " care chimba ", " chunchurria ", " pendejo ", " corroncho ", " care monda ", " zorra ", " fufa ", " fufurufa ", " mierda ", " jodanse ", " jodete ", " coscorria ", " bazofia ", " garnupia ", " atontado ", " cretino ", " baboso ", " bobalicon ", " tontarro, ", " bruto ", " insensato ", " mamerto ", " puberto ", " culicagado ", " menso ", " lerdo ", " muergano ", " tarado ", " lambon ", " zuripanta ", " puta ",
+  "hijueputa ", "gonorrea ", "malparido ", "tarado ", "bobo ", "estupido ", "idiota ", "mongolico ", "atolondrado ", "pichurria ", "gonorriento ", "percanta ", "pirovo ", "zunga ", "guisa ", "marica ", "maricon ", "perra ", "sapo hijueputa ", "huevon ", "guevon ", "balurdoloca ", "imbecil ", "lampara ", "ñero ", "garbimba ", "simplon ", "gorsofia ", "gurrupleta ", "piroberta ", "guache ", "gasofia ", "hueva ", "gueba ", "care chimba ", "chunchurria ", "pendejo ", "corroncho ", "care monda ", "zorra ", "fufa ", "fufurufa ", "mierda ", "jodanse ", "jodete ", "coscorria ", "bazofia ", "garnupia ", "atontado ", "cretino ", "baboso ", "bobalicon ", "tontarro, ", "bruto ", "insensato ", "mamerto ", "puberto ", "culicagado ", "menso ", "lerdo ", "muergano ", "tarado ", "lambon ", "zuripanta ", "puta ");
+
 module.exports = router => {
 
   // API para crear un comentario nuevo
@@ -65,11 +75,15 @@ module.exports = router => {
           mensaje: "Debe existir un nivel educativo asociado al usuario del comentario."
         });
       } else {
+
+        //Filtro de lenguaje del comentario
+        let textoFiltrado = filter.clean(body.texto);
+
         // Se verifica que el proyecto exista antes que nada
         let bpin = body.bpin;
         Proyecto.findOne({
-            bpin: bpin
-          },
+          bpin: bpin
+        },
           (err, proyecto) => {
             if (err) {
               res.json({
@@ -106,7 +120,7 @@ module.exports = router => {
                 } else if (!comentario) {
                   let comentario = new Comentario({
                     bpin: proyecto.bpin,
-                    texto: body.texto,
+                    texto: textoFiltrado,
                     nombreDeUsuario: nombreDeUsuario,
                     sectorUsuario: body.sectorUsuario,
                     nivelEducativoUsuario: body.nivelEducativoUsuario,
@@ -197,9 +211,9 @@ module.exports = router => {
       });
     } else {
       Comentario.find({
-          bpin: bpin,
-          categoria: categoria
-        }, null, {
+        bpin: bpin,
+        categoria: categoria
+      }, null, {
           skip: limite,
           limit: 10
         },
@@ -239,17 +253,17 @@ module.exports = router => {
       });
     } else {
       Comentario.aggregate([{
-          $match: {
-            bpin: bpin
+        $match: {
+          bpin: bpin
+        }
+      }, {
+        $group: {
+          _id: "$bpin",
+          calificacion: {
+            $avg: "$calificacion"
           }
-        }, {
-          $group: {
-            _id: "$bpin",
-            calificacion: {
-              $avg: "$calificacion"
-            }
-          }
-        }],
+        }
+      }],
         (err, calificacionPromedio) => {
           if (err) {
             res.json({
@@ -300,18 +314,18 @@ module.exports = router => {
       });
     } else {
       Comentario.aggregate([{
-          $match: {
-            bpin: bpin,
-            categoria: categoria
+        $match: {
+          bpin: bpin,
+          categoria: categoria
+        }
+      }, {
+        $group: {
+          _id: "$bpin",
+          calificacion: {
+            $avg: "$calificacion"
           }
-        }, {
-          $group: {
-            _id: "$bpin",
-            calificacion: {
-              $avg: "$calificacion"
-            }
-          }
-        }],
+        }
+      }],
         (err, calificacionPromedio) => {
           if (err) {
             res.json({
