@@ -189,11 +189,12 @@ html {
 
 }
 
-footer{
-	position: fixed;
-	bottom: 0;
-}
+.clear { clear: both; height: 160px; }
 
+footer {
+   position:fixed;
+   bottom:0;
+}
 .marg{
 	padding-left: 15%;
 }
