@@ -353,5 +353,27 @@ module.exports = router => {
     }
   });
 
+  router.delete('/comentarios/bpin/:bpin/categoria/:categoria/:nombre', (req, res) => {
+    let nombre = req.params.nombre;
+    let bpin = req.params.bpin;
+    let categoria = req.params.categoria;
+
+    Comentario.deleteOne({
+      nombreDeUsuario: nombre,
+      bpin: bpin,
+      categoria: categoria
+    })
+      .exec()
+      .then(result => {
+        res.status(200).json({ result });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: err });
+      });
+    console.log("ENtra")
+
+  });
+
   return router;
 };
