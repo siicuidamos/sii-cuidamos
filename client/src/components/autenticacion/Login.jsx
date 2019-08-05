@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import datosUsuario from '../functions/datosUsuario.js';
+import datosUsuario from '../../functions/datosUsuario.js';
+import { withRouter } from 'react-router';
 
 class Login extends Component {
   constructor(props) {
@@ -90,6 +91,11 @@ class Login extends Component {
     this.setState({ clave: event.target.value });
   }
 
+  forgotPassword() {
+    document.getElementById('cerrarLoginModal').click();
+    this.props.history.push('/restablecerContrasena');
+  }
+
   render() {
     return (
       <div
@@ -161,7 +167,15 @@ class Login extends Component {
                     </button>
                   )}
                 </center>
-                <br />
+                <hr />
+                <div className="text-center trans-blue">
+                  <span
+                    className="fake-a"
+                    onClick={() => this.forgotPassword()}
+                  >
+                    ¿Olvidaste tu contraseña?
+                  </span>
+                </div>
               </form>
             </div>
           </div>
@@ -170,4 +184,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default withRouter(Login);
