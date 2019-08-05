@@ -52,6 +52,7 @@ class App extends Component {
             <AdministradorGuard path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
+        <div class="clear"></div>
         <Footer />
       </div>
     );

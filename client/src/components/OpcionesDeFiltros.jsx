@@ -103,56 +103,56 @@ class OpcionesDeFiltros extends Component {
   indicador(valor, opcion) {
     if (valor !== '') {
       switch (opcion) {
-      case 1:
-        return (
-          <button
-            type="button"
-            className="btn btn-outline-danger mb-2"
-            onClick={this.cambiarDepartamento.bind(this, '')}
-          >
-            {this.revertirTexto(valor)}
+        case 1:
+          return (
+            <button
+              type="button"
+              className="btn btn-outline-danger mb-2"
+              onClick={this.cambiarDepartamento.bind(this, '')}
+            >
+              {this.revertirTexto(valor)}
               &nbsp;
-            <i className="fas fa-times-circle" />
-          </button>
-        );
-      case 2:
-        return (
-          <button
-            type="button"
-            className="btn btn-outline-danger mb-2"
-            onClick={this.cambiarSector.bind(this, '')}
-          >
-            {this.revertirTexto(valor)}
+              <i className="fas fa-times-circle" />
+            </button>
+          );
+        case 2:
+          return (
+            <button
+              type="button"
+              className="btn btn-outline-danger mb-2"
+              onClick={this.cambiarSector.bind(this, '')}
+            >
+              {this.revertirTexto(valor)}
               &nbsp;
-            <i className="fas fa-times-circle" />
-          </button>
-        );
-      case 3:
-        return (
-          <button
-            type="button"
-            className="btn btn-outline-danger mb-2"
-            onClick={this.cambiarAnioInicio.bind(this, '')}
-          >
-            {this.revertirTexto(valor)}
+              <i className="fas fa-times-circle" />
+            </button>
+          );
+        case 3:
+          return (
+            <button
+              type="button"
+              className="btn btn-outline-danger mb-2"
+              onClick={this.cambiarAnioInicio.bind(this, '')}
+            >
+              {this.revertirTexto(valor)}
               &nbsp;
-            <i className="fas fa-times-circle" />
-          </button>
-        );
-      case 4:
-        return (
-          <button
-            type="button"
-            className="btn btn-outline-danger mb-2"
-            onClick={this.cambiarMunicipio.bind(this, '')}
-          >
-            {this.revertirTexto(valor)}
+              <i className="fas fa-times-circle" />
+            </button>
+          );
+        case 4:
+          return (
+            <button
+              type="button"
+              className="btn btn-outline-danger mb-2"
+              onClick={this.cambiarMunicipio.bind(this, '')}
+            >
+              {this.revertirTexto(valor)}
               &nbsp;
-            <i className="fas fa-times-circle" />
-          </button>
-        );
-      default:
-        return null;
+              <i className="fas fa-times-circle" />
+            </button>
+          );
+        default:
+          return null;
       }
     }
   }
@@ -163,7 +163,7 @@ class OpcionesDeFiltros extends Component {
 
   render() {
     return (
-      <div className="container mb-5">
+      <div className="container mb-5 mt-4">
         <div className="row">
           <div className="col-12">
             <Informacion />
