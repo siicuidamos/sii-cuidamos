@@ -11,6 +11,8 @@ const Proyecto = require("../models/proyecto");
 var Filter = require('bad-words'),
   filter = new Filter();
 
+
+
 filter.addWords("Hijueputa", "Gonorrea", "Malparido", "Tarado", "Bobo", "Estupido", "Idiota", "Mongolico", "Atolondrado", "Pichurria", "Gonorriento", "Percanta", "Pirovo", "Zunga", "Guisa", "Marica", "Maricon", "Perra", "Sapo Hijueputa", "Huevon", "Guevon", "BalurdoLoca", "Imbecil", "Lampara", "Ñero", "Garbimba", "Simplon", "Gorsofia", "Gurrupleta", "Piroberta", "Guache", "Gasofia", "Hueva", "Gueba", "Care Chimba", "Chunchurria", "Pendejo", "Corroncho", "Care Monda", "Zorra", "Fufa", "Fufurufa", "Mierda", "Jodanse", "Jodete", "Coscorria", "Bazofia", "Garnupia", "Atontado", "Cretino", "Baboso", "Bobalicon", "Tontarro, ", "Bruto", "Insensato", "Mamerto", "Puberto", "Culicagado", "Menso", "Lerdo", "Muergano", "Tarado", "Lambon", "Zuripanta", "Puta",
   "hijueputa", "gonorrea", "malparido", "tarado", "bobo", "estupido", "idiota", "mongolico", "atolondrado", "pichurria", "gonorriento", "percanta", "pirovo", "zunga", "guisa", "marica", "maricon", "perra", "sapo hijueputa", "huevon", "guevon", "balurdoloca", "imbecil", "lampara", "ñero", "garbimba", "simplon", "gorsofia", "gurrupleta", "piroberta", "guache", "gasofia", "hueva", "gueba", "care chimba", "chunchurria", "pendejo", "corroncho", "care monda", "zorra", "fufa", "fufurufa", "mierda", "jodanse", "jodete", "coscorria", "bazofia", "garnupia", "atontado", "cretino", "baboso", "bobalicon", "tontarro, ", "bruto", "insensato", "mamerto", "puberto", "culicagado", "menso", "lerdo", "muergano", "tarado", "lambon", "zuripanta", "puta",
   " hijueputa", " gonorrea", " malparido", " tarado", " bobo", " estupido", " idiota", " mongolico", " atolondrado", " pichurria", " gonorriento", " percanta", " pirovo", " zunga", " guisa", " marica", " maricon", " perra", " sapo hijueputa", " huevon", " guevon", " balurdoloca", " imbecil", " lampara", " ñero", " garbimba", " simplon", " gorsofia", " gurrupleta", " piroberta", " guache", " gasofia", " hueva", " gueba", " care chimba", " chunchurria", " pendejo", " corroncho", " care monda", " zorra", " fufa", " fufurufa", " mierda", " jodanse", " jodete", " coscorria", " bazofia", " garnupia", " atontado", " cretino", " baboso", " bobalicon", " tontarro, ", " bruto", " insensato", " mamerto", " puberto", " culicagado", " menso", " lerdo", " muergano", " tarado", " lambon", " zuripanta", " puta",
@@ -373,6 +375,27 @@ module.exports = router => {
       });
     console.log("ENtra")
 
+  });
+
+  router.put('/comentarios/bpin/:bpin/categoria/:categoria/:nombre', (req, res) => {
+    let nombre = req.params.nombre;
+    let bpin = req.params.bpin;
+    let categoria = req.params.categoria;
+
+    Comentario.findOneAndUpdate(
+      {
+        nombreDeUsuario: nombre,
+        bpin: bpin,
+        categoria: categoria
+      },
+      req.body,
+      { new: true },
+      (err, todo) => {
+        console.log(todo)
+        if (err) return res.status(500).send(err);
+        return res.send(todo);
+      }
+    );
   });
 
   return router;
