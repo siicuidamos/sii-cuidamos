@@ -68,8 +68,8 @@ module.exports = router => {
         // Se verifica que el proyecto exista antes que nada
         let bpin = body.bpin;
         Proyecto.findOne({
-            bpin: bpin
-          },
+          bpin: bpin
+        },
           (err, proyecto) => {
             if (err) {
               res.json({
@@ -197,9 +197,9 @@ module.exports = router => {
       });
     } else {
       Comentario.find({
-          bpin: bpin,
-          categoria: categoria
-        }, null, {
+        bpin: bpin,
+        categoria: categoria
+      }, null, {
           skip: limite,
           limit: 10
         },
@@ -239,17 +239,17 @@ module.exports = router => {
       });
     } else {
       Comentario.aggregate([{
-          $match: {
-            bpin: bpin
+        $match: {
+          bpin: bpin
+        }
+      }, {
+        $group: {
+          _id: "$bpin",
+          calificacion: {
+            $avg: "$calificacion"
           }
-        }, {
-          $group: {
-            _id: "$bpin",
-            calificacion: {
-              $avg: "$calificacion"
-            }
-          }
-        }],
+        }
+      }],
         (err, calificacionPromedio) => {
           if (err) {
             res.json({
@@ -300,18 +300,18 @@ module.exports = router => {
       });
     } else {
       Comentario.aggregate([{
-          $match: {
-            bpin: bpin,
-            categoria: categoria
+        $match: {
+          bpin: bpin,
+          categoria: categoria
+        }
+      }, {
+        $group: {
+          _id: "$bpin",
+          calificacion: {
+            $avg: "$calificacion"
           }
-        }, {
-          $group: {
-            _id: "$bpin",
-            calificacion: {
-              $avg: "$calificacion"
-            }
-          }
-        }],
+        }
+      }],
         (err, calificacionPromedio) => {
           if (err) {
             res.json({
@@ -338,6 +338,24 @@ module.exports = router => {
       );
     }
   });
+
+  //API para consultar el numero de comentarios reportados y no reportados, ademas retorna la lista de comentarios reportados
+  router.get("/comentarios/dashboard/cantidad", (req, res) => {
+    let reportado = req.params.reportados;
+    var resp = {
+      comentarios: 0,
+      comentariosReportados: 0,
+      listaComentariosReportados: {}
+    };
+    Comentario.find({ reportado: true }, (error, data) => {
+      resp.comentariosReportados = data.length;
+      resp.listaComentariosReportados = data;
+      Comentario.countDocuments({}, (error1, data1) => {
+        resp.comentarios = data1;
+        res.json(resp);
+      })
+    })
+  })
 
   return router;
 };

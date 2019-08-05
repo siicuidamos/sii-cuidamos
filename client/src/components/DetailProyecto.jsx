@@ -223,6 +223,7 @@ class DetailProyecto extends Component {
           />
         );
       });
+      console.log(comentariosProyecto);
 
       return comentariosProyecto;
     } else {
