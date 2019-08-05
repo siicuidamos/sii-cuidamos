@@ -279,6 +279,93 @@ module.exports = router => {
     }
   });
 
+  // API para obtener el código de restablecer contraseña
+  router.post('/obtenerCodigo', (req, res) => {
+    // Cuerpo de la peticion
+    const body = req.body;
+
+    if (!body.email) {
+      // Revisa que se haya ingresado un nombre de usuario
+      res.json({
+        exito: false,
+        mensaje: 'Debes ingresar un correo válido.'
+      });
+    } else {
+      const userData = {
+        Username: body.email,
+        Pool: userPool
+      };
+
+      const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+      // Se realiza el proceso de enviar el código de verificación
+      cognitoUser.forgotPassword({
+        onSuccess: result => {
+          res.json({
+            exito: true,
+            mensaje: 'Por favor revisa tu correo y copia el código'
+          });
+        },
+        onFailure: err => {
+          console.log(err);
+          res.json({
+            exito: false,
+            mensaje: handleCognitoErorrCode(err)
+          });
+        }
+      });
+    }
+  });
+
+  // API para restablecer la contraseña
+  router.post('/restablecerContrasena', (req, res) => {
+    // Cuerpo de la peticion
+    const body = req.body;
+
+    if (!body.email) {
+      // Revisa que se haya ingresado un nombre de usuario
+      res.json({
+        exito: false,
+        mensaje: 'Debes ingresar un correo válido.'
+      });
+    } else if (!body.contrasena) {
+      // Revisa que se haya ingresado una contraseña
+      res.json({
+        exito: false,
+        mensaje: 'Debes ingresar una nueva contraseña.'
+      });
+    } else if (!body.codigo) {
+      // Revisa que se haya ingresado un código
+      res.json({
+        exito: false,
+        mensaje: 'Debes ingresar el código de verificación.'
+      });
+    } else {
+      const userData = {
+        Username: body.email,
+        Pool: userPool
+      };
+
+      const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+      cognitoUser.confirmPassword(body.codigo, body.contrasena, {
+        onSuccess: result => {
+          res.json({
+            exito: true,
+            mensaje: 'Por favor inicia sesión con tu nueva contraseña'
+          });
+        },
+        onFailure: err => {
+          console.log(err);
+          res.json({
+            exito: false,
+            mensaje: handleCognitoErorrCode(err)
+          });
+        }
+      });
+    }
+  });
+
   return router;
 };
 
