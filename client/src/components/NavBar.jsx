@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Login from './Login';
-import Registro from './Registro';
+import Login from './autenticacion/Login';
+import Registro from './autenticacion/Registro';
 import datosUsuario from '../functions/datosUsuario.js';
 
 class Navbar extends Component {

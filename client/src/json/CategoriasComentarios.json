@@ -1,1 +1,7 @@
-["Duración", "Objetivo", "Presupuesto"]
+[
+    "General",
+    "Duración",
+    "Objetivo",
+    "Presupuesto",
+    "Viabilidad"
+]

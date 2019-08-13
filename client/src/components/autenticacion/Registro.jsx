@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-const departamentos = require('../json/Departamentos.json');
-const sectoresProfesionales = require('../json/SectoresProfesionales.json');
+const departamentos = require('../../json/Departamentos.json');
+const sectoresProfesionales = require('../../json/SectoresProfesionales.json');
 
 class Registro extends Component {
   constructor(props) {

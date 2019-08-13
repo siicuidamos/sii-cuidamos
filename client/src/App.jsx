@@ -9,6 +9,7 @@ import Detalles from './components/Detalles.jsx';
 import LandingPage from './components/LandingPage.jsx';
 import AdministradorGuard from './guards/AdministradorGuard.jsx';
 import Dashboard from './components/administrador/Dashboard.jsx';
+import RestablecerContrasena from './components/autenticacion/RestablecerContrasena.jsx';
 
 class App extends Component {
   render() {
@@ -39,6 +40,10 @@ class App extends Component {
         <div className="container-fluid px-0">
           <Route exact path="/" component={LandingPage} />
           <Switch>
+            <Route
+              path="/restablecerContrasena"
+              component={RestablecerContrasena}
+            />
             <Route exact path="/proyectos" component={OpcionesDeFiltros} />
             <Route path="/proyectos/:bpin" component={DetailProyecto} />
             <Route path="/ayuda" component={Ayuda} />
@@ -46,6 +51,7 @@ class App extends Component {
             <AdministradorGuard path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
+        <div class="clear" />
         <Footer />
       </div>
     );
