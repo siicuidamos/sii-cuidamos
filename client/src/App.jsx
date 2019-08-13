@@ -17,33 +17,32 @@ class App extends Component {
       <div>
         <div className="container banner">
           <div className="row">
-            <div className="col-md-2 col-sm-6">
+            <div className="col-md-4">
+            </div>
+            <div className="col-md-1 col-sm-12 py-0 px-0">
               <center>
                 <img
-                  width="60%"
-                  height="60%"
+                  width="100px"
+                  height="100%"
                   src={require('./images/logos/siiCuidamosLogo.png')}
                   alt="Logo de la app"
-                  className="responsive"
                 />
               </center>
             </div>
-
-            <div className="col-md-4 col-sm-6">
-              <div className="container container-fluid mt-1">
-                <h2 className="text-center mt-4 bannerText">SII-Cuidamos</h2>
-              </div>
+            <div className="col-md-4 col-sm-12 py-0 px-0 mb-2" align="left">
+              <h2 className="text-center mt-4 bannerText">SII-Cuidamos</h2>
               <div className="bannerText">
                 <b>Compromiso . Comunidad . Responsabilidad</b>
               </div>
             </div>
 
-            <div className="col-6" />
           </div>
+        </div>
+        <div className="col-md-3">
         </div>
         <NavBar />
 
-        <div className="container-fluid">
+        <div className="container-fluid px-0">
           <Route exact path="/" component={LandingPage} />
           <Switch>
             <Route

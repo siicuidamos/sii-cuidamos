@@ -355,6 +355,24 @@ module.exports = router => {
     }
   });
 
+  //API para consultar el numero de comentarios reportados y no reportados, ademas retorna la lista de comentarios reportados
+  router.get("/comentarios/dashboard/cantidad", (req, res) => {
+    let reportado = req.params.reportados;
+    var resp = {
+      comentarios: 0,
+      comentariosReportados: 0,
+      listaComentariosReportados: {}
+    };
+    Comentario.find({ reportado: true }, (error, data) => {
+      resp.comentariosReportados = data.length;
+      resp.listaComentariosReportados = data;
+      Comentario.countDocuments({}, (error1, data1) => {
+        resp.comentarios = data1;
+        res.json(resp);
+      })
+    })
+  })
+  
   router.delete('/comentarios/bpin/:bpin/categoria/:categoria/:nombre', (req, res) => {
     let nombre = req.params.nombre;
     let bpin = req.params.bpin;
@@ -397,6 +415,5 @@ module.exports = router => {
       }
     );
   });
-
   return router;
 };
