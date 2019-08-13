@@ -41,7 +41,6 @@ export default class Dashboard extends Component {
       this.setState({
         infoComentarios: res.data
       })
-      console.log(this.state);
     })
   }
 
@@ -84,10 +83,10 @@ export default class Dashboard extends Component {
     else {
       return (
         <div className="container-fluid">
-          <div className="row alert alert-success col-12 text-center justify-content-center" role="alert">
+          <div className="row alert alert-success col-12 text-center justify-content-center mt-3" role="alert">
             No se han encontrado comentarios reportados
           </div>
-          <div className="row justify-content-center far fa-thumbs-up fa-10x col-12 text-secondary"></div>
+          <div className="row justify-content-center far fa-thumbs-up fa-10x col-12 text-secondary my-5"></div>
         </div>
 
       );
@@ -97,14 +96,13 @@ export default class Dashboard extends Component {
     return (
       <div className="container-fluid px-0">
         <div className="row">
-          <div className="col-2 bg-secondary px-0 py-0 mx-0 my-0">
+          <div className="col-md-2 col-lg-2 col-sm-12 bg-secondary px-0 py-0 mx-0 my-0">
             <div className="list-group" id="list-tab" role="tablist">
               <a className="list-group-item list-group-item-action list-group-item-secondary active" id="list-dashboard-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">DashBoard</a>
-              <a className="list-group-item list-group-item-action list-group-item-secondary" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Comentarios Realizados</a>
-              <a className="list-group-item list-group-item-action list-group-item-secondary" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Comentarios Reportados</a>
+              <a className="list-group-item list-group-item-action list-group-item-secondary" id="list-reportados-list" data-toggle="list" href="#list-reportados" role="tab" aria-controls="reportados">Comentarios Reportados</a>
             </div>
           </div>
-          <div className="col-10">
+          <div className="col-lg-10 col-md-10 col-sm-12">
             <div className="tab-content" id="nav-tabContent">
               <div className="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-dashboard-list">
                 <div className="container-fluid my-4 min-vh-100">
@@ -115,11 +113,11 @@ export default class Dashboard extends Component {
                         <a href="" style={{ textDecoration: "none" }}>
                           <div className="card-body px-0 py-0">
                             <div className="row">
-                              <div className="container-fluid col-5 bg-dark" >
-                                <div className=" row justify-content-center far fa-comments fa-6x text-white pt-2 ">
+                              <div className="container-fluid col-lg-5 col-md-5 bg-dark" >
+                                <div className=" row justify-content-center far fa-comments fa-6x text-white pt-2">
                                 </div>
                               </div>
-                              <div className="container-fluid flex-column col-7 my-auto">
+                              <div className="container-fluid flex-column col-lg-7 col-md-7 my-auto">
                                 <div className="container-fluid">
                                   <h1 className="text-center text-dark"> {this.state.infoComentarios.comentarios} </h1>
                                 </div>
@@ -157,14 +155,7 @@ export default class Dashboard extends Component {
                   </div>
                 </div>
               </div>
-              <div className="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                <div className="container-fluid flex-column my-5 min-vh-100">
-                  <div>
-                    {this.comentariosPorProyecto()}
-                  </div>
-                </div>
-              </div>
-              <div className="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+              <div className="tab-pane fade" id="list-reportados" role="tabpanel" aria-labelledby="list-reportados-list">
                 <div className="container-fluid flex-column my-2 min-vh-100">
                   {this.verComentariosReportados()}
                 </div>

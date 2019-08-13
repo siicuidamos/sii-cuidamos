@@ -190,6 +190,18 @@ module.exports = router => {
     }
   });
 
+  // API para eliminar un comentario
+  router.get("/comentarios/bpin/:bpin/id/:id", (req, res)=>{
+    var cuerpo ={};
+    Comentario.findOneAndRemove({_id: req.params.id},(err,offer)=>{
+      if(err){
+        cuerpo.exito = false;
+        cuerpo.mensaje = "";
+      }
+      res.json("")
+    })
+  })
+
   // API para obtener los comentarios de un proyecto por BPIN y categoría
   router.get("/comentarios/bpin/:bpin/categoria/:categoria/:pagina", (req, res) => {
     let pagina = req.params.pagina || 0;
