@@ -16,9 +16,7 @@ class App extends Component {
       <div>
         <div className="container banner">
           <div className="row">
-            <div className="col-md-4">
-            </div>
-            <div className="col-md-1 col-sm-12 py-0 px-0">
+            <div className="col-lg-1 offset-md-4 col-md-1 offset-md-4 col-sm-12 py-0 px-0">
               <center>
                 <img
                   width="100px"
@@ -34,10 +32,7 @@ class App extends Component {
                 <b>Compromiso . Comunidad . Responsabilidad</b>
               </div>
             </div>
-
           </div>
-        </div>
-        <div className="col-md-3">
         </div>
         <NavBar />
 
