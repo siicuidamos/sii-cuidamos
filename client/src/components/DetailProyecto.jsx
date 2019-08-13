@@ -5,6 +5,7 @@ import Comentario from './Comentario';
 import { FacebookShareButton } from 'react-share';
 import { Link } from 'react-router-dom';
 import datosUsuario from '../functions/datosUsuario.js';
+import Swal from 'sweetalert2'
 
 const categoriasComentarios = require('../json/CategoriasComentarios.json');
 
@@ -36,7 +37,14 @@ class DetailProyecto extends Component {
     this.apiComentarios = '/vpp/api/comentarios';
   }
 
+  componentDidMount() {
+    console.log(datosUsuario.obtenerDatosDeUsuario())
+  }
+
+
   handleSubmit(event) {
+
+
     let errores = [];
     if (
       this.state.comentarioEscrito.length < 100 ||
@@ -87,7 +95,7 @@ class DetailProyecto extends Component {
             );
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     } else {
@@ -153,7 +161,7 @@ class DetailProyecto extends Component {
       if (exito) {
         this.setState({
           comentarios: res.data.comentarios
-        });
+        })
       }
     });
   }
@@ -207,6 +215,48 @@ class DetailProyecto extends Component {
       );
     }
   }
+  borrarComentario(bpin, categoria, nombreDeUsuario) {
+
+    var sure = '¿Estas Seguro?'
+    var revert = "Esta accion no se puede revertir!"
+    var confirm = 'Si, Borrar!'
+    Swal.fire({
+      title: sure,
+      text: revert,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: confirm
+    }).then((result) => {
+      if (result.value) {
+        axios.delete(this.apiComentarios + '/bpin/' + bpin + '/categoria/' + categoria + '/' + nombreDeUsuario)
+          .then(res =>
+            this.setState({
+              comentarios: [...this.state.comentarios.filter(comentario => !((comentario.bpin === bpin) && (comentario.categoria === categoria) && (comentario.nombreDeUsuario === nombreDeUsuario)))]
+            })
+          )
+
+      }
+    })
+
+
+
+    console.log(bpin + categoria + nombreDeUsuario)
+  }
+
+  editarComentario(comentario) {
+    console.log("object")
+    console.log(comentario)
+    this.setState({
+      editando: true,
+      crearComentario: true,
+      calificacionSeleccionada: comentario.calificacion,
+    }, () => { document.getElementById('exampleFormControlTextarea1').value = comentario.texto; })
+
+
+
+  }
 
   mostrarComentarios() {
     if (this.state.comentarios.length > 0) {
@@ -220,6 +270,9 @@ class DetailProyecto extends Component {
               comentario.nombreDeUsuario
             }
             comentario={comentario}
+            usuarioLogeado={datosUsuario.obtenerDatosDeUsuario()}
+            borrarComentario={() => this.borrarComentario(comentario.bpin, comentario.categoria, comentario.nombreDeUsuario)}
+            editarComentario={this.editarComentario}
           />
         );
       });
