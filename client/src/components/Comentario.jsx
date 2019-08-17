@@ -34,17 +34,17 @@ class Comentario extends Component {
                 <p className="card-text">{texto}</p>
                 {usuarioLogeado.nombreDeUsuario === nombreDeUsuario && (
                   <div>
-                    <button
-                      className="btn btn-outline-success"
+                    {/* <button
+                      className="btn btn-outline-success btn-sm m-1"
                       onClick={() => this.editar()}
                     >
-                      Editar
-                    </button>
+                      <i className="fas fa-edit" />
+                    </button> */}
                     <button
-                      className="btn btn-outline-danger"
+                      className="btn btn-outline-danger btn-sm m-1"
                       onClick={() => this.borrar()}
                     >
-                      Borrar
+                      <i className="fas fa-trash" />
                     </button>
                   </div>
                 )}

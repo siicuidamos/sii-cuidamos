@@ -37,7 +37,9 @@ class DetailProyecto extends Component {
     this.apiComentarios = '/vpp/api/comentarios';
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   handleSubmit(event) {
     let errores = [];
@@ -46,7 +48,9 @@ class DetailProyecto extends Component {
       this.state.comentarioEscrito.length > 500
     ) {
       errores.push(
-        <p>&bull;&nbsp;El comentario debe tener entre 100 y 500 caracteres.</p>
+        <p key="errores1">
+          &bull;&nbsp;El comentario debe tener entre 100 y 500 caracteres.
+        </p>
       );
     }
 
@@ -55,7 +59,9 @@ class DetailProyecto extends Component {
       this.state.calificacionSeleccionada < 1 ||
       this.state.calificacionSeleccionada > 10
     ) {
-      errores.push(<p>&bull;&nbsp;La calificación debe ser entre 1 y 10.</p>);
+      errores.push(
+        <p key="errores2">&bull;&nbsp;La calificación debe ser entre 1 y 10.</p>
+      );
     }
 
     if (this.state.usuario && errores.length === 0) {
