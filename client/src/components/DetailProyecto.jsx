@@ -284,7 +284,7 @@ class DetailProyecto extends Component {
               comentario.nombreDeUsuario
             }
             comentario={comentario}
-            usuarioLogeado={datosUsuario.obtenerDatosDeUsuario()}
+            usuarioLogeado={this.state.usuario}
             borrarComentario={() =>
               this.borrarComentario(
                 comentario.bpin,
