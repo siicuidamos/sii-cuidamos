@@ -29,7 +29,7 @@ class Detalles extends Component {
                   de los Andes. por:
                 </p>
                 <p className="text-justify">
-                  En la actualidad Sii-Cuidamos, está conformado
+                  En la actualidad Sii-Cuidamos, está conformado por:
                 </p>
                 <ul>
                   <li>
