@@ -7,20 +7,16 @@ class Comentario extends Component {
     this.apiComentarios = '/vpp/api/comentarios';
   }
 
-  componentDidMount() {
-    console.log(this.comentario)
-  }
+  componentDidMount() {}
 
-  editar(comentario) {
-
-  }
+  editar(comentario) {}
 
   borrar() {
     this.props.borrarComentario();
   }
 
   render() {
-    const { usuarioLogeado } = this.props
+    const { usuarioLogeado } = this.props;
 
     const fecha = this.comentario.fecha;
     const texto = this.comentario.texto;
@@ -36,24 +32,22 @@ class Comentario extends Component {
             <div className="row">
               <div className="col-md-9 borde-comentario">
                 <p className="card-text">{texto}</p>
-                {(usuarioLogeado.nombreDeUsuario === nombreDeUsuario) &&
+                {usuarioLogeado.nombreDeUsuario === nombreDeUsuario && (
                   <div>
                     <button
                       className="btn btn-outline-success"
                       onClick={() => this.editar()}
                     >
                       Editar
-                </button>
+                    </button>
                     <button
                       className="btn btn-outline-danger"
                       onClick={() => this.borrar()}
                     >
                       Borrar
-                </button>
-
-
+                    </button>
                   </div>
-                }
+                )}
               </div>
               <div className="col-md-3">
                 <div className="row">

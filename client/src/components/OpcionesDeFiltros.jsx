@@ -20,6 +20,10 @@ class OpcionesDeFiltros extends Component {
     this.departamentoMunicipios = [];
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   cambiarDepartamento(departamento) {
     if (departamento === '') {
       this.cambiarMunicipio('');
@@ -74,7 +78,7 @@ class OpcionesDeFiltros extends Component {
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {this.departamentoMunicipios.map(municipio => {
               return (
-                <a
+                <div
                   key={municipio.municipio}
                   className="dropdown-item pointer"
                   onClick={this.cambiarMunicipio.bind(
@@ -83,7 +87,7 @@ class OpcionesDeFiltros extends Component {
                   )}
                 >
                   {municipio.municipio}
-                </a>
+                </div>
               );
             })}
           </div>
@@ -215,7 +219,7 @@ class OpcionesDeFiltros extends Component {
               >
                 {departamentos.map(departamento => {
                   return (
-                    <a
+                    <div
                       key={departamento}
                       className="dropdown-item pointer"
                       onClick={this.cambiarDepartamento.bind(
@@ -224,7 +228,7 @@ class OpcionesDeFiltros extends Component {
                       )}
                     >
                       {departamento}
-                    </a>
+                    </div>
                   );
                 })}
               </div>
@@ -250,13 +254,13 @@ class OpcionesDeFiltros extends Component {
               >
                 {sectores.map(sector => {
                   return (
-                    <a
+                    <div
                       key={sector}
                       className="dropdown-item pointer"
                       onClick={this.cambiarSector.bind(this, sector)}
                     >
                       {sector}
-                    </a>
+                    </div>
                   );
                 })}
               </div>
@@ -281,13 +285,13 @@ class OpcionesDeFiltros extends Component {
               >
                 {aniosInicio.map(anio => {
                   return (
-                    <a
+                    <div
                       key={anio}
                       className="dropdown-item pointer"
                       onClick={this.cambiarAnioInicio.bind(this, anio)}
                     >
                       {anio}
-                    </a>
+                    </div>
                   );
                 })}
               </div>

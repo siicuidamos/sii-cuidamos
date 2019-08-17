@@ -13,38 +13,60 @@ class Detalles extends Component {
               <div className="card-body">
                 <h3 className="card-title text-center">¿Quiénes somos?</h3>
                 <p className="text-justify">
-                  “SII-Cuidamos”, somos un grupo Semillero de Investigación
+                  “Sii-Cuidamos”, somos un grupo Semillero de Investigación
                   Interdisciplinario, que busca ayudar a tomar consciencia de la
                   responsabilidad de los jóvenes en el seguimiento y cuidado de
                   proyectos que resuelven necesidades de comunidades y que son
                   financiados con recursos públicos.
                 </p>
                 <p className="text-justify">
-                  SII-Cuidamos, está integrado hasta el momento por un grupo
+                  Sii-Cuidamos, está integrado hasta el momento por un grupo
                   interdisciplinario de estudiantes y docentes de la Universidad
-                  de los Andes. En la actualidad SII-Cuidamos, está conformado
-                  por:
+                  de los Andes. por:
+                </p>
+                <p className="text-justify">
+                  En la actualidad Sii-Cuidamos, está conformado
                 </p>
                 <ul>
-                  <li>
-                    Gabriel Pinto – Estudiante de Ingeniería de Sistemas y
-                    Computación.
-                  </li>
-                  <li>
-                    Vivian Gómez – Estudiante de Ingeniería de Sistemas y
-                    Computación.
-                  </li>
-                  <li>Santiago Garcia -Estudiante Derecho y Gobierno.</li>
-                  <li>
-                    Sebastian Rodriguez- Estudiante Derecho y Ciencia Política
-                  </li>
                   <li>
                     Julia Hilarión - Profesora Emprendimiento e Innovación
                     Departamento Ingenieria Industrial
                   </li>
+                  <li>
+                    Gabriel Pinto Pineda - Estudiante de Ingeniería de Sistemas
+                    y Computación
+                  </li>
+                  <li>Santiago Garcia - Estudiante Derecho y Gobierno</li>
+                  <li>
+                    Sebastian Rodriguez - Estudiante Derecho y Ciencia Política
+                  </li>
+                  <li>
+                    Vivian Gómez Cubillos - Estudiante de Ingeniería de Sistemas
+                    y Computación
+                  </li>
+                  <li>
+                    Rafael Forero Alvarado - Estudiante de Ingeniería de
+                    Sistemas y Computación
+                  </li>
+                  <li>
+                    Juan Camilo Sanguino Perez – Estudiante de Ingeniería de
+                    Sistemas y Computación
+                  </li>
                 </ul>
                 <p className="text-justify">
-                  El grupo busca estimular la participación colaborativa de
+                  Participaron igualmente en la gestación de esta iniciativa los
+                  siguientes estudiantes:
+                </p>
+                <ul>
+                  <li>Santiago Leal - Estudiante Ingenieria Industria</li>
+                  <li>Carlos Salcedo - Estudiante Ingenieria Industrial</li>
+                  <li>
+                    Julio Cruz - Estudiante Ingenieria Industrial e Ingenieria
+                    Civil.
+                  </li>
+                </ul>
+                <p className="text-justify">
+                  El grupo buscará estimular la participación colaborativa de
                   jóvenes y docentes de otras Universidades, colegios, así como
                   de personas naturales y jurídicas interesadas en formar una
                   sociedad honesta y participativa que busque trabajar
@@ -53,7 +75,7 @@ class Detalles extends Component {
                   recursos públicos.
                 </p>
                 <p className="text-justify">
-                  El grupo le interesa principalmente la formación de ciudadanía
+                  Al grupo le interesa principalmente la formación de ciudadanía
                   de jóvenes, es independiente de cualquier filiación, política.
                 </p>
               </div>

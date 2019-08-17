@@ -319,17 +319,17 @@ class Registro extends Component {
                   />
                 </div>
 
-                <div class="form-group form-check">
+                <div className="form-group form-check">
                   <input
                     type="checkbox"
-                    class="form-check-input"
+                    className="form-check-input"
                     id="politicasDeInformacionCheckbox"
                     disabled={this.state.loading}
                     required
                   />
                   <label
-                    class="form-check-label"
-                    for="politicasDeInformacionCheckbox"
+                    className="form-check-label"
+                    htmlFor="politicasDeInformacionCheckbox"
                   >
                     Acepto las&nbsp;
                     <a

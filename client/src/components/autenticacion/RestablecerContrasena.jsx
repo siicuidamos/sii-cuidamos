@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 class RestablecerContrasena extends Component {

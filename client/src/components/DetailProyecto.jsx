@@ -5,7 +5,7 @@ import Comentario from './Comentario';
 import { FacebookShareButton } from 'react-share';
 import { Link } from 'react-router-dom';
 import datosUsuario from '../functions/datosUsuario.js';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 const categoriasComentarios = require('../json/CategoriasComentarios.json');
 
@@ -37,14 +37,9 @@ class DetailProyecto extends Component {
     this.apiComentarios = '/vpp/api/comentarios';
   }
 
-  componentDidMount() {
-    console.log(datosUsuario.obtenerDatosDeUsuario())
-  }
-
+  componentDidMount() {}
 
   handleSubmit(event) {
-
-
     let errores = [];
     if (
       this.state.comentarioEscrito.length < 100 ||
@@ -95,7 +90,7 @@ class DetailProyecto extends Component {
             );
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
     } else {
@@ -161,7 +156,7 @@ class DetailProyecto extends Component {
       if (exito) {
         this.setState({
           comentarios: res.data.comentarios
-        })
+        });
       }
     });
   }
@@ -216,10 +211,9 @@ class DetailProyecto extends Component {
     }
   }
   borrarComentario(bpin, categoria, nombreDeUsuario) {
-
-    var sure = '¿Estas Seguro?'
-    var revert = "Esta accion no se puede revertir!"
-    var confirm = 'Si, Borrar!'
+    var sure = '¿Estas Seguro?';
+    var revert = 'Esta accion no se puede revertir!';
+    var confirm = 'Si, Borrar!';
     Swal.fire({
       title: sure,
       text: revert,
@@ -228,34 +222,48 @@ class DetailProyecto extends Component {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: confirm
-    }).then((result) => {
+    }).then(result => {
       if (result.value) {
-        axios.delete(this.apiComentarios + '/bpin/' + bpin + '/categoria/' + categoria + '/' + nombreDeUsuario)
+        axios
+          .delete(
+            this.apiComentarios +
+              '/bpin/' +
+              bpin +
+              '/categoria/' +
+              categoria +
+              '/' +
+              nombreDeUsuario
+          )
           .then(res =>
             this.setState({
-              comentarios: [...this.state.comentarios.filter(comentario => !((comentario.bpin === bpin) && (comentario.categoria === categoria) && (comentario.nombreDeUsuario === nombreDeUsuario)))]
+              comentarios: [
+                ...this.state.comentarios.filter(
+                  comentario =>
+                    !(
+                      comentario.bpin === bpin &&
+                      comentario.categoria === categoria &&
+                      comentario.nombreDeUsuario === nombreDeUsuario
+                    )
+                )
+              ]
             })
-          )
-
+          );
       }
-    })
-
-
-
-    console.log(bpin + categoria + nombreDeUsuario)
+    });
   }
 
   editarComentario(comentario) {
-    console.log("object")
-    console.log(comentario)
-    this.setState({
-      editando: true,
-      crearComentario: true,
-      calificacionSeleccionada: comentario.calificacion,
-    }, () => { document.getElementById('exampleFormControlTextarea1').value = comentario.texto; })
-
-
-
+    this.setState(
+      {
+        editando: true,
+        crearComentario: true,
+        calificacionSeleccionada: comentario.calificacion
+      },
+      () => {
+        document.getElementById('exampleFormControlTextarea1').value =
+          comentario.texto;
+      }
+    );
   }
 
   mostrarComentarios() {
@@ -271,13 +279,17 @@ class DetailProyecto extends Component {
             }
             comentario={comentario}
             usuarioLogeado={datosUsuario.obtenerDatosDeUsuario()}
-            borrarComentario={() => this.borrarComentario(comentario.bpin, comentario.categoria, comentario.nombreDeUsuario)}
+            borrarComentario={() =>
+              this.borrarComentario(
+                comentario.bpin,
+                comentario.categoria,
+                comentario.nombreDeUsuario
+              )
+            }
             editarComentario={this.editarComentario}
           />
         );
       });
-      console.log(comentariosProyecto);
-
       return comentariosProyecto;
     } else {
       return (
@@ -409,7 +421,7 @@ class DetailProyecto extends Component {
       const url = window.location.href;
 
       return (
-        <div className="container mb-5">
+        <div className="container mb-5 mt-4">
           <div className="row">
             <div className="col-12">
               <div className="text-center">
@@ -433,10 +445,13 @@ class DetailProyecto extends Component {
               <div>
                 <Hashtag hashtag={'VPP' + bpin} />
                 <FacebookShareButton quote={nombre} url={url}>
-                  <a className="btn-primary btn-sm text-white" target="_blank">
+                  <button
+                    className="btn btn-primary btn-sm text-white"
+                    target="_blank"
+                  >
                     <i className="fab fa-facebook-square" />
                     &nbsp;&nbsp;Compartir
-                  </a>
+                  </button>
                 </FacebookShareButton>
               </div>
               <br />
