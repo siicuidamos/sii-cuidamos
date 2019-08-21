@@ -23,9 +23,9 @@ class LandingPage extends Component {
   render() {
     return (
       <div id="landingPageContainer" className="container-fluid bg-whitesmoke">
-        <div className="row landing-page-container-row">
-          <div className="col-12 text-center">
-            <h1 className="text-center mb-3 mt-4">Sii-Cuidamos</h1>
+        <div className="row landing-page-container-row text-white bg-dark-opaque">
+          <div className="col-12">
+            <h1 className=" mb-3 mt-4 text-center">Sii-Cuidamos</h1>
           </div>
           <div className="col-12 text-center">
             <img
@@ -35,14 +35,16 @@ class LandingPage extends Component {
             />
           </div>
           <div className="col-12 text-center mt-3">
-            <b>Compromiso - Responsabilidad - Comunidad&nbsp;</b>
+            <h6>
+              <b>Compromiso - Responsabilidad - Comunidad&nbsp;</b>
+            </h6>
           </div>
           <div className="col-lg-6 mx-auto text-center mt-1">
-            <p>
+            <h5>
               Somos un semillero de Investigación Interdisciplinario que busca
               estimular en los jóvenes el cuidado de proyectos y recursos
               públicos.
-            </p>
+            </h5>
           </div>
           <div className="col-12 mt-1" />
           <div className="col-md-2" />

@@ -250,7 +250,7 @@ footer {
 
 .logorreg {
     background-color: #292c2f;
-    opacity: 0.70;
+    opacity: 0.8;
     overflow: hidden;
 }
 
@@ -322,4 +322,15 @@ footer {
 .fake-a:hover {
     text-decoration: none;
     text-decoration: underline;
+}
+
+#landingPageContainer {
+    background-image: url(./images/slides/ht1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-dark-opaque {
+    background-color: rgba(0, 0, 0, 0.45)
 }
