@@ -27,6 +27,10 @@ html {
     overflow-x: hidden;
 }
 
+#root {
+    min-height: 100vh;
+}
+
 
 
 .letra-pequenia {
@@ -213,24 +217,41 @@ footer {
     }
 }
 
-.parent {
-    /* The image used */
-    background-image: url(./images/slides/ht1.jpg);
+#botonRegistro:hover {
+    color: #343a40 !important;
+}
 
-    /* Full height */
-    height: 700px;
-    width: 100%;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+@media(max-width: 991.98px) {
+    .nav-item {
+        text-align: center;
+    }
+}
+
+.logo-sii-cuidamos-landing {
+    -webkit-filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.4));
+    width: 200px;
+}
+
+@media(max-width: 575.98px) {
+    .logo-sii-cuidamos-landing {
+        width: 150px;
+    }
+}
+
+
+.landing-page-container-row {
+    min-height: 95vh;
+}
+
+.bg-whitesmoke {
+    background-color: whitesmoke;
 }
 
 .logorreg {
     background-color: #292c2f;
-    opacity: .50;
+    opacity: 0.8;
     overflow: hidden;
-    height: 30%;
 }
 
 .backBlack {
@@ -243,24 +264,22 @@ footer {
     align-content: left;
 }
 
-.child {
-    vertical-align: middle;
-    padding: 5%;
-    margin-top: 10%;
-    text-decoration: none;
-}
-
 .box3 {
     width: 300px;
     margin: 50px auto;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
     border-radius: 15px;
-    background: #00bfb6;
     color: #fff;
     padding: 20px;
     text-align: center;
-    font-weight: 900;
+    font-weight: 700;
     font-family: arial;
     position: relative;
+}
+
+#butonAbrirVideoModal:hover {
+    color: #17a2b8;
 }
 
 
@@ -271,9 +290,9 @@ footer {
     width: 0px;
     height: 0px;
     position: absolute;
-    border-left: 15px solid #00bfb6;
+    border-left: 15px solid #007bff;
     border-right: 15px solid transparent;
-    border-top: 15px solid #00bfb6;
+    border-top: 15px solid #007bff;
     border-bottom: 15px solid transparent;
     right: -16px;
     top: 0px;
@@ -288,8 +307,8 @@ footer {
     height: 0px;
     position: absolute;
     border-left: 15px solid transparent;
-    border-right: 15px solid #00bfb6;
-    border-top: 15px solid #00bfb6;
+    border-right: 15px solid #17a2b8;
+    border-top: 15px solid #17a2b8;
     border-bottom: 15px solid transparent;
     left: -16px;
     top: 0px;
@@ -303,4 +322,15 @@ footer {
 .fake-a:hover {
     text-decoration: none;
     text-decoration: underline;
+}
+
+#landingPageContainer {
+    background-image: url(./images/slides/ht1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-dark-opaque {
+    background-color: rgba(0, 0, 0, 0.35)
 }
