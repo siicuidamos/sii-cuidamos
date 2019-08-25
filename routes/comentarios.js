@@ -191,10 +191,10 @@ module.exports = router => {
   });
 
   // API para eliminar un comentario
-  router.get("/comentarios/bpin/:bpin/id/:id", (req, res)=>{
-    var cuerpo ={};
-    Comentario.findOneAndRemove({_id: req.params.id},(err,offer)=>{
-      if(err){
+  router.get("/comentarios/bpin/:bpin/id/:id", (req, res) => {
+    var cuerpo = {};
+    Comentario.findOneAndRemove({ _id: req.params.id }, (err, offer) => {
+      if (err) {
         cuerpo.exito = false;
         cuerpo.mensaje = "";
       }
@@ -384,7 +384,26 @@ module.exports = router => {
       })
     })
   })
-  
+
+  //API para reportar un comentario
+  router.put('/comentarios/reportar/id/:id', (req, res) => {
+    let idComentario = req.params.id;
+    Comentario.findByIdAndUpdate(idComentario, { reportado: true }, (err, data) => {
+      if (err) {
+        res.json({
+          exito: false,
+          mensaje: "Se presentó un error al realizar el reporte. Error: " + err
+        })
+      }
+      else {
+        res.json({
+          exito: true,
+          mensaje: "Se realizó el reporte de manera exitosa"
+        })
+      }
+    })
+  })
+
   router.delete('/comentarios/bpin/:bpin/categoria/:categoria/:nombre', (req, res) => {
     let nombre = req.params.nombre;
     let bpin = req.params.bpin;
