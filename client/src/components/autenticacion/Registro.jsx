@@ -58,7 +58,7 @@ class Registro extends Component {
         clave: this.state.clave,
         nivelEducativo: this.state.nivelEducativo,
         sector: this.state.sector,
-        nombreDeUsuario: this.state.nombreDeUsuario,
+        nombreDeUsuario: this.state.nombreDeUsuario.toLowerCase(),
         origen: this.state.departamentoDeOrigen,
         residencia: this.state.departamentoDeResidencia
       })
@@ -122,7 +122,7 @@ class Registro extends Component {
   }
 
   handleChangeNombreDeUsuario(event) {
-    this.setState({ nombreDeUsuario: event.target.value });
+    this.setState({ nombreDeUsuario: event.target.value.toLowerCase() });
   }
 
   handleChangeClave(event) {
@@ -319,17 +319,17 @@ class Registro extends Component {
                   />
                 </div>
 
-                <div class="form-group form-check">
+                <div className="form-group form-check">
                   <input
                     type="checkbox"
-                    class="form-check-input"
+                    className="form-check-input"
                     id="politicasDeInformacionCheckbox"
                     disabled={this.state.loading}
                     required
                   />
                   <label
-                    class="form-check-label"
-                    for="politicasDeInformacionCheckbox"
+                    className="form-check-label"
+                    htmlFor="politicasDeInformacionCheckbox"
                   >
                     Acepto las&nbsp;
                     <a

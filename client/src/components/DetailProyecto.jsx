@@ -5,6 +5,7 @@ import Comentario from './Comentario';
 import { FacebookShareButton } from 'react-share';
 import { Link } from 'react-router-dom';
 import datosUsuario from '../functions/datosUsuario.js';
+import Swal from 'sweetalert2';
 
 const categoriasComentarios = require('../json/CategoriasComentarios.json');
 
@@ -36,6 +37,10 @@ class DetailProyecto extends Component {
     this.apiComentarios = '/vpp/api/comentarios';
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   handleSubmit(event) {
     let errores = [];
     if (
@@ -43,7 +48,9 @@ class DetailProyecto extends Component {
       this.state.comentarioEscrito.length > 500
     ) {
       errores.push(
-        <p>&bull;&nbsp;El comentario debe tener entre 100 y 500 caracteres.</p>
+        <p key="errores1">
+          &bull;&nbsp;El comentario debe tener entre 100 y 500 caracteres.
+        </p>
       );
     }
 
@@ -52,7 +59,9 @@ class DetailProyecto extends Component {
       this.state.calificacionSeleccionada < 1 ||
       this.state.calificacionSeleccionada > 10
     ) {
-      errores.push(<p>&bull;&nbsp;La calificación debe ser entre 1 y 10.</p>);
+      errores.push(
+        <p key="errores2">&bull;&nbsp;La calificación debe ser entre 1 y 10.</p>
+      );
     }
 
     if (this.state.usuario && errores.length === 0) {
@@ -207,6 +216,61 @@ class DetailProyecto extends Component {
       );
     }
   }
+  borrarComentario(bpin, categoria, nombreDeUsuario) {
+    var sure = '¿Estas Seguro?';
+    var revert = 'Esta accion no se puede revertir!';
+    var confirm = 'Si, Borrar!';
+    Swal.fire({
+      title: sure,
+      text: revert,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: confirm
+    }).then(result => {
+      if (result.value) {
+        axios
+          .delete(
+            this.apiComentarios +
+              '/bpin/' +
+              bpin +
+              '/categoria/' +
+              categoria +
+              '/' +
+              nombreDeUsuario
+          )
+          .then(res =>
+            this.setState({
+              comentarios: [
+                ...this.state.comentarios.filter(
+                  comentario =>
+                    !(
+                      comentario.bpin === bpin &&
+                      comentario.categoria === categoria &&
+                      comentario.nombreDeUsuario === nombreDeUsuario
+                    )
+                )
+              ]
+            })
+          );
+      }
+    });
+  }
+
+  editarComentario(comentario) {
+    this.setState(
+      {
+        editando: true,
+        crearComentario: true,
+        calificacionSeleccionada: comentario.calificacion
+      },
+      () => {
+        document.getElementById('exampleFormControlTextarea1').value =
+          comentario.texto;
+      }
+    );
+  }
 
   mostrarComentarios() {
     if (this.state.comentarios.length > 0) {
@@ -220,11 +284,18 @@ class DetailProyecto extends Component {
               comentario.nombreDeUsuario
             }
             comentario={comentario}
+            usuarioLogeado={this.state.usuario}
+            borrarComentario={() =>
+              this.borrarComentario(
+                comentario.bpin,
+                comentario.categoria,
+                comentario.nombreDeUsuario
+              )
+            }
+            editarComentario={this.editarComentario}
           />
         );
       });
-      console.log(comentariosProyecto);
-
       return comentariosProyecto;
     } else {
       return (
@@ -356,7 +427,7 @@ class DetailProyecto extends Component {
       const url = window.location.href;
 
       return (
-        <div className="container mb-5">
+        <div className="container mb-5 mt-4">
           <div className="row">
             <div className="col-12">
               <div className="text-center">
@@ -380,10 +451,13 @@ class DetailProyecto extends Component {
               <div>
                 <Hashtag hashtag={'VPP' + bpin} />
                 <FacebookShareButton quote={nombre} url={url}>
-                  <a className="btn-primary btn-sm text-white" target="_blank">
+                  <button
+                    className="btn btn-primary btn-sm text-white"
+                    target="_blank"
+                  >
                     <i className="fab fa-facebook-square" />
                     &nbsp;&nbsp;Compartir
-                  </a>
+                  </button>
                 </FacebookShareButton>
               </div>
               <br />
