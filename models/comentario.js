@@ -42,6 +42,11 @@ const comentarioSchema = new Schema({
   calificacion: {
     type: Number,
     required: true
+  },
+  reportado:{
+    type: Boolean,
+    required: false,
+    default: false
   }
 });
 

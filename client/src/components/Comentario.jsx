@@ -1,18 +1,79 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
+import Swal from 'sweetalert2';
 class Comentario extends Component {
   constructor(props) {
     super(props);
 
     this.comentario = this.props.comentario;
     this.apiComentarios = '/vpp/api/comentarios';
+    this.accionesUsuario = this.accionesUsuario.bind(this);
+    this.reportarComentario = this.reportarComentario.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
-  editar(comentario) {}
+  editar(comentario) {
+
+  }
+
+  reportarComentario()
+  {
+    Swal.fire({
+      title: 'Desea reportar este comentario',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'cancelar',
+      confirmButtonText: 'confirmar'
+    }).then((result) => {
+      if (result.value) {
+        Axios.put("/comentarios/reportar/id/" + this.comentario._id,{}).then(res =>{
+          Swal.fire(
+            'Reportado!',
+            res.data.mensaje ,
+            'success'
+          )
+        })
+      }
+    })
+  }
 
   borrar() {
     this.props.borrarComentario();
+  }
+
+  accionesUsuario( usuarioLogeado, propietarioComentario) {
+    var listaBotones = []
+    if(usuarioLogeado != null)
+    {
+    if (usuarioLogeado && usuarioLogeado.nombreDeUsuario === propietarioComentario) {
+      listaBotones.push(
+
+        <div className="row justify-content-end mr-2 my-1">
+          <button className="btn btn-outline-danger btn-sm" onClick={() => this.borrar()}>
+            <i className="far fa-trash-alt"></i>
+          </button>
+          <button className="btn btn-outline-success btn-sm mx-1" onClick={() => this.editar()}>
+            <i className="fas fa-edit" />
+          </button>
+          <button className="btn btn-outline-warning btn-sm" onClick={() => this.reportarComentario()}>
+            <i className="fas fa-exclamation-circle"></i>
+          </button>
+        </div>
+      )
+    }
+    if (usuarioLogeado && usuarioLogeado.nombreDeUsuario !== propietarioComentario) {
+      listaBotones.push(
+        <div className="row justify-content-end mr-2 my-1">
+          <button className="btn btn-outline-warning btn-sm" onClick={() => this.borrar()}>
+            <i className="fas fa-exclamation-circle"></i>
+          </button>
+        </div>
+      )
+    }}
+    return listaBotones
   }
 
   render() {
@@ -32,24 +93,7 @@ class Comentario extends Component {
             <div className="row">
               <div className="col-md-9 borde-comentario">
                 <p className="card-text">{texto}</p>
-                {usuarioLogeado
-                  ? usuarioLogeado.nombreDeUsuario === nombreDeUsuario && (
-                      <div>
-                        {/* <button
-                      className="btn btn-outline-success btn-sm m-1"
-                      onClick={() => this.editar()}
-                    >
-                      <i className="fas fa-edit" />
-                    </button> */}
-                        <button
-                          className="btn btn-outline-danger btn-sm m-1"
-                          onClick={() => this.borrar()}
-                        >
-                          <i className="fas fa-trash" />
-                        </button>
-                      </div>
-                    )
-                  : ''}
+                {this.accionesUsuario(usuarioLogeado, nombreDeUsuario)}              
               </div>
               <div className="col-md-3">
                 <div className="row">
