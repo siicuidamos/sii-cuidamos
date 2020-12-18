@@ -10,7 +10,7 @@ Esta aplicación expone proyectos públicos de inversión de Colombia con el fin
 
 - Vivian Gómez
 
-  [Página](https://viviangomezcubillos.herokuapp.com) - [GitHub](https://github.com/VivianGomez) 
+  [Página](https://viviangomez.github.io) - [GitHub](https://github.com/VivianGomez) 
 
 ## Links de importancia
 
