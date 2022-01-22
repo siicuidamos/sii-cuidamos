@@ -43,7 +43,7 @@
     "jsonwebtoken": "^8.5.1",
     "jwk-to-pem": "^2.0.1",
     "mongoose": "^5.2.12",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "prettier-eslint-cli": "^4.7.1",
     "request": "^2.88.0"
   },
